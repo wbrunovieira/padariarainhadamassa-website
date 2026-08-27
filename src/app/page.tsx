@@ -1,69 +1,77 @@
 import Image from "next/image";
 
+import { navigation, site, whatsappUrl } from "@/lib/site";
+
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <>
+      {/* HERO — provisório, só para o header respirar sobre um fundo real */}
+      <section
+        id="a-padaria"
+        className="grain relative flex min-h-[100svh] items-center overflow-hidden bg-gradient-to-b from-cream-light via-cream to-cream-deep/70"
+      >
         <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/brand/logo-rainha-da-massa.png"
+          alt=""
+          width={900}
+          height={897}
           priority
+          className="pointer-events-none absolute -right-24 top-1/2 hidden w-[46rem] max-w-none -translate-y-1/2 opacity-[0.07] lg:block lg:-right-10"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+        <div className="relative mx-auto w-full max-w-[88rem] px-5 pb-24 pt-[calc(var(--header-h)+5rem)] lg:px-10">
+          <p className="eyebrow text-espresso-soft">
+            Desde a madrugada · {site.city} — {site.state}
           </p>
+
+          <h1 className="mt-6 max-w-5xl font-display text-5xl leading-[0.95] tracking-tight text-espresso sm:text-6xl lg:text-7xl xl:text-8xl">
+            O pão de cada dia,
+            <span className="block italic text-ink">feito como se fosse festa.</span>
+          </h1>
+
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-espresso-soft">
+            Fermentação natural, forno quente de hora em hora e uma confeitaria que a
+            cidade conhece de nome. Bem-vindo à casa da Rainha da Massa.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 text-cream transition-colors duration-300 hover:bg-ink"
+            >
+              <span className="eyebrow">Fazer um pedido</span>
+              <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
+                →
+              </span>
+            </a>
+            <a
+              href="#paes"
+              className="inline-flex items-center gap-2 rounded-full border border-espresso/25 px-7 py-4 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso/5"
+            >
+              <span className="eyebrow">Ver a padaria</span>
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Seções seguintes — âncoras do menu, conteúdo ainda por vir */}
+      {navigation.slice(1).map((item) => (
+        <section
+          key={item.href}
+          id={item.href.replace("#", "")}
+          className="border-t border-espresso/10"
+        >
+          <div className="mx-auto flex max-w-[88rem] flex-col gap-2 px-5 py-32 lg:px-10">
+            <p className="eyebrow text-gold">{item.hint}</p>
+            <h2 className="font-display text-4xl italic text-espresso sm:text-5xl">
+              {item.label}
+            </h2>
+            <p className="mt-2 max-w-md text-espresso-soft">Em breve.</p>
+          </div>
+        </section>
+      ))}
+    </>
   );
 }
