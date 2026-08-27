@@ -39,7 +39,10 @@ export function GallerySection() {
   const foto = aberta === null ? null : fotos[aberta];
 
   return (
-    <section id="galeria" className="border-t border-espresso/10">
+    <section
+      id="galeria"
+      className="border-t border-espresso/10 bg-gradient-to-b from-cream via-cream-light to-cream-deep/25"
+    >
       <div className="mx-auto max-w-[88rem] px-5 py-28 lg:px-10 lg:py-36">
         <div className="max-w-2xl">
           <p className="eyebrow flex items-center gap-2 text-gold">
@@ -69,7 +72,7 @@ export function GallerySection() {
                 ease: EASE,
                 delay: reduce ? 0 : (i % 3) * 0.08,
               }}
-              className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl bg-cream-deep text-left lg:mb-6"
+              className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl bg-cream-deep text-left shadow-[0_22px_48px_-34px_rgba(44,32,26,0.65)] transition-shadow duration-500 hover:shadow-[0_34px_64px_-34px_rgba(44,32,26,0.8)] lg:mb-6"
               aria-label={`Ampliar: ${item.legenda}`}
             >
               <span className="relative block overflow-hidden">

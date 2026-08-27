@@ -33,7 +33,10 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
   });
 
   return (
-    <section id="almoco" className="relative border-t border-espresso/10">
+    <section
+      id="almoco"
+      className="relative border-t border-espresso/10 bg-gradient-to-b from-cream via-cream-light to-cream"
+    >
       <div className="mx-auto max-w-[88rem] px-5 py-28 lg:px-10 lg:py-36">
         <div className="max-w-3xl">
           <motion.p {...reveal()} className="eyebrow flex items-center gap-2 text-gold">
@@ -63,7 +66,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
         {/* O que tem hoje — a pergunta que a pessoa veio fazer */}
         <motion.div
           {...reveal(0.16)}
-          className="mt-14 overflow-hidden rounded-b-3xl rounded-t-[3rem] border border-gold/40 bg-cream-light shadow-[0_30px_60px_-50px_rgba(44,32,26,0.8)] lg:rounded-t-[4rem]"
+          className="brilho relative mt-14 overflow-hidden rounded-b-3xl rounded-t-[3rem] border border-gold/40 bg-cream-light shadow-[0_2px_0_0_rgba(255,255,255,0.6)_inset,0_34px_64px_-46px_rgba(44,32,26,0.85)] lg:rounded-t-[4rem]"
         >
           <div className="grid gap-8 px-7 py-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14 lg:px-12 lg:py-14">
             <div>
@@ -152,7 +155,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                   ease: EASE,
                   delay: reduce ? 0 : 0.2 + i * 0.08,
                 }}
-                className="group relative flex flex-col items-center gap-5 rounded-b-2xl rounded-t-[3.5rem] border border-espresso/12 bg-cream-light px-5 pb-7 pt-10 text-center transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-gold/45 hover:shadow-[0_26px_50px_-38px_rgba(44,32,26,0.75)] lg:rounded-t-[5rem] lg:px-6 lg:pb-9 lg:pt-12"
+                className="group relative flex flex-col items-center gap-5 rounded-b-2xl rounded-t-[3.5rem] border border-espresso/12 bg-cream-light px-5 pb-7 pt-10 text-center transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_14px_30px_-26px_rgba(44,32,26,0.5)] hover:-translate-y-1.5 hover:border-gold/45 hover:shadow-[0_30px_54px_-34px_rgba(44,32,26,0.8)] lg:rounded-t-[5rem] lg:px-6 lg:pb-9 lg:pt-12"
               >
                 <Wheat
                   className="size-5 shrink-0 text-gold/45 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6 group-hover:text-gold"
@@ -194,7 +197,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                 ease: EASE,
                 delay: reduce ? 0 : 0.18 + i * 0.09,
               }}
-              className="group overflow-hidden rounded-2xl bg-cream-deep"
+              className="group overflow-hidden rounded-2xl bg-cream-deep shadow-[0_20px_44px_-32px_rgba(44,32,26,0.6)]"
             >
               <span className="relative block overflow-hidden">
                 <Image

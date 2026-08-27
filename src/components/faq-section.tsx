@@ -13,7 +13,10 @@ export function FaqSection() {
   const [aberta, setAberta] = useState<number | null>(0);
 
   return (
-    <section id="perguntas" className="border-t border-espresso/10 bg-cream-deep/35">
+    <section
+      id="perguntas"
+      className="border-t border-espresso/10 bg-gradient-to-b from-cream-deep/45 via-cream-deep/15 to-cream"
+    >
       <div className="mx-auto max-w-[88rem] px-5 py-28 lg:px-10 lg:py-36">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>

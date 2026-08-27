@@ -23,6 +23,7 @@ const schema = {
   legalName: site.legalName,
   image: "https://padariarainhadamassa.com.br/brand/logo-rainha-da-massa.png",
   telephone: "+552433022752",
+  email: site.email,
   priceRange: "R$",
   foundingDate: String(site.since),
   address: {

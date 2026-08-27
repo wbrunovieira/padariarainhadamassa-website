@@ -11,6 +11,7 @@ export function BreakfastSection() {
   return (
     <MenuSection
       id="cafe-da-manha"
+      fundo="bg-gradient-to-br from-cream-light via-cream to-cream-deep/30"
       sobretitulo="Café da manhã · desde as 6h"
       marca={
         <Image

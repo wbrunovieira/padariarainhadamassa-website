@@ -34,7 +34,10 @@ export function AboutSection({ stats }: { stats: PlaceStats }) {
   });
 
   return (
-    <section id="a-padaria" className="relative border-t border-espresso/10">
+    <section
+      id="a-padaria"
+      className="relative border-t border-espresso/10 bg-gradient-to-b from-cream-light via-cream to-cream"
+    >
       <div className="mx-auto max-w-[88rem] px-5 py-28 lg:px-10 lg:py-40">
         <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-24">
           <div>

@@ -8,7 +8,7 @@ export function SiteFooter() {
   const ano = new Date().getFullYear();
 
   return (
-    <footer className="grain relative overflow-hidden bg-ink text-cream/85">
+    <footer className="grain relative overflow-hidden bg-gradient-to-b from-[#1b1310] via-ink to-[#120c0a] text-cream/85">
       <div className="relative mx-auto max-w-[88rem] px-5 py-20 lg:px-10 lg:py-24">
         <div className="grid gap-14 lg:grid-cols-[1.2fr_0.9fr_0.9fr] lg:gap-16">
           <div>
@@ -77,6 +77,14 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>{site.hours}</li>
+              <li>
+                <a
+                  href={site.emailHref}
+                  className="break-all underline decoration-wheat/30 decoration-1 underline-offset-4 transition-colors hover:decoration-wheat"
+                >
+                  {site.email}
+                </a>
+              </li>
               <li>
                 <a
                   href={site.instagram}

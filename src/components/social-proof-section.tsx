@@ -20,9 +20,9 @@ export function SocialProofSection({ stats }: { stats: PlaceStats }) {
   });
 
   return (
-    <section id="avaliacoes" className="border-t border-espresso/10">
+    <section id="avaliacoes" className="relative border-t border-espresso/10">
       <div className="mx-auto max-w-[88rem] px-5 py-28 lg:px-10 lg:py-36">
-        <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <div className="brilho relative grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
             <motion.p {...reveal()} className="eyebrow text-gold">
               O que dizem por aí

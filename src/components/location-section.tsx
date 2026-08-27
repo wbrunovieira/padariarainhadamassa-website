@@ -25,7 +25,7 @@ export function LocationSection() {
   return (
     <section
       id="contato"
-      className="grain relative overflow-hidden bg-ink text-cream"
+      className="grain relative overflow-hidden bg-gradient-to-b from-[#241a15] via-ink to-[#1b1310] text-cream"
     >
       <Image
         src="/brand/logo-rainha-da-massa-cream.png"
@@ -77,6 +77,18 @@ export function LocationSection() {
             </div>
 
             <div className="border-t border-cream/15 pt-5">
+              <dt className="eyebrow text-cream/50">E-mail</dt>
+              <dd className="mt-2 break-all text-lg">
+                <a
+                  href={site.emailHref}
+                  className="underline decoration-wheat/40 decoration-1 underline-offset-4 transition-colors hover:decoration-wheat"
+                >
+                  {site.email}
+                </a>
+              </dd>
+            </div>
+
+            <div className="border-t border-cream/15 pt-5">
               <dt className="eyebrow text-cream/50">Delivery e redes</dt>
               <dd className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-lg">
                 <a
@@ -106,7 +118,7 @@ export function LocationSection() {
               href={googleMapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-full bg-cream px-6 py-4 text-ink transition-colors duration-300 hover:bg-wheat"
+              className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-full bg-cream px-6 py-4 text-ink transition-colors duration-300 hover:bg-[#1a73e8] hover:text-white"
             >
               <MapPin className="size-4" strokeWidth={1.8} aria-hidden />
               <span className="eyebrow">Abrir no Google Maps</span>
@@ -115,7 +127,7 @@ export function LocationSection() {
               href={wazeUrl}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-full border border-cream/30 px-6 py-4 text-cream transition-colors duration-300 hover:border-cream hover:bg-cream/10"
+              className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-full border border-cream/30 px-6 py-4 text-cream transition-colors duration-300 hover:border-[#33ccff] hover:bg-[#33ccff] hover:text-[#08263a]"
             >
               <Navigation className="size-4" strokeWidth={1.8} aria-hidden />
               <span className="eyebrow">Abrir no Waze</span>

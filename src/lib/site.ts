@@ -20,6 +20,8 @@ export const site = {
 
   phone: "(24) 3302-2752",
   phoneHref: "tel:+552433022752",
+  email: "padariarainhadamassa@outlook.com",
+  emailHref: "mailto:padariarainhadamassa@outlook.com",
 
   // PENDENTE: bio do Instagram diz "domingo a domingo das 6h às 22h";
   // o Google mostra 6h às 21h. Usando a versão do próprio negócio.

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Wheat } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -27,6 +27,7 @@ const TICKER = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const ativo = useSecaoAtiva();
   const reduce = useReducedMotion();
 
   const { scrollY, scrollYProgress } = useScroll();
@@ -154,7 +155,12 @@ export function SiteHeader() {
               className="hidden items-center gap-9 lg:flex"
             >
               {navigation.map((item) => (
-                <NavLink key={item.href} href={item.href} label={item.label} />
+                <NavLink
+                  key={item.href}
+                  href={item.href}
+                  label={item.label}
+                  ativo={ativo === item.href}
+                />
               ))}
             </nav>
 
@@ -267,9 +273,15 @@ export function SiteHeader() {
                       ease: EASE,
                       delay: reduce ? 0 : 0.12 + index * 0.06,
                     }}
+                    aria-current={ativo === item.href ? "true" : undefined}
                     className="group flex flex-col gap-1.5 border-b border-espresso/10 py-4"
                   >
-                    <span className="eyebrow text-gold/80">{item.hint}</span>
+                    <span className="eyebrow flex items-center gap-2 text-gold/80">
+                      {ativo === item.href && (
+                        <span aria-hidden className="block h-px w-4 bg-gold" />
+                      )}
+                      {item.hint}
+                    </span>
                     <span className="font-display text-[2rem] leading-none italic text-espresso transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5">
                       {item.label}
                     </span>
@@ -314,18 +326,65 @@ export function SiteHeader() {
   );
 }
 
-function NavLink({ href, label }: { href: string; label: string }) {
+/** Marca no menu a seção que está na tela. */
+function useSecaoAtiva() {
+  const [ativo, setAtivo] = useState<string | null>(null);
+  const visiveis = useRef(new Map<string, boolean>());
+  const ordem = useMemo(() => navigation.map((n) => n.href), []);
+
+  useEffect(() => {
+    const alvos = ordem
+      .map((href) => document.querySelector(href))
+      .filter((el): el is Element => Boolean(el));
+    if (!alvos.length) return;
+
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        for (const e of entradas) {
+          visiveis.current.set(`#${e.target.id}`, e.isIntersecting);
+        }
+        const primeiro = ordem.find((href) => visiveis.current.get(href));
+        setAtivo(primeiro ?? null);
+      },
+      // a faixa de leitura fica logo abaixo do cabeçalho
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
+    );
+
+    alvos.forEach((el) => observador.observe(el));
+    return () => observador.disconnect();
+  }, [ordem]);
+
+  return ativo;
+}
+
+function NavLink({
+  href,
+  label,
+  ativo = false,
+}: {
+  href: string;
+  label: string;
+  ativo?: boolean;
+}) {
   return (
-    <a href={href} className="group relative py-1.5 text-espresso">
+    <a
+      href={href}
+      aria-current={ativo ? "true" : undefined}
+      className="group relative py-1.5 text-espresso"
+    >
       <Wheat
-        className="absolute -top-2.5 left-1/2 size-3 -translate-x-1/2 text-gold opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-top-3 group-hover:opacity-100"
+        className={`absolute left-1/2 size-3 -translate-x-1/2 text-gold transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-top-3 group-hover:opacity-100 ${ativo ? "-top-3 opacity-100" : "-top-2.5 opacity-0"}`}
         strokeWidth={1.6}
         aria-hidden
       />
-      <span className="eyebrow transition-colors duration-300 group-hover:text-ink">
+      <span
+        className={`eyebrow transition-colors duration-300 group-hover:text-ink ${ativo ? "text-ink" : ""}`}
+      >
         {label}
       </span>
-      <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
+      <span
+        className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 ${ativo ? "scale-x-100" : "scale-x-0"}`}
+      />
     </a>
   );
 }

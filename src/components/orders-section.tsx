@@ -19,7 +19,10 @@ export function OrdersSection() {
   });
 
   return (
-    <section id="encomendas" className="border-t border-espresso/10">
+    <section
+      id="encomendas"
+      className="border-t border-espresso/10 bg-gradient-to-b from-cream-deep/25 to-cream"
+    >
       <div className="mx-auto max-w-[88rem] px-5 py-28 lg:px-10 lg:py-36">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>

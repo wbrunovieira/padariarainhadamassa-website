@@ -16,7 +16,7 @@ export function ConfectionerySection() {
     <MenuSection
       id="confeitaria"
       invertido
-      fundo="bg-cream-deep/35"
+      fundo="bg-gradient-to-b from-cream-deep/50 via-cream-deep/15 to-cream"
       sobretitulo="Confeitaria"
       marca={<Wheat className="size-4" strokeWidth={1.6} aria-hidden />}
       titulo={
