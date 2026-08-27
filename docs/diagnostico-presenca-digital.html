@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Diagnóstico da presença digital da Padaria Rainha da Massa (Petrópolis/RJ), levantado em fontes públicas em 27/08/2026.">
+<meta name="robots" content="noindex, nofollow">
+<!--
+  Documento interno — material de conversa com o cliente, não faz parte do site.
+  Publicado também como Artifact:
+  https://claude.ai/code/artifact/a9784008-b2de-4fca-a97a-8f935f159ee4
+-->
+<title>Rainha da Massa no Google</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+
+<style>
+  :root {
+    --paper: #e7eaee;
+    --surface: #fbfcfd;
+    --surface-sunk: #eff2f5;
+    --ink: #121821;
+    --ink-soft: #3d4753;
+    --muted: #6a7480;
+    --line: #cbd2da;
+    --line-soft: #dde2e8;
+    --accent: #9d5a17;
+    --accent-soft: #f0e2d0;
+    --crit: #a52a1f;
+    --crit-bg: #f6e0dd;
+    --warn: #856100;
+    --warn-bg: #f4ead0;
+    --ok: #1b6047;
+    --ok-bg: #dcebe4;
+    --shadow: 0 1px 2px rgba(18, 24, 33, .05), 0 12px 28px -22px rgba(18, 24, 33, .5);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #10151b;
+      --surface: #171e26;
+      --surface-sunk: #131a21;
+      --ink: #e8edf2;
+      --ink-soft: #b3bdc8;
+      --muted: #8b96a3;
+      --line: #2c3742;
+      --line-soft: #232d37;
+      --accent: #e0a260;
+      --accent-soft: #33261a;
+      --crit: #f09a8e;
+      --crit-bg: #3a1e1a;
+      --warn: #e5bc5c;
+      --warn-bg: #34290f;
+      --ok: #7bcaa8;
+      --ok-bg: #133025;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 14px 30px -22px rgba(0, 0, 0, .9);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #10151b;
+    --surface: #171e26;
+    --surface-sunk: #131a21;
+    --ink: #e8edf2;
+    --ink-soft: #b3bdc8;
+    --muted: #8b96a3;
+    --line: #2c3742;
+    --line-soft: #232d37;
+    --accent: #e0a260;
+    --accent-soft: #33261a;
+    --crit: #f09a8e;
+    --crit-bg: #3a1e1a;
+    --warn: #e5bc5c;
+    --warn-bg: #34290f;
+    --ok: #7bcaa8;
+    --ok-bg: #133025;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 14px 30px -22px rgba(0, 0, 0, .9);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 2.5rem) 5rem;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .69rem;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  h1 {
+    font-family: Newsreader, Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2.3rem, 6vw, 3.6rem);
+    line-height: 1.06;
+    letter-spacing: -.015em;
+    text-wrap: balance;
+    margin: .7rem 0 0;
+  }
+
+  h2 {
+    font-family: Newsreader, Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3.2vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1.02rem;
+    line-height: 1.35;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  p { margin: 0; }
+  a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .lede {
+    max-width: 40ch;
+    font-family: Newsreader, Georgia, serif;
+    font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-top: 1.4rem;
+  }
+
+  .stack { display: flex; flex-direction: column; }
+  .gap-s { gap: .55rem; }
+  .gap-m { gap: 1.1rem; }
+  .gap-l { gap: 2rem; }
+
+  section { margin-top: clamp(3rem, 7vw, 5rem); }
+
+  .sec-head {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.8rem;
+  }
+
+  /* ---- placar ---- */
+  .placar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+    margin-top: 2.6rem;
+  }
+  .placar > div {
+    background: var(--surface);
+    padding: 1.3rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+  .placar .num {
+    font-family: Newsreader, Georgia, serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -.02em;
+  }
+  .placar .num.alarme { color: var(--crit); }
+  .placar .cap {
+    font-size: .84rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ---- ficha ---- */
+  .ficha {
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .ficha > div {
+    display: grid;
+    grid-template-columns: minmax(9rem, 14rem) 1fr;
+    gap: .4rem 1.5rem;
+    padding: .85rem 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .ficha dt {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ficha dd { margin: 0; }
+  .ficha .fonte {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .7rem;
+    color: var(--muted);
+    margin-top: .2rem;
+  }
+  @media (max-width: 34rem) {
+    .ficha > div { grid-template-columns: 1fr; gap: .15rem; }
+  }
+
+  /* ---- achados ---- */
+  .achado {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 1rem 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: start;
+  }
+  .achado:first-of-type { border-top: 1px solid var(--line); }
+  .selo {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem .5rem;
+    justify-self: start;
+    white-space: nowrap;
+  }
+  .selo.c { background: var(--crit-bg); color: var(--crit); }
+  .selo.a { background: var(--warn-bg); color: var(--warn); }
+  .selo.m { background: var(--surface-sunk); color: var(--ink-soft); }
+  .achado p { color: var(--ink-soft); margin-top: .5rem; max-width: 62ch; }
+  .achado .prova {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .73rem;
+    color: var(--muted);
+    margin-top: .6rem;
+    max-width: 62ch;
+  }
+  @media (max-width: 40rem) {
+    .achado { grid-template-columns: 1fr; gap: .6rem; }
+  }
+
+  /* ---- divergencias ---- */
+  .tabela-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .92rem;
+    min-width: 30rem;
+  }
+  th, td {
+    text-align: left;
+    padding: .8rem 1rem .8rem 0;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+  }
+  thead th {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--line);
+  }
+  tbody th { font-weight: 500; }
+
+  /* ---- plano ---- */
+  ol.plano { list-style: none; padding: 0; margin: 0; }
+  ol.plano > li {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 0 1.2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  ol.plano > li:first-child { border-top: 1px solid var(--line); }
+  .passo {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    padding-top: .12rem;
+  }
+  ol.plano p { color: var(--ink-soft); margin-top: .35rem; max-width: 62ch; }
+  .custo {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ok);
+    background: var(--ok-bg);
+    padding: .22rem .45rem;
+    margin-top: .55rem;
+  }
+
+  /* ---- ressalva ---- */
+  .ressalva {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-left: 3px solid var(--accent);
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .ressalva ul { margin: .8rem 0 0; padding-left: 1.1rem; color: var(--ink-soft); }
+  .ressalva li { margin-top: .45rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .72rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Diagnóstico de presença digital · 27 de agosto de 2026</p>
+    <h1>Padaria Rainha da Massa</h1>
+    <p class="lede">168 pessoas já avaliaram a padaria no Google. Nenhuma delas encontra um site, uma foto publicada pela casa ou uma resposta.</p>
+
+    <div class="placar">
+      <div>
+        <span class="num">4,5</span>
+        <span class="cap">estrelas no Google, com 168 avaliações</span>
+      </div>
+      <div>
+        <span class="num">22</span>
+        <span class="cap">anos abertos — CNPJ ativo desde março de 2004</span>
+      </div>
+      <div>
+        <span class="num alarme">0</span>
+        <span class="cap">dono cadastrado no perfil do Google</span>
+      </div>
+      <div>
+        <span class="num alarme">0</span>
+        <span class="cap">canais com resposta rápida divulgados</span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Ficha</p>
+      <h2>O que está publicado hoje</h2>
+    </div>
+
+    <dl class="ficha">
+      <div>
+        <dt>Endereço</dt>
+        <dd>R. Saldanha Marinho, 7 — Petrópolis/RJ, 25640-233
+          <span class="fonte">Google Maps · confirmado pelo cliente</span></dd>
+      </div>
+      <div>
+        <dt>Telefone</dt>
+        <dd>(24) 3302-2752
+          <span class="fonte">Google e Instagram concordam</span></dd>
+      </div>
+      <div>
+        <dt>Horário</dt>
+        <dd>6h às 22h, todos os dias
+          <span class="fonte">bio do Instagram — o Google mostra 21h</span></dd>
+      </div>
+      <div>
+        <dt>Instagram</dt>
+        <dd>@rainha_da_massa_ — 304 seguidores, 86 publicações
+          <span class="fonte">perfil ativo, com destaques de encomendas e doces</span></dd>
+      </div>
+      <div>
+        <dt>Delivery</dt>
+        <dd>iFood
+          <span class="fonte">bio do Instagram e avaliações de clientes</span></dd>
+      </div>
+      <div>
+        <dt>Registro</dt>
+        <dd>Padaria e Confeitaria Rainha da Massa Ltda — CNPJ 06.280.419/0001-20, aberta em 31/03/2004
+          <span class="fonte">Receita Federal</span></dd>
+      </div>
+      <div>
+        <dt>Site</dt>
+        <dd>Nenhum — o perfil do Google exibe o botão “Adicionar website” para qualquer visitante
+          <span class="fonte">em construção agora</span></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Achados · em ordem de gravidade</p>
+      <h2>O que está custando cliente</h2>
+    </div>
+
+    <div class="achado">
+      <span class="selo c">Crítico</span>
+      <div>
+        <h3>O perfil do Google não tem dono</h3>
+        <p>O perfil aparece publicamente com o botão “Reivindicar esta empresa”. Enquanto ninguém reivindica, a padaria não consegue responder avaliação, publicar foto, corrigir horário nem colocar o endereço do site. E qualquer estranho pode sugerir uma alteração que entra no ar.</p>
+        <p class="prova">Google Maps, ficha da Padaria E Confeitaria Rainha Da Massa</p>
+      </div>
+    </div>
+
+    <div class="achado">
+      <span class="selo c">Crítico</span>
+      <div>
+        <h3>Não existe canal de resposta rápida divulgado</h3>
+        <p>Não há número de WhatsApp em nenhum canal público. A bio do Instagram manda ligar ou pedir pelo iFood. Uma avaliação de quatro meses atrás descreve exatamente o buraco: o pedido veio incompleto, ninguém atendeu o telefone, o WhatsApp estava desligado e o iFood não respondeu.</p>
+        <p class="prova">Avaliação pública no Google · a mesma cliente elogia o atendimento na loja</p>
+      </div>
+    </div>
+
+    <div class="achado">
+      <span class="selo a">Alto</span>
+      <div>
+        <h3>O horário no Google fecha uma hora antes</h3>
+        <p>O Google mostra fechamento às 21h; a bio do Instagram diz 22h. Quem consulta o celular às 21h10 conclui que está fechado e não sai de casa. É uma hora de movimento perdida todos os dias, sete dias por semana.</p>
+        <p class="prova">Google Maps × bio do Instagram — precisa de confirmação da padaria</p>
+      </div>
+    </div>
+
+    <div class="achado">
+      <span class="selo a">Alto</span>
+      <div>
+        <h3>O endereço aparece de duas formas</h3>
+        <p>O Google registra R. Saldanha Marinho, 7. A Receita e a bio do Instagram registram Rua Washington Luiz, 1255. No mapa, as duas ruas se cruzam bem onde fica a padaria — provavelmente é o mesmo imóvel com dois cadastros. Para a busca local, porém, endereço divergente entre canais derruba a confiança e prejudica o posicionamento.</p>
+        <p class="prova">Google Maps, Receita Federal, Instagram, OpenStreetMap</p>
+      </div>
+    </div>
+
+    <div class="achado">
+      <span class="selo m">Médio</span>
+      <div>
+        <h3>Nenhuma foto publicada pela própria casa</h3>
+        <p>O perfil do Google oferece “Adicionar uma foto” a qualquer visitante, o que indica um acervo próprio vazio. Enquanto isso, o Restaurant Guru já reúne 19 fotos enviadas por terceiros. Em padaria, foto de vitrine é o que decide o clique.</p>
+        <p class="prova">Google Maps e Restaurant Guru</p>
+      </div>
+    </div>
+
+    <div class="achado">
+      <span class="selo m">Médio</span>
+      <div>
+        <h3>Diretórios antigos espalham telefone errado</h3>
+        <p>Páginas Amarelas e AppLocal listam (24) 2242-0990, número que não bate com nenhuma fonte atual. O Restaurant Guru exibe nota 3,5 enquanto o Google exibe 4,5 — quem pesquisa encontra a versão pior primeiro.</p>
+        <p class="prova">paginaamarela.com.br, applocal.com.br, restaurantguru.com.br</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Divergências</p>
+      <h2>Onde os canais se contradizem</h2>
+    </div>
+
+    <div class="tabela-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Dado</th>
+            <th scope="col">Google</th>
+            <th scope="col">Instagram e Receita</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Endereço</th>
+            <td>R. Saldanha Marinho, 7 · 25640-233</td>
+            <td>Rua Washington Luiz, 1255 · Centro · 25655-007</td>
+          </tr>
+          <tr>
+            <th scope="row">Fechamento</th>
+            <td>21h</td>
+            <td>22h</td>
+          </tr>
+          <tr>
+            <th scope="row">Telefone</th>
+            <td>(24) 3302-2752</td>
+            <td>(24) 3302-2752</td>
+          </tr>
+          <tr>
+            <th scope="row">Nota</th>
+            <td>4,5 com 168 avaliações</td>
+            <td>3,5 com 171 opiniões, no Restaurant Guru</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Plano · na ordem em que rendem mais</p>
+      <h2>O que fazer</h2>
+    </div>
+
+    <ol class="plano">
+      <li>
+        <span class="passo">01</span>
+        <div>
+          <h3>Reivindicar o perfil do Google</h3>
+          <p>Destrava tudo o que vem depois: corrigir horário e endereço, publicar fotos, responder avaliações e apontar para o site. A verificação costuma sair por telefone ou cartão postal em poucos dias.</p>
+          <span class="custo">Sem custo</span>
+        </div>
+      </li>
+      <li>
+        <span class="passo">02</span>
+        <div>
+          <h3>Acertar o horário e o endereço em todos os canais</h3>
+          <p>Definir qual é o horário real e qual endereço a padaria quer usar, e repetir exatamente igual no Google, no Instagram, no iFood e no site. Buscador confia em repetição.</p>
+        </div>
+      </li>
+      <li>
+        <span class="passo">03</span>
+        <div>
+          <h3>Abrir um WhatsApp Business e divulgar</h3>
+          <p>É o canal que os clientes já procuram e não acham. Resolve encomenda, resolve pedido errado e resolve a reclamação pública que está no perfil hoje.</p>
+        </div>
+      </li>
+      <li>
+        <span class="passo">04</span>
+        <div>
+          <h3>Publicar de dez a quinze fotos boas</h3>
+          <p>Vitrine, balcão, os bolos de encomenda, a fachada. Tiradas de dia, com luz natural. Vale para o Google e para o site.</p>
+        </div>
+      </li>
+      <li>
+        <span class="passo">05</span>
+        <div>
+          <h3>Ligar o site ao perfil assim que entrar no ar</h3>
+          <p>É o destino que falta para as 168 pessoas que já avaliaram e para quem chega pela busca. O site já sai com endereço, horário, telefone, rota e dados estruturados de padaria.</p>
+        </div>
+      </li>
+      <li>
+        <span class="passo">06</span>
+        <div>
+          <h3>Responder as avaliações, principalmente as ruins</h3>
+          <p>A resposta não é para quem reclamou: é para os próximos que vão ler. Uma reclamação respondida com educação pesa a favor.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Honestidade sobre o método</p>
+      <h2>O que este diagnóstico não sabe</h2>
+    </div>
+
+    <div class="ressalva">
+      <p>Tudo acima veio de fontes públicas, sem contato com a padaria. Antes de virar decisão, confirmar com o cliente:</p>
+      <ul>
+        <li>O horário real de fechamento — 21h ou 22h.</li>
+        <li>Se Saldanha Marinho e Washington Luiz são o mesmo ponto ou dois endereços.</li>
+        <li>Se já existe WhatsApp e ele simplesmente não está divulgado.</li>
+        <li>O cardápio de verdade. A lista de itens que aparece no site saiu das avaliações de clientes, não de um cardápio oficial.</li>
+        <li>A história da casa. Não encontrei nada além da data de abertura. A matéria sobre uma padaria de Petrópolis fundada em 1968 que aparece na busca é de outra empresa — a Massas Carneiro, da Estrada da Saudade — e não tem relação com a Rainha da Massa.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Levantado em 27 de agosto de 2026 a partir de Google Maps e Busca Google, Instagram @rainha_da_massa_, Restaurant Guru, OpenStreetMap e registros públicos de CNPJ.<br>
+    Números de avaliação e seguidores mudam com o tempo — reconferir antes de apresentar.
+  </footer>
+
+</div>
+</body>
+</html>
