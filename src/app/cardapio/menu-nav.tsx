@@ -1,0 +1,62 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+type Aba = { id: string; titulo: string };
+
+/** Abas grudadas no topo, que acompanham a seção visível. */
+export function MenuNav({ abas }: { abas: Aba[] }) {
+  const [ativa, setAtiva] = useState(abas[0]?.id ?? "");
+  const trilho = useRef<HTMLDivElement>(null);
+  const visiveis = useRef(new Map<string, boolean>());
+
+  useEffect(() => {
+    const alvos = abas
+      .map((a) => document.getElementById(a.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!alvos.length) return;
+
+    const obs = new IntersectionObserver(
+      (entradas) => {
+        for (const e of entradas) visiveis.current.set(e.target.id, e.isIntersecting);
+        const primeira = abas.find((a) => visiveis.current.get(a.id));
+        if (primeira) setAtiva(primeira.id);
+      },
+      { rootMargin: "-28% 0px -62% 0px", threshold: 0 },
+    );
+    alvos.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [abas]);
+
+  // mantém a aba ativa à vista no trilho horizontal
+  useEffect(() => {
+    const botao = trilho.current?.querySelector<HTMLElement>(`[data-aba="${ativa}"]`);
+    botao?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [ativa]);
+
+  return (
+    <div className="sticky top-0 z-30 border-b border-espresso/12 bg-cream-light/92 backdrop-blur-md">
+      <div
+        ref={trilho}
+        className="scrollbar-none mx-auto flex max-w-4xl gap-1 overflow-x-auto px-3 py-2.5"
+      >
+        {abas.map((a) => (
+          <a
+            key={a.id}
+            href={`#${a.id}`}
+            data-aba={a.id}
+            aria-current={ativa === a.id ? "true" : undefined}
+            className={[
+              "shrink-0 rounded-full px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300",
+              ativa === a.id
+                ? "bg-espresso text-cream"
+                : "text-espresso-soft hover:bg-espresso/8 hover:text-espresso",
+            ].join(" ")}
+          >
+            {a.titulo}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}

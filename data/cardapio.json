@@ -1,0 +1,488 @@
+{
+  "atualizadoEm": "2026-08-27T15:51:41.703Z",
+  "aviso": "Preços sujeitos a alteração. Consulte o balcão.",
+  "secoes": [
+    {
+      "id": "almoco",
+      "titulo": "Almoço",
+      "descricao": "Servido no salão, todos os dias. Todo prato do almoço sai por R$ 22,00.",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "frango-grelhado",
+          "nome": "Frango grelhado",
+          "descricao": "Com arroz, feijão, batata frita ou batata palha e salada",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "frango-a-milanesa",
+          "nome": "Frango à milanesa",
+          "descricao": "Com arroz, feijão, batata frita ou batata palha e salada",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "frango-a-parmegiana",
+          "nome": "Frango à parmegiana",
+          "descricao": "Com arroz, feijão, batata frita ou batata palha e salada",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "contra-file",
+          "nome": "Contra-filé",
+          "descricao": "Com arroz, feijão, batata frita ou batata palha e salada",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "segunda-sobrecoxa-de-frango",
+          "nome": "Segunda · Sobrecoxa de frango",
+          "descricao": "Com maionese ou salpicão, arroz e feijão",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "terca-carre",
+          "nome": "Terça · Carré",
+          "descricao": "Com tutu, couve, arroz e feijão",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "quarta-carne-assada",
+          "nome": "Quarta · Carne assada",
+          "descricao": "Com nhoque ou espaguete",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "quinta-strogonoff",
+          "nome": "Quinta · Strogonoff",
+          "descricao": "De frango ou de carne, com batata palha ou frita",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "sexta-feijoada",
+          "nome": "Sexta · Feijoada",
+          "descricao": "A feijoada da casa, com os acompanhamentos",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "sabado-file-de-tilapia-empanado",
+          "nome": "Sábado · Filé de tilápia empanado",
+          "descricao": "Com purê de batata, arroz e feijão",
+          "preco": 22,
+          "ativo": true
+        },
+        {
+          "id": "domingo-frango-assado-a-quilo",
+          "nome": "Domingo · Frango assado a quilo",
+          "descricao": "Com maionese e salpicão",
+          "preco": 22,
+          "ativo": true
+        }
+      ]
+    },
+    {
+      "id": "cafe-da-manha",
+      "titulo": "Café da manhã",
+      "descricao": "",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "pao-com-manteiga",
+          "nome": "Pão com manteiga",
+          "descricao": "",
+          "preco": 3.5,
+          "ativo": true
+        },
+        {
+          "id": "pao-na-chapa",
+          "nome": "Pão na chapa",
+          "descricao": "",
+          "preco": 4.5,
+          "ativo": true
+        },
+        {
+          "id": "pao-com-polenguinho",
+          "nome": "Pão com polenguinho",
+          "descricao": "",
+          "preco": 5.5,
+          "ativo": true
+        },
+        {
+          "id": "pao-com-ovo",
+          "nome": "Pão com ovo",
+          "descricao": "",
+          "preco": 5,
+          "ativo": true
+        },
+        {
+          "id": "pao-com-ovo-e-queijo",
+          "nome": "Pão com ovo e queijo",
+          "descricao": "",
+          "preco": 8.5,
+          "ativo": true
+        }
+      ]
+    },
+    {
+      "id": "sanduiches",
+      "titulo": "Sanduíches",
+      "descricao": "",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "misto-frio",
+          "nome": "Misto frio",
+          "descricao": "",
+          "preco": 9,
+          "ativo": true
+        },
+        {
+          "id": "misto-quente",
+          "nome": "Misto quente",
+          "descricao": "",
+          "preco": 9.5,
+          "ativo": true
+        },
+        {
+          "id": "queijo-minas-frio",
+          "nome": "Queijo minas frio",
+          "descricao": "",
+          "preco": 11,
+          "ativo": true
+        },
+        {
+          "id": "queijo-minas-quente",
+          "nome": "Queijo minas quente",
+          "descricao": "",
+          "preco": 11.5,
+          "ativo": true
+        },
+        {
+          "id": "queijo-minas-com-peito-de-peru",
+          "nome": "Queijo minas com peito de peru",
+          "descricao": "",
+          "preco": 13.5,
+          "ativo": true
+        },
+        {
+          "id": "mortadela-comum",
+          "nome": "Mortadela comum",
+          "descricao": "",
+          "preco": 6.5,
+          "ativo": true
+        },
+        {
+          "id": "mortadela-defumada",
+          "nome": "Mortadela defumada",
+          "descricao": "",
+          "preco": 7.5,
+          "ativo": true
+        },
+        {
+          "id": "mortadela-com-queijo-frio",
+          "nome": "Mortadela com queijo frio",
+          "descricao": "Mussarela ou prato",
+          "preco": 9,
+          "ativo": true
+        },
+        {
+          "id": "mortadela-com-queijo-quente",
+          "nome": "Mortadela com queijo quente",
+          "descricao": "Mussarela ou prato",
+          "preco": 9.5,
+          "ativo": true
+        }
+      ]
+    },
+    {
+      "id": "omeletes",
+      "titulo": "Omeletes",
+      "descricao": "Todas com tomate, cebola e salsinha.",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "presunto-e-queijo",
+          "nome": "Presunto e queijo",
+          "descricao": "Simples, 2 ovos",
+          "preco": 10.5,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "Simples · 2 ovos",
+              "preco": 10.5
+            },
+            {
+              "rotulo": "Duplo · 4 ovos",
+              "preco": 20.5
+            }
+          ]
+        },
+        {
+          "id": "queijo",
+          "nome": "Queijo",
+          "descricao": "Simples, 2 ovos",
+          "preco": 10.5,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "Simples · 2 ovos",
+              "preco": 10.5
+            },
+            {
+              "rotulo": "Duplo · 4 ovos",
+              "preco": 20.5
+            }
+          ]
+        },
+        {
+          "id": "peito-de-peru-com-minas",
+          "nome": "Peito de peru com minas",
+          "descricao": "Simples, 2 ovos",
+          "preco": 13.5,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "Simples · 2 ovos",
+              "preco": 13.5
+            },
+            {
+              "rotulo": "Duplo · 4 ovos",
+              "preco": 23.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salgados",
+      "titulo": "Salgados",
+      "descricao": "",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "pao-de-queijo",
+          "nome": "Pão de queijo",
+          "descricao": "",
+          "preco": 5,
+          "ativo": true
+        },
+        {
+          "id": "fritos",
+          "nome": "Fritos",
+          "descricao": "Coxinha, croquete, carne e ovo, presunto e queijo e salsicha",
+          "preco": 6.5,
+          "ativo": true
+        },
+        {
+          "id": "especiais",
+          "nome": "Especiais",
+          "descricao": "Tapa na cara, coxinha com osso, espetinho de frango, kibe e bolinho de aipim",
+          "preco": 8.5,
+          "ativo": true
+        },
+        {
+          "id": "assados",
+          "nome": "Assados",
+          "descricao": "Brioche, hambúrguer de forno e cachorro quente",
+          "preco": 8.5,
+          "ativo": true
+        },
+        {
+          "id": "empadao",
+          "nome": "Empadão",
+          "descricao": "Frango ou palmito",
+          "preco": 10,
+          "ativo": true
+        }
+      ]
+    },
+    {
+      "id": "bebidas-quentes",
+      "titulo": "Bebidas quentes",
+      "descricao": "",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "cafezinho",
+          "nome": "Cafezinho",
+          "descricao": "",
+          "preco": 3.5,
+          "ativo": true
+        },
+        {
+          "id": "cafe-media",
+          "nome": "Café média",
+          "descricao": "",
+          "preco": 6.2,
+          "ativo": true
+        },
+        {
+          "id": "cafe-expresso",
+          "nome": "Café expresso",
+          "descricao": "",
+          "preco": 7.5,
+          "ativo": true
+        },
+        {
+          "id": "chocolate-quente",
+          "nome": "Chocolate quente",
+          "descricao": "",
+          "preco": 6.5,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "Pequeno",
+              "preco": 6.5
+            },
+            {
+              "rotulo": "Grande",
+              "preco": 8.5
+            }
+          ]
+        },
+        {
+          "id": "cappuccino",
+          "nome": "Cappuccino",
+          "descricao": "",
+          "preco": 7.5,
+          "ativo": true
+        }
+      ]
+    },
+    {
+      "id": "bebidas-geladas",
+      "titulo": "Bebidas geladas",
+      "descricao": "",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "suco-natural",
+          "nome": "Suco natural",
+          "descricao": "",
+          "preco": 9,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "1 fruta",
+              "preco": 9
+            },
+            {
+              "rotulo": "2 frutas",
+              "preco": 10
+            }
+          ]
+        },
+        {
+          "id": "jarra-de-suco-natural",
+          "nome": "Jarra de suco natural",
+          "descricao": "",
+          "preco": 17,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "1 fruta",
+              "preco": 17
+            },
+            {
+              "rotulo": "2 frutas",
+              "preco": 19
+            }
+          ]
+        },
+        {
+          "id": "vitamina",
+          "nome": "Vitamina",
+          "descricao": "",
+          "preco": 10.5,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "1 fruta",
+              "preco": 10.5
+            },
+            {
+              "rotulo": "2 frutas",
+              "preco": 11.5
+            }
+          ]
+        },
+        {
+          "id": "toddynho",
+          "nome": "Toddynho",
+          "descricao": "",
+          "preco": 4.5,
+          "ativo": true
+        },
+        {
+          "id": "refrigerante",
+          "nome": "Refrigerante",
+          "descricao": "",
+          "preco": 6.5,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "Lata",
+              "preco": 6.5
+            },
+            {
+              "rotulo": "600 ml",
+              "preco": 8.5
+            }
+          ]
+        },
+        {
+          "id": "del-valle",
+          "nome": "Del Valle",
+          "descricao": "Lata",
+          "preco": 7.5,
+          "ativo": true
+        },
+        {
+          "id": "guaraviton",
+          "nome": "Guaraviton",
+          "descricao": "",
+          "preco": 5.5,
+          "ativo": true
+        },
+        {
+          "id": "ativ-plus",
+          "nome": "Ativ Plus",
+          "descricao": "",
+          "preco": 3,
+          "ativo": true
+        },
+        {
+          "id": "gatorade",
+          "nome": "Gatorade",
+          "descricao": "",
+          "preco": 8.5,
+          "ativo": true
+        },
+        {
+          "id": "agua",
+          "nome": "Água",
+          "descricao": "500 ml",
+          "preco": 3.5,
+          "ativo": true,
+          "variacoes": [
+            {
+              "rotulo": "Sem gás",
+              "preco": 3.5
+            },
+            {
+              "rotulo": "Com gás",
+              "preco": 4.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

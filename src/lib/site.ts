@@ -31,14 +31,24 @@ export const site = {
   instagram: "https://www.instagram.com/rainha_da_massa_/",
   instagramHandle: "@rainha_da_massa_",
 
-  delivery: "iFood",
-  // PENDENTE: pedir ao cliente o link da loja no iFood.
-  deliveryUrl: null as string | null,
+  /** Aplicativos de entrega, com o link da loja. Links do cliente, 27/08/2026. */
+  delivery: [
+    {
+      nome: "iFood",
+      url: "https://www.ifood.com.br/delivery/petropolis-rj/padaria-rainha-da-massa-centro/a671cba8-c771-4384-a4c5-25b8dba3c84b",
+    },
+    { nome: "99Food", url: "https://oia.99app.com/dlp9/dI57qr" },
+  ],
   // PENDENTE: cliente não divulga número de WhatsApp em nenhum canal.
   whatsapp: null as string | null,
 
   rating: { value: 4.5, count: 168, source: "Google" },
 } as const;
+
+/** "iFood e 99Food" — para usar no meio de uma frase. */
+export const deliveryTexto = site.delivery
+  .map((d) => d.nome)
+  .join(" e ");
 
 export const fullAddress = `${site.street} — ${site.city}/${site.state} · ${site.zip}`;
 

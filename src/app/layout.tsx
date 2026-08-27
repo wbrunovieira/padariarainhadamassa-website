@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda, Jost } from "next/font/google";
 
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { site } from "@/lib/site";
+import { deliveryTexto, site } from "@/lib/site";
 import "./globals.css";
 
 const bodoni = Bodoni_Moda({
@@ -24,7 +22,7 @@ export const metadata: Metadata = {
     default: `${site.name} — Almoço e padaria em ${site.city}`,
     template: `%s · ${site.shortName}`,
   },
-  description: `Almoço caseiro todo dia em ${site.city}/${site.state}: prato feito bem servido, com prato do dia de segunda a domingo. Padaria e confeitaria desde ${site.since}, na ${site.street}. Aberto das 6h às 22h, com delivery no ${site.delivery}.`,
+  description: `Almoço caseiro todo dia em ${site.city}/${site.state}: prato feito bem servido, com prato do dia de segunda a domingo. Padaria e confeitaria desde ${site.since}, na ${site.street}. Aberto das 6h às 22h, com delivery no ${deliveryTexto}.`,
   metadataBase: new URL("https://padariarainhadamassa.com.br"),
   openGraph: {
     title: `${site.name} — Almoço e padaria em ${site.city}`,
@@ -41,9 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bodoni.variable} ${jost.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-cream">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   );

@@ -89,8 +89,8 @@ export function LocationSection() {
             </div>
 
             <div className="border-t border-cream/15 pt-5">
-              <dt className="eyebrow text-cream/50">Delivery e redes</dt>
-              <dd className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-lg">
+              <dt className="eyebrow text-cream/50">Instagram</dt>
+              <dd className="mt-2 text-lg">
                 <a
                   href={site.instagram}
                   target="_blank"
@@ -99,8 +99,6 @@ export function LocationSection() {
                 >
                   {site.instagramHandle}
                 </a>
-                <span className="text-cream/40">·</span>
-                <span className="text-cream/80">{site.delivery}</span>
               </dd>
             </div>
 

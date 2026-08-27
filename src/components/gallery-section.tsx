@@ -80,6 +80,7 @@ export function GallerySection() {
                   src={item.src}
                   alt={item.alt}
                   placeholder="blur"
+                  quality={68}
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
                   className="w-full transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                 />
@@ -130,6 +131,7 @@ export function GallerySection() {
                   src={foto.src}
                   alt={foto.alt}
                   placeholder="blur"
+                  quality={68}
                   sizes="(min-width: 1024px) 60vw, 96vw"
                   className="h-auto max-h-full w-auto max-w-full rounded-xl object-contain"
                 />

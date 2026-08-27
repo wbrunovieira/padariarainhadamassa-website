@@ -9,6 +9,26 @@ As 21 fotos que a padaria enviou em 26/08/2026, renomeadas e sem metadados.
 com preços que apareceu nas artes e explica por que as duas peças de
 tabacaria ficaram fora do site.
 
+## Cardápio digital e /admin
+
+O cardápio de mesa fica em `/cardapio` (QR Code nas mesas, sem link na home)
+e é editado em `/admin`. Os dados ficam em `data/cardapio.json`.
+
+Variáveis de ambiente (ver `.env.local.example`):
+
+    ADMIN_PASSWORD=...   # senha do /admin
+    ADMIN_SECRET=...     # assina o cookie de sessão; openssl rand -hex 32
+
+### ATENÇÃO ANTES DE PUBLICAR
+
+O `/admin` grava num arquivo no disco. **Isso não funciona na Vercel** nem em
+nenhuma hospedagem serverless: o disco é somente leitura e efêmero. Ler o
+cardápio funciona; salvar vai dar erro 500 com a explicação na tela.
+
+Para produção é preciso trocar `gravar` em `src/lib/cardapio-digital.ts` por um
+armazenamento de verdade — Vercel Blob é o caminho mais curto, e mantém o
+formato JSON. O resto do código não muda: só aquelas duas funções.
+
 ## cardapio/
 
 `cardapio-rainha-da-massa.pdf` — cardápio oficial que o cliente passou em

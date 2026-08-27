@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { acompanhamentos, diaEmPetropolis, fixos, semana } from "@/lib/almoco";
 import { pratosDoAlmoco } from "@/lib/fotos";
-import { googleMapsUrl, site } from "@/lib/site";
+import { deliveryTexto, googleMapsUrl, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -204,6 +204,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                   src={foto.src}
                   alt={foto.alt}
                   placeholder="blur"
+                  quality={68}
                   sizes="(min-width: 640px) 30vw, 92vw"
                   className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
                 />
@@ -229,7 +230,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
           </a>
           <p className="max-w-md text-sm leading-relaxed text-espresso-soft">
             Servido no salão, na {site.street}. Quem não pode sair, pede pelo{" "}
-            {site.delivery}. Dúvidas:{" "}
+            {deliveryTexto}. Dúvidas:{" "}
             <a href={site.phoneHref} className="underline decoration-gold/40 underline-offset-4 hover:decoration-gold">
               {site.phone}
             </a>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { MenuSection } from "@/components/menu-section";
 import { OpenNow } from "@/components/open-now";
 import { cafeDaManha, maisNoCardapio } from "@/lib/cardapio";
-import { site } from "@/lib/site";
+import { deliveryTexto } from "@/lib/site";
 import paesFranceses from "@/assets/fotos/paes-franceses.jpg";
 
 export function BreakfastSection() {
@@ -62,7 +62,7 @@ export function BreakfastSection() {
           </ul>
           <p className="mt-5 text-sm leading-relaxed text-espresso-soft/85">
             O cardápio completo, com os preços, está no balcão e no {" "}
-            {site.delivery}.
+            {deliveryTexto}.
           </p>
         </div>
       }

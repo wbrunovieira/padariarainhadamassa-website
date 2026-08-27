@@ -95,7 +95,18 @@ export function SiteFooter() {
                   {site.instagramHandle}
                 </a>
               </li>
-              <li>Delivery no {site.delivery}</li>
+              {site.delivery.map((app) => (
+                <li key={app.nome}>
+                  <a
+                    href={app.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline decoration-wheat/30 decoration-1 underline-offset-4 transition-colors hover:decoration-wheat"
+                  >
+                    Pedir no {app.nome}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

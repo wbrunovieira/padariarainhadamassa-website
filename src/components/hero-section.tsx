@@ -13,7 +13,7 @@ import {
 
 import { HeroCarousel } from "@/components/hero-carousel";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { fullAddress, site } from "@/lib/site";
+import { deliveryTexto, fullAddress, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -71,6 +71,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
           height={897}
           quality={40}
           sizes="(min-width: 1024px) 46rem, 1px"
+          loading="lazy"
           className="w-full opacity-[0.09]"
         />
       </motion.div>
@@ -145,7 +146,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                 Encomendas pelo telefone
               </li>
               <li className="border-l border-espresso/20 pl-5">
-                Delivery no {site.delivery}
+                Delivery no {deliveryTexto}
               </li>
             </motion.ul>
 

@@ -76,6 +76,14 @@
     );
   }
 
+  /* trilho de abas sem barra de rolagem visível */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   .eyebrow {
     font-size: 0.66rem;
     letter-spacing: 0.34em;

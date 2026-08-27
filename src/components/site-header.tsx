@@ -13,7 +13,7 @@ import {
   useSpring,
 } from "motion/react";
 
-import { navigation, site } from "@/lib/site";
+import { deliveryTexto, navigation, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -21,7 +21,7 @@ const TICKER = [
   `Padaria e confeitaria desde ${site.since}`,
   `${site.rating.value} estrelas com ${site.rating.count} avaliações no ${site.rating.source}`,
   `${site.street} · ${site.city}/${site.state}`,
-  `Encomendas pelo telefone · Delivery no ${site.delivery}`,
+  `Encomendas pelo telefone · Delivery no ${deliveryTexto}`,
 ];
 
 export function SiteHeader() {

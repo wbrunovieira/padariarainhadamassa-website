@@ -128,13 +128,6 @@ export type Slide = Foto & { video?: string; duracao?: number };
  */
 export const heroSlides: Slide[] = [
   {
-    src: videoPoster,
-    video: "/video/padaria.mp4",
-    duracao: 7000,
-    alt: "Vídeo curto da padaria: uma fatia de rocambole, um pastel saindo da fritura e um copo de suco de laranja",
-    legenda: "Um dia na padaria",
-  },
-  {
     src: varanda,
     alt: "Entrada da padaria vista de dentro, com o freezer de sorvete, as mesas altas e a rua de Petrópolis ao fundo",
     legenda: "A varanda, de frente para a rua",
@@ -143,6 +136,13 @@ export const heroSlides: Slide[] = [
     src: paesFranceses,
     alt: "Funcionário com o brasão bordado na camiseta segurando uma cesta cheia de pães franceses",
     legenda: "A fornada de pão francês",
+  },
+  {
+    src: videoPoster,
+    video: "/video/padaria.mp4",
+    duracao: 7000,
+    alt: "Vídeo curto da padaria: uma fatia de rocambole, um pastel saindo da fritura e um copo de suco de laranja",
+    legenda: "Um dia na padaria",
   },
   {
     src: salao,

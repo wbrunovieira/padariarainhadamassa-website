@@ -61,6 +61,7 @@ export function MenuSection({
                 src={foto}
                 alt={fotoAlt}
                 placeholder="blur"
+                quality={68}
                 sizes="(min-width: 1024px) 44vw, 92vw"
                 className="aspect-[4/5] w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] sm:aspect-[5/4] lg:aspect-[4/5]"
               />

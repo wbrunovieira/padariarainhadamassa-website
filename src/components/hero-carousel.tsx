@@ -57,7 +57,7 @@ export function HeroCarousel() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
                 aria-label={foto.alt}
                 className="size-full object-cover"
               />
@@ -66,7 +66,8 @@ export function HeroCarousel() {
                 src={foto.src}
                 alt={foto.alt}
                 placeholder="blur"
-                priority={i === 1}
+                quality={68}
+                priority={i === 0}
                 sizes="(min-width: 1024px) 30rem, 92vw"
                 className="size-full object-cover"
               />
