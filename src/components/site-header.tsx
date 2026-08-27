@@ -12,15 +12,15 @@ import {
   useSpring,
 } from "motion/react";
 
-import { navigation, site, whatsappUrl } from "@/lib/site";
+import { navigation, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const TICKER = [
-  "Pão quentinho de hora em hora",
-  "Fermentação natural desde as 4 da manhã",
-  `${site.city} · ${site.state}`,
-  "Encomendas para festas e eventos",
+  `Padaria e confeitaria desde ${site.since}`,
+  `${site.rating.value} estrelas com ${site.rating.count} avaliações no ${site.rating.source}`,
+  `${site.street} · ${site.city}/${site.state}`,
+  `Encomendas pelo telefone · Delivery no ${site.delivery}`,
 ];
 
 export function SiteHeader() {
@@ -141,22 +141,17 @@ export function SiteHeader() {
             {/* Ações */}
             <div className="flex items-center gap-4">
               <span className="hidden text-right text-[0.7rem] leading-tight text-espresso-soft xl:block">
-                <span className="block eyebrow text-espresso-soft/70">Aberto hoje</span>
-                <span className="mt-1 block tracking-wide">{site.hours}</span>
+                <span className="block eyebrow text-espresso-soft/70">Todos os dias</span>
+                <span className="mt-1 block tracking-wide">{site.hoursShort}</span>
               </span>
 
               <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
+                href={site.phoneHref}
                 className="group relative hidden items-center gap-2 overflow-hidden rounded-full border border-espresso/15 bg-espresso px-5 py-2.5 text-cream transition-colors duration-300 sm:inline-flex"
               >
                 <span className="absolute inset-0 -translate-x-[101%] bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
-                <WhatsAppIcon className="relative size-4" />
-                <span className="relative eyebrow">Peça agora</span>
-                <span className="relative transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
-                  →
-                </span>
+                <PhoneIcon className="relative size-4" />
+                <span className="relative eyebrow">{site.phone}</span>
               </a>
 
               <button
@@ -256,9 +251,7 @@ export function SiteHeader() {
                 ))}
 
                 <motion.a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                  href={site.phoneHref}
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -268,12 +261,23 @@ export function SiteHeader() {
                   }}
                   className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-espresso px-6 py-4 text-cream"
                 >
-                  <WhatsAppIcon className="size-4" />
-                  <span className="eyebrow">Peça no WhatsApp</span>
+                  <PhoneIcon className="size-4" />
+                  <span className="eyebrow">Ligar {site.phone}</span>
                 </motion.a>
 
-                <p className="mt-6 text-center text-xs tracking-wide text-espresso-soft">
-                  {site.hours} · {site.city}/{site.state}
+                <a
+                  href={site.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-espresso/20 px-6 py-4 text-espresso"
+                >
+                  <span className="eyebrow">{site.instagramHandle}</span>
+                </a>
+
+                <p className="mt-6 text-center text-xs leading-relaxed tracking-wide text-espresso-soft">
+                  {site.hours}
+                  <br />
+                  {site.street} · {site.city}/{site.state}
                 </p>
               </nav>
             </motion.div>
@@ -302,10 +306,10 @@ function WheatMark({ className }: { className?: string }) {
   );
 }
 
-function WhatsAppIcon({ className }: { className?: string }) {
+function PhoneIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
-      <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm0 18.14h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.02-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.65 4.2 3.72.59.25 1.04.4 1.4.52.59.18 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z" />
+      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" />
     </svg>
   );
 }
