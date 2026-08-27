@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { MapPin, Navigation } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { googleMapsUrl, mapEmbedUrl, site, wazeUrl } from "@/lib/site";
@@ -107,7 +108,7 @@ export function LocationSection() {
               rel="noreferrer"
               className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-full bg-cream px-6 py-4 text-ink transition-colors duration-300 hover:bg-wheat"
             >
-              <PinIcon className="size-4" />
+              <MapPin className="size-4" strokeWidth={1.8} aria-hidden />
               <span className="eyebrow">Abrir no Google Maps</span>
             </a>
             <a
@@ -116,7 +117,7 @@ export function LocationSection() {
               rel="noreferrer"
               className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-full border border-cream/30 px-6 py-4 text-cream transition-colors duration-300 hover:border-cream hover:bg-cream/10"
             >
-              <WazeIcon className="size-4" />
+              <Navigation className="size-4" strokeWidth={1.8} aria-hidden />
               <span className="eyebrow">Abrir no Waze</span>
             </a>
           </motion.div>
@@ -141,31 +142,5 @@ export function LocationSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function PinIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-      className={className}
-    >
-      <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
-    </svg>
-  );
-}
-
-function WazeIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-      className={className}
-    >
-      <path d="M12 2.5c4.97 0 9 3.4 9 7.6 0 1.5-.52 2.9-1.42 4.08.3.5.47 1.07.47 1.68a3.3 3.3 0 0 1-6.2 1.56 12 12 0 0 1-2.5.02 3.3 3.3 0 1 1-4.9-4.1A7.1 7.1 0 0 1 3 10.1c0-4.2 4.03-7.6 9-7.6Zm-2.6 5.2a1.15 1.15 0 1 0 0 2.3 1.15 1.15 0 0 0 0-2.3Zm5.2 0a1.15 1.15 0 1 0 0 2.3 1.15 1.15 0 0 0 0-2.3Zm-4.9 4.4c.42 1.3 1.7 2.2 3.3 2.2s2.88-.9 3.3-2.2H9.7Z" />
-    </svg>
   );
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Wheat } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   AnimatePresence,
@@ -59,21 +60,31 @@ export function SiteHeader() {
         {/* Faixa superior — recolhe ao rolar */}
         <motion.div
           initial={false}
-          animate={{ height: scrolled || open ? 0 : 34, opacity: scrolled || open ? 0 : 1 }}
+          animate={{
+            height: scrolled || open ? 0 : 34,
+            opacity: scrolled || open ? 0 : 1,
+          }}
           transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
           className="relative overflow-hidden bg-ink text-cream/85"
         >
           <div className="flex h-[34px] items-center overflow-hidden">
             <div className="marquee-track flex w-max shrink-0 items-center gap-10 pr-10">
               {[0, 1].map((copy) => (
-                <div key={copy} className="flex shrink-0 items-center gap-10 pr-10">
+                <div
+                  key={copy}
+                  className="flex shrink-0 items-center gap-10 pr-10"
+                >
                   {TICKER.map((text) => (
                     <span
                       key={`${copy}-${text}`}
                       className="eyebrow flex shrink-0 items-center gap-10 whitespace-nowrap"
                     >
                       {text}
-                      <WheatMark className="size-2.5 text-wheat/70" />
+                      <Wheat
+                        className="size-3.5 text-wheat/70"
+                        strokeWidth={1.6}
+                        aria-hidden
+                      />
                     </span>
                   ))}
                 </div>
@@ -93,7 +104,10 @@ export function SiteHeader() {
         >
           <motion.div
             initial={false}
-            animate={{ paddingTop: scrolled ? 10 : 20, paddingBottom: scrolled ? 10 : 20 }}
+            animate={{
+              paddingTop: scrolled ? 10 : 20,
+              paddingBottom: scrolled ? 10 : 20,
+            }}
             transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
             className="mx-auto flex max-w-[88rem] items-center justify-between gap-6 px-5 lg:px-10"
           >
@@ -105,7 +119,10 @@ export function SiteHeader() {
             >
               <motion.span
                 initial={{ width: 60, height: 60 }}
-                animate={{ width: scrolled ? 44 : 60, height: scrolled ? 44 : 60 }}
+                animate={{
+                  width: scrolled ? 44 : 60,
+                  height: scrolled ? 44 : 60,
+                }}
                 transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
                 className="relative block shrink-0"
               >
@@ -132,7 +149,10 @@ export function SiteHeader() {
             </Link>
 
             {/* Navegação */}
-            <nav aria-label="Principal" className="hidden items-center gap-9 lg:flex">
+            <nav
+              aria-label="Principal"
+              className="hidden items-center gap-9 lg:flex"
+            >
               {navigation.map((item) => (
                 <NavLink key={item.href} href={item.href} label={item.label} />
               ))}
@@ -141,8 +161,12 @@ export function SiteHeader() {
             {/* Ações */}
             <div className="flex items-center gap-4">
               <span className="hidden text-right text-[0.7rem] leading-tight text-espresso-soft xl:block">
-                <span className="block eyebrow text-espresso-soft/70">Todos os dias</span>
-                <span className="mt-1 block tracking-wide">{site.hoursShort}</span>
+                <span className="block eyebrow text-espresso-soft/70">
+                  Todos os dias
+                </span>
+                <span className="mt-1 block tracking-wide">
+                  {site.hoursShort}
+                </span>
               </span>
 
               <a
@@ -169,7 +193,9 @@ export function SiteHeader() {
                     className="absolute left-0 top-0 h-px w-full bg-current"
                   />
                   <motion.span
-                    animate={open ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                    animate={
+                      open ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }
+                    }
                     transition={{ duration: reduce ? 0 : 0.35, ease: EASE }}
                     className="absolute bottom-0 left-0 h-px w-full bg-current"
                   />
@@ -291,24 +317,27 @@ export function SiteHeader() {
 function NavLink({ href, label }: { href: string; label: string }) {
   return (
     <a href={href} className="group relative py-1.5 text-espresso">
-      <WheatMark className="absolute -top-2 left-1/2 size-2 -translate-x-1/2 text-gold opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-top-2.5 group-hover:opacity-100" />
-      <span className="eyebrow transition-colors duration-300 group-hover:text-ink">{label}</span>
+      <Wheat
+        className="absolute -top-2.5 left-1/2 size-3 -translate-x-1/2 text-gold opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-top-3 group-hover:opacity-100"
+        strokeWidth={1.6}
+        aria-hidden
+      />
+      <span className="eyebrow transition-colors duration-300 group-hover:text-ink">
+        {label}
+      </span>
       <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
     </a>
   );
 }
 
-function WheatMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 12 12" fill="none" aria-hidden className={className}>
-      <path d="M6 0.5 7.3 6 6 11.5 4.7 6Z" fill="currentColor" />
-    </svg>
-  );
-}
-
 function PhoneIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      className={className}
+    >
       <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" />
     </svg>
   );

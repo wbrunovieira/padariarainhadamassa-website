@@ -1,31 +1,36 @@
 "use client";
 
+import { Wheat } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
+import { formatRating, type PlaceStats } from "@/lib/google-place";
 import { mencoes, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const anos = new Date().getFullYear() - site.since;
-
-const numeros = [
-  { valor: `${anos}`, unidade: "anos", legenda: `Abrimos em ${site.since}` },
-  {
-    valor: site.rating.value.toString().replace(".", ","),
-    unidade: "estrelas",
-    legenda: `${site.rating.count} avaliações no ${site.rating.source}`,
-  },
-  { valor: "7", unidade: "dias", legenda: `Toda semana, ${site.hoursShort}` },
-];
-
-export function AboutSection() {
+export function AboutSection({ stats }: { stats: PlaceStats }) {
   const reduce = useReducedMotion();
+  const anos = new Date().getFullYear() - site.since;
+
+  const numeros = [
+    { valor: `${anos}`, unidade: "anos", legenda: `Abrimos em ${site.since}` },
+    {
+      valor: formatRating(stats.rating),
+      unidade: "estrelas",
+      legenda: `${stats.count} avaliações no Google`,
+    },
+    { valor: "7", unidade: "dias", legenda: `Toda semana, ${site.hoursShort}` },
+  ];
 
   const reveal = (delay = 0) => ({
     initial: { opacity: 0, y: 24 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-80px" },
-    transition: { duration: reduce ? 0 : 0.7, ease: EASE, delay: reduce ? 0 : delay },
+    transition: {
+      duration: reduce ? 0 : 0.7,
+      ease: EASE,
+      delay: reduce ? 0 : delay,
+    },
   });
 
   return (
@@ -50,18 +55,24 @@ export function AboutSection() {
               className="mt-10 max-w-xl space-y-5 text-lg leading-relaxed text-espresso-soft"
             >
               <p>
-                A Rainha da Massa abriu as portas em {site.since}, na {site.street}, e
-                desde então funciona todos os dias — do café da manhã até a noite.
+                A Rainha da Massa abriu as portas em {site.since}, na{" "}
+                {site.street}, e desde então funciona todos os dias — do café da
+                manhã até a noite.
               </p>
               <p>
-                O balcão junta as duas metades do nome: a padaria de todo dia e a
-                confeitaria das ocasiões. Encomendas saem pelo telefone e o delivery
-                corre pelo {site.delivery}.
+                O balcão junta as duas metades do nome: a padaria de todo dia e
+                a confeitaria das ocasiões. Encomendas saem pelo telefone e o
+                delivery corre pelo {site.delivery}.
               </p>
             </motion.div>
 
             <motion.div {...reveal(0.18)} className="mt-12">
-              <p className="eyebrow text-espresso-soft/70">
+              <p className="eyebrow flex items-center gap-2 text-espresso-soft/70">
+                <Wheat
+                  className="size-4 text-gold"
+                  strokeWidth={1.6}
+                  aria-hidden
+                />
                 O que os clientes mais citam nas avaliações
               </p>
               <ul className="mt-5 flex flex-wrap gap-2.5">
@@ -77,7 +88,10 @@ export function AboutSection() {
             </motion.div>
           </div>
 
-          <motion.dl {...reveal(0.1)} className="flex flex-col justify-center gap-px">
+          <motion.dl
+            {...reveal(0.1)}
+            className="flex flex-col justify-center gap-px"
+          >
             {numeros.map((n, i) => (
               <motion.div
                 key={n.unidade}
