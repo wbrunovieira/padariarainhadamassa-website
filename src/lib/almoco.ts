@@ -12,8 +12,24 @@ export const fixos = [
   { nome: "Contra-filé" },
 ];
 
+/**
+ * Guarnição dos quatro pratos fixos. O prato do dia tem acompanhamento
+ * próprio, que muda com o dia — confirmado pelo cliente em 27/08/2026.
+ */
 export const acompanhamentos =
   "arroz, feijão, batata frita ou batata palha e salada — de legumes, alface e tomate, ou os dois juntos.";
+
+/** Dia da semana em Petrópolis, independente do fuso de quem acessa. */
+export function diaEmPetropolis(agora = new Date()): number {
+  const nome = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Sao_Paulo",
+    weekday: "short",
+  }).format(agora);
+  const mapa: Record<string, number> = {
+    Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
+  };
+  return mapa[nome] ?? 0;
+}
 
 export type PratoDoDia = {
   /** 0 = domingo, igual ao Date.getDay() */

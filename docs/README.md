@@ -35,6 +35,15 @@ Também publicado como Artifact, para compartilhar por link:
   está publicado em `src/lib/almoco.ts`, mas sem valores. As artes traziam
   R$ 27 no prato do dia e R$ 35 na feijoada, de data incerta. Preço é o que
   mais converte numa busca por almoço — vale confirmar e publicar.
+- **O cardápio do café da manhã e da confeitaria** (`src/lib/cardapio.ts`).
+  Montei a partir das fotos, dos posts e das avaliações. Perguntar o que mais
+  sai de manhã que não está lá.
+- **As respostas do FAQ** (`src/lib/perguntas.ts`), principalmente
+  estacionamento e acessibilidade — vieram do Restaurant Guru e de uma
+  avaliação, não da padaria.
+- **A citação da avaliação** em `src/lib/depoimentos.ts`. O certo é o cliente
+  reivindicar o perfil do Google e autorizar, ou coletar depoimentos próprios.
+- **O link da loja no iFood.** Hoje o iFood é citado em texto, sem link.
 - Se a quinta-feira é mesmo strogonoff "de frango ou carne, depende da
   semana". Se houver um padrão, o site pode mostrar o certo.
 - O cardápio de verdade — a lista de itens no site saiu das avaliações de

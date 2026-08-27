@@ -30,7 +30,7 @@ export const site = {
   instagramHandle: "@rainha_da_massa_",
 
   delivery: "iFood",
-  // PENDENTE: não há link público direto da loja no iFood.
+  // PENDENTE: pedir ao cliente o link da loja no iFood.
   deliveryUrl: null as string | null,
   // PENDENTE: cliente não divulga número de WhatsApp em nenhum canal.
   whatsapp: null as string | null,
@@ -47,6 +47,10 @@ export const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
 )}&z=17&hl=pt-BR&output=embed`;
 
 export const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(coords)}`;
+
+/** Ficha da padaria no Google, pelo CID do perfil. */
+export const googlePlaceUrl = "https://www.google.com/maps?cid=9761951682365984765";
+export const googleReviewsUrl = `${googlePlaceUrl}#lrd=0x9908161e97f039:0x87796b5585f38ffd,1`;
 export const wazeUrl = `https://www.waze.com/ul?ll=${encodeURIComponent(coords)}&navigate=yes&zoom=17`;
 
 /**
@@ -69,9 +73,21 @@ export const mencoes = [
 export type NavItem = { label: string; href: string; hint: string };
 
 export const navigation: NavItem[] = [
-  { label: "A Padaria", href: "#a-padaria", hint: `Desde ${site.since}` },
-  { label: "Galeria", href: "#galeria", hint: "O que sai do balcão" },
-  { label: "Almoço", href: "#almoco", hint: "Todo dia, com prato do dia" },
-  { label: "Encomendas", href: "#encomendas", hint: "Pelo telefone" },
+  { label: "Café da manhã", href: "#cafe-da-manha", hint: "Aberto desde as 6h" },
+  { label: "Almoço", href: "#almoco", hint: "O prato de hoje" },
+  { label: "Confeitaria", href: "#confeitaria", hint: "Bolos, tortas e doces" },
+  { label: "Encomendas", href: "#encomendas", hint: "Festa e fim de ano" },
   { label: "Onde estamos", href: "#contato", hint: "Saldanha Marinho" },
 ];
+
+/** Navegação completa, usada no rodapé. */
+export const navigationCompleta: NavItem[] = [
+  { label: "A Padaria", href: "#a-padaria", hint: `Desde ${site.since}` },
+  ...navigation.slice(0, 3),
+  { label: "Galeria", href: "#galeria", hint: "Fotos da casa" },
+  ...navigation.slice(3),
+  { label: "Perguntas", href: "#perguntas", hint: "Dúvidas comuns" },
+];
+
+/** Horário de funcionamento, para o indicador de aberto/fechado. */
+export const expediente = { abre: 6, fecha: 22, fuso: "America/Sao_Paulo" } as const;

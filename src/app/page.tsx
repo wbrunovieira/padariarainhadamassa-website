@@ -1,12 +1,17 @@
 import { AboutSection } from "@/components/about-section";
+import { BreakfastSection } from "@/components/breakfast-section";
+import { ConfectionerySection } from "@/components/confectionery-section";
+import { FaqSection } from "@/components/faq-section";
+import { SocialProofSection } from "@/components/social-proof-section";
 import { BrandDivider } from "@/components/brand-divider";
 import { GallerySection } from "@/components/gallery-section";
 import { HeroSection } from "@/components/hero-section";
 import { LunchSection } from "@/components/lunch-section";
 import { OrdersSection } from "@/components/orders-section";
 import { LocationSection } from "@/components/location-section";
-import { acompanhamentos, fixos, semana } from "@/lib/almoco";
+import { acompanhamentos, diaEmPetropolis, fixos, semana } from "@/lib/almoco";
 import { getPlaceStats } from "@/lib/google-place";
+import { perguntas } from "@/lib/perguntas";
 import { site } from "@/lib/site";
 
 // Sem aggregateRating de propósito: a nota é do Google, e o Google não
@@ -54,7 +59,7 @@ const schema = {
     hasMenuSection: [
       {
         "@type": "MenuSection",
-        name: "Todo dia",
+        name: "Sempre no cardápio",
         description: acompanhamentos,
         hasMenuItem: fixos.map((item) => ({
           "@type": "MenuItem",
@@ -74,14 +79,32 @@ const schema = {
   },
 };
 
+/** 15 min: o HTML servido nunca erra o dia por mais que isso. */
+export const revalidate = 900;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: perguntas.map((p) => ({
+    "@type": "Question",
+    name: p.pergunta,
+    acceptedAnswer: { "@type": "Answer", text: p.resposta },
+  })),
+};
+
 export default async function Home() {
   const stats = await getPlaceStats();
+  const diaInicial = diaEmPetropolis();
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <HeroSection stats={stats} />
@@ -90,11 +113,19 @@ export default async function Home() {
 
       <AboutSection stats={stats} />
 
-      <LunchSection />
+      <BreakfastSection />
+
+      <LunchSection diaInicial={diaInicial} />
+
+      <ConfectionerySection />
 
       <GallerySection />
 
       <OrdersSection />
+
+      <SocialProofSection stats={stats} />
+
+      <FaqSection />
 
       <LocationSection />
     </>
