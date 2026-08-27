@@ -14,6 +14,9 @@ export const site = {
   city: "Petrópolis",
   state: "RJ",
   zip: "25640-233",
+  // do perfil do Google
+  lat: -22.5206973,
+  lng: -43.1882965,
 
   phone: "(24) 3302-2752",
   phoneHref: "tel:+552433022752",
@@ -36,6 +39,32 @@ export const site = {
 } as const;
 
 export const fullAddress = `${site.street} — ${site.city}/${site.state} · ${site.zip}`;
+
+const coords = `${site.lat},${site.lng}`;
+
+export const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
+  `${site.name}, ${site.street}, ${site.city} - ${site.state}`,
+)}&z=17&hl=pt-BR&output=embed`;
+
+export const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(coords)}`;
+export const wazeUrl = `https://www.waze.com/ul?ll=${encodeURIComponent(coords)}&navigate=yes&zoom=17`;
+
+/**
+ * O que os clientes mais citam nas avaliações públicas (Google e
+ * Restaurant Guru). São menções deles, não um cardápio oficial.
+ */
+export const mencoes = [
+  "Café da manhã",
+  "Pães",
+  "Bolos",
+  "Tortas",
+  "Sanduíches",
+  "Pizza",
+  "Fios de ovos",
+  "Sorvete a quilo",
+  "Sem açúcar",
+  "Sem lactose",
+];
 
 export type NavItem = { label: string; href: string; hint: string };
 

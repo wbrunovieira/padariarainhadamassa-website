@@ -1,15 +1,57 @@
 import Image from "next/image";
 
+import { AboutSection } from "@/components/about-section";
+import { LocationSection } from "@/components/location-section";
 import { fullAddress, navigation, site } from "@/lib/site";
+
+// Sem aggregateRating de propósito: a nota é do Google, e o Google não
+// aceita avaliação de terceiros no schema do próprio site.
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  name: site.name,
+  legalName: site.legalName,
+  image: "https://padariarainhadamassa.com.br/brand/logo-rainha-da-massa.png",
+  telephone: "+552433022752",
+  priceRange: "R$",
+  foundingDate: String(site.since),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.street,
+    addressLocality: site.city,
+    addressRegion: site.state,
+    postalCode: site.zip,
+    addressCountry: "BR",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: site.lat, longitude: site.lng },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "06:00",
+      closes: "22:00",
+    },
+  ],
+  sameAs: [site.instagram],
+};
 
 export default function Home() {
   return (
     <>
-      {/* HERO — provisório, só para o header respirar sobre um fundo real */}
-      <section
-        id="a-padaria"
-        className="grain relative flex min-h-[100svh] items-center overflow-hidden bg-gradient-to-b from-cream-light via-cream to-cream-deep/70"
-      >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
+      <section className="grain relative flex min-h-[100svh] items-center overflow-hidden bg-gradient-to-b from-cream-light via-cream to-cream-deep/70">
         <Image
           src="/brand/logo-rainha-da-massa.png"
           alt=""
@@ -59,12 +101,16 @@ export default function Home() {
             </a>
           </div>
 
-          <p className="mt-10 text-sm tracking-wide text-espresso-soft/80">{fullAddress}</p>
+          <p className="mt-10 text-sm tracking-wide text-espresso-soft/80">
+            {fullAddress}
+          </p>
         </div>
       </section>
 
-      {/* Seções seguintes — âncoras do menu, conteúdo ainda por vir */}
-      {navigation.slice(1).map((item) => (
+      <AboutSection />
+
+      {/* Ainda sem conteúdo — dependem do cardápio real da padaria */}
+      {navigation.slice(1, 4).map((item) => (
         <section
           key={item.href}
           id={item.href.replace("#", "")}
@@ -79,6 +125,8 @@ export default function Home() {
           </div>
         </section>
       ))}
+
+      <LocationSection />
     </>
   );
 }
