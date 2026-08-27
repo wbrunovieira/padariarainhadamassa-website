@@ -1,21 +1,37 @@
 /**
  * Itens do café da manhã, da confeitaria e da conveniência.
  *
- * Origem: fotos e posts publicados pela própria padaria e menções
- * recorrentes nas avaliações públicas do Google e do Restaurant Guru.
- * PENDENTE: passar a lista com o cliente antes de tratar como cardápio
- * oficial — e perguntar o que mais sai de manhã que não está aqui.
+ * `cafeDaManha` e `maisNoCardapio` saem do cardápio oficial que o cliente
+ * passou em 27/08/2026 — docs/cardapio/cardapio-rainha-da-massa.pdf.
+ * Sem preços por decisão do cliente.
+ *
+ * `confeitaria` e `tambemTem` ainda vêm das fotos, dos posts e das
+ * avaliações. PENDENTE: confirmar com o cliente.
  */
 
 export type Item = { nome: string; nota?: string };
 
 export const cafeDaManha: Item[] = [
-  { nome: "Pão francês", nota: "Sai do forno de hora em hora" },
-  { nome: "Pão de queijo", nota: "Quentinho, com café" },
-  { nome: "Pão na chapa", nota: "Com manteiga na chapa" },
-  { nome: "Pão doce", nota: "Com goiabada, polvilhado de açúcar" },
-  { nome: "Lanche gratinado", nota: "Queijo e batata palha por cima" },
-  { nome: "Café", nota: "Coado na hora" },
+  { nome: "Pão com manteiga" },
+  { nome: "Pão na chapa" },
+  { nome: "Pão com ovo" },
+  { nome: "Pão com ovo e queijo" },
+  { nome: "Pão com polenguinho" },
+  { nome: "Pão de queijo" },
+];
+
+/**
+ * As outras famílias do cardápio da lanchonete. Servem para deixar claro
+ * que a lista acima é um recorte, não o cardápio inteiro.
+ */
+export const maisNoCardapio = [
+  "Sanduíches",
+  "Omeletes",
+  "Salgados fritos e assados",
+  "Empadão",
+  "Cafezinho, expresso e cappuccino",
+  "Chocolate quente",
+  "Sucos naturais e vitaminas",
 ];
 
 export const confeitaria: Item[] = [

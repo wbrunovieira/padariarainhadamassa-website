@@ -4,7 +4,8 @@ import Image from "next/image";
 
 import { MenuSection } from "@/components/menu-section";
 import { OpenNow } from "@/components/open-now";
-import { cafeDaManha } from "@/lib/cardapio";
+import { cafeDaManha, maisNoCardapio } from "@/lib/cardapio";
+import { site } from "@/lib/site";
 import paesFranceses from "@/assets/fotos/paes-franceses.jpg";
 
 export function BreakfastSection() {
@@ -32,8 +33,8 @@ export function BreakfastSection() {
         <>
           <p>
             É o que a cidade mais lembra da Rainha da Massa: a fila da manhã, o
-            pão francês quente e o café passado na hora. Dá para comer sentado
-            no salão antes de seguir o dia.
+            pão quente e o café na xícara. Dá para comer sentado no salão antes
+            de seguir o dia.
           </p>
           <p className="mt-5">
             <OpenNow className="text-base text-espresso" />
@@ -44,6 +45,27 @@ export function BreakfastSection() {
       foto={paesFranceses}
       fotoAlt="Cesta cheia de pães franceses recém-saídos do forno, segurada por um funcionário da padaria"
       fotoLegenda="A fornada de pão francês"
+      rodape={
+        <div className="mt-10 rounded-2xl bg-espresso/[0.05] px-6 py-6">
+          <p className="eyebrow text-espresso-soft/70">
+            E o cardápio não para aí
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-2.5">
+            {maisNoCardapio.map((item) => (
+              <li
+                key={item}
+                className="rounded-full border border-espresso/20 px-4 py-2 text-sm tracking-wide text-espresso-soft"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-sm leading-relaxed text-espresso-soft/85">
+            O cardápio completo, com os preços, está no balcão e no {" "}
+            {site.delivery}.
+          </p>
+        </div>
+      }
     />
   );
 }

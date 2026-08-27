@@ -9,6 +9,18 @@ As 21 fotos que a padaria enviou em 26/08/2026, renomeadas e sem metadados.
 com preços que apareceu nas artes e explica por que as duas peças de
 tabacaria ficaram fora do site.
 
+## cardapio/
+
+`cardapio-rainha-da-massa.pdf` — cardápio oficial que o cliente passou em
+27/08/2026, com preços. Duas páginas: *Para comer* (café da manhã, sanduíches,
+omeletes, salgados) e *Para beber* (bebidas quentes e geladas).
+
+Alimenta `src/lib/cardapio.ts`. **Os preços não vão para o site**, por decisão
+do cliente — o site nomeia os itens e manda o cliente ao balcão ou ao iFood.
+
+O rodapé das duas páginas traz **Rua Washington Luiz, 1.255** — mais uma fonte
+oficial contra o endereço do Google. Ver a pendência de endereço acima.
+
 ## diagnostico-presenca-digital.html
 
 Diagnóstico da presença digital da padaria, levantado em 27/08/2026 a partir de
@@ -35,9 +47,9 @@ Também publicado como Artifact, para compartilhar por link:
   está publicado em `src/lib/almoco.ts`, mas sem valores. As artes traziam
   R$ 27 no prato do dia e R$ 35 na feijoada, de data incerta. Preço é o que
   mais converte numa busca por almoço — vale confirmar e publicar.
-- **O cardápio do café da manhã e da confeitaria** (`src/lib/cardapio.ts`).
-  Montei a partir das fotos, dos posts e das avaliações. Perguntar o que mais
-  sai de manhã que não está lá.
+- **O cardápio da confeitaria** (`src/lib/cardapio.ts`). Ainda vem das fotos e
+  das avaliações — o PDF oficial cobre só a lanchonete, não a confeitaria.
+  O café da manhã já foi corrigido pelo cardápio real.
 - **As respostas do FAQ** (`src/lib/perguntas.ts`), principalmente
   estacionamento e acessibilidade — vieram do Restaurant Guru e de uma
   avaliação, não da padaria.
