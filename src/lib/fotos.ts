@@ -41,8 +41,8 @@ export const fotos: Foto[] = [
   },
   {
     src: pratoDoDia,
-    alt: "Prato do dia em embalagem para viagem: frango ensopado, polenta, arroz e couve refogada",
-    legenda: "Prato do dia, pronto para levar",
+    alt: "Prato do dia servido no salão: frango ensopado, polenta, arroz e couve refogada",
+    legenda: "O prato do dia no salão",
   },
   {
     src: paesFranceses,
@@ -68,5 +68,27 @@ export const fotos: Foto[] = [
     src: fachada,
     alt: "Fachada da padaria, com toldo verde e a bandeira roxa com o brasão da Rainha da Massa",
     legenda: "A fachada da padaria",
+  },
+];
+
+/**
+ * As fotos de prato da galeria, reaproveitadas na seção de almoço.
+ * Mesmos arquivos — a legenda muda para o contexto do almoço.
+ */
+export const pratosDoAlmoco: Foto[] = [
+  {
+    src: pratoDoDia,
+    alt: "Prato do dia servido no salão: frango ensopado, polenta, arroz e couve refogada",
+    legenda: "O prato do dia no salão",
+  },
+  {
+    src: carreSuino,
+    alt: "Carré suíno grelhado servido com arroz, couve refogada e feijão",
+    legenda: "O carré de terça",
+  },
+  {
+    src: feijoada,
+    alt: "Prato de feijoada com arroz, couve refogada e farofa",
+    legenda: "A feijoada de sexta",
   },
 ];

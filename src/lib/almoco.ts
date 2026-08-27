@@ -28,7 +28,7 @@ export const semana: PratoDoDia[] = [
     dia: 1,
     nome: "Segunda",
     prato: "Sobrecoxa de frango",
-    detalhe: "Com maionese ou salpicão",
+    detalhe: "Com maionese ou salpicão, arroz e feijão",
   },
   {
     dia: 2,
@@ -58,7 +58,7 @@ export const semana: PratoDoDia[] = [
     dia: 6,
     nome: "Sábado",
     prato: "Filé de tilápia empanado",
-    detalhe: "Com purê de batata",
+    detalhe: "Com purê de batata, arroz e feijão",
   },
   {
     dia: 0,

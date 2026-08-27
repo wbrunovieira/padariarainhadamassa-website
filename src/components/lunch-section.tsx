@@ -1,10 +1,12 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import Image from "next/image";
 import { UtensilsCrossed } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { acompanhamentos, fixos, semana } from "@/lib/almoco";
+import { pratosDoAlmoco } from "@/lib/fotos";
 import { site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -53,12 +55,44 @@ export function LunchSection() {
               e ainda o prato do dia, que muda de segunda a domingo.
             </p>
             <p>
-              Para comer aqui na {site.street}, levar a marmita para o trabalho ou
-              pedir pelo {site.delivery}. Em {site.city}, é o almoço de quem quer
-              comida de verdade sem perder a hora.
+              Você almoça aqui no salão, na {site.street} — sentado, com o prato
+              servido na hora. Em {site.city}, é o almoço de quem quer comida de
+              verdade sem perder a hora. Quem não pode sair, pede pelo{" "}
+              {site.delivery}.
             </p>
           </motion.div>
         </div>
+
+        {/* As fotos de prato, as mesmas da galeria */}
+        <motion.ul {...reveal(0.16)} className="mt-16 grid gap-4 sm:grid-cols-3 lg:gap-6">
+          {pratosDoAlmoco.map((foto, i) => (
+            <motion.li
+              key={foto.src.src}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{
+                duration: reduce ? 0 : 0.7,
+                ease: EASE,
+                delay: reduce ? 0 : 0.18 + i * 0.09,
+              }}
+              className="group overflow-hidden rounded-2xl bg-cream-deep"
+            >
+              <span className="relative block overflow-hidden">
+                <Image
+                  src={foto.src}
+                  alt={foto.alt}
+                  placeholder="blur"
+                  sizes="(min-width: 640px) 30vw, 92vw"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                />
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent p-4 pt-14">
+                  <span className="eyebrow text-cream">{foto.legenda}</span>
+                </span>
+              </span>
+            </motion.li>
+          ))}
+        </motion.ul>
 
         {/* Fixos do dia a dia */}
         <motion.div {...reveal(0.16)} className="mt-16">
