@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import Image from "next/image";
-import { UtensilsCrossed } from "lucide-react";
+import { UtensilsCrossed, Wheat } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { acompanhamentos, fixos, semana } from "@/lib/almoco";
@@ -94,22 +94,50 @@ export function LunchSection() {
           ))}
         </motion.ul>
 
-        {/* Fixos do dia a dia */}
-        <motion.div {...reveal(0.16)} className="mt-16">
-          <h3 className="eyebrow text-espresso-soft/70">
-            Quatro pratos feitos que nunca saem do cardápio
-          </h3>
-          <ul className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-espresso/12 bg-espresso/12 sm:grid-cols-2 lg:grid-cols-4">
-            {fixos.map((item) => (
-              <li
+        {/* Fixos do dia a dia — nichos em arco, ecoando a moldura do brasão */}
+        <motion.div {...reveal(0.16)} className="mt-20">
+          <h3 className="eyebrow text-gold">Todo dia tem</h3>
+          <p className="mt-4 max-w-xl font-display text-2xl leading-snug text-espresso sm:text-3xl">
+            Quatro pratos feitos que{" "}
+            <span className="italic text-ink">nunca saem do cardápio</span>.
+          </p>
+
+          <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+            {fixos.map((item, i) => (
+              <motion.li
                 key={item.nome}
-                className="bg-cream-light px-6 py-7 font-display text-2xl italic text-espresso"
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: reduce ? 0 : 0.7,
+                  ease: EASE,
+                  delay: reduce ? 0 : 0.2 + i * 0.08,
+                }}
+                className="group relative flex flex-col items-center gap-5 rounded-b-2xl rounded-t-[3.5rem] border border-espresso/12 bg-cream-light px-5 pb-7 pt-10 text-center transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-gold/45 hover:shadow-[0_26px_50px_-38px_rgba(44,32,26,0.75)] lg:rounded-t-[5rem] lg:px-6 lg:pb-9 lg:pt-12"
               >
-                {item.nome}
-              </li>
+                <Wheat
+                  className="size-5 shrink-0 text-gold/45 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6 group-hover:text-gold"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+                <span className="font-display text-xl italic leading-tight text-espresso sm:text-2xl">
+                  {item.nome}
+                </span>
+                <span
+                  aria-hidden
+                  className="block h-px w-10 origin-center scale-x-50 bg-espresso/20 transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-hover:bg-gold"
+                />
+              </motion.li>
             ))}
           </ul>
-          <p className="mt-5 max-w-2xl text-espresso-soft">{acompanhamentos}</p>
+
+          <div className="mt-6 flex flex-col gap-2 rounded-2xl bg-espresso/[0.05] px-6 py-5 sm:flex-row sm:items-baseline sm:gap-5">
+            <span className="eyebrow shrink-0 text-espresso-soft/70">
+              Todos vêm com
+            </span>
+            <p className="text-espresso-soft">{acompanhamentos}</p>
+          </div>
         </motion.div>
 
         {/* Prato do dia */}

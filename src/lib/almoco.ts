@@ -13,7 +13,7 @@ export const fixos = [
 ];
 
 export const acompanhamentos =
-  "Arroz, feijão, batata frita ou batata palha e salada — de legumes, alface e tomate, ou os dois juntos.";
+  "arroz, feijão, batata frita ou batata palha e salada — de legumes, alface e tomate, ou os dois juntos.";
 
 export type PratoDoDia = {
   /** 0 = domingo, igual ao Date.getDay() */
