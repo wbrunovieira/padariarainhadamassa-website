@@ -48,7 +48,7 @@ export default async function CardapioPage() {
 
       <main className="mx-auto max-w-4xl px-5 pb-24 pt-10">
         {cardapio.secoes.map((secao) => (
-          <section key={secao.id} id={secao.id} className="scroll-mt-20 pb-14">
+          <section key={secao.id} id={secao.id} className="pb-14">
             <h2 className="font-display text-3xl italic text-espresso sm:text-4xl">
               {secao.titulo}
             </h2>

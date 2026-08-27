@@ -3,6 +3,49 @@
   "aviso": "Preços sujeitos a alteração. Consulte o balcão.",
   "secoes": [
     {
+      "id": "cafe-da-manha",
+      "titulo": "Café da manhã",
+      "descricao": "",
+      "ativo": true,
+      "itens": [
+        {
+          "id": "pao-com-manteiga",
+          "nome": "Pão com manteiga",
+          "descricao": "",
+          "preco": 3.5,
+          "ativo": true
+        },
+        {
+          "id": "pao-na-chapa",
+          "nome": "Pão na chapa",
+          "descricao": "",
+          "preco": 4.5,
+          "ativo": true
+        },
+        {
+          "id": "pao-com-polenguinho",
+          "nome": "Pão com polenguinho",
+          "descricao": "",
+          "preco": 5.5,
+          "ativo": true
+        },
+        {
+          "id": "pao-com-ovo",
+          "nome": "Pão com ovo",
+          "descricao": "",
+          "preco": 5,
+          "ativo": true
+        },
+        {
+          "id": "pao-com-ovo-e-queijo",
+          "nome": "Pão com ovo e queijo",
+          "descricao": "",
+          "preco": 8.5,
+          "ativo": true
+        }
+      ]
+    },
+    {
       "id": "almoco",
       "titulo": "Almoço",
       "descricao": "Servido no salão, todos os dias. Todo prato do almoço sai por R$ 22,00.",
@@ -83,49 +126,6 @@
           "nome": "Domingo · Frango assado a quilo",
           "descricao": "Com maionese e salpicão",
           "preco": 22,
-          "ativo": true
-        }
-      ]
-    },
-    {
-      "id": "cafe-da-manha",
-      "titulo": "Café da manhã",
-      "descricao": "",
-      "ativo": true,
-      "itens": [
-        {
-          "id": "pao-com-manteiga",
-          "nome": "Pão com manteiga",
-          "descricao": "",
-          "preco": 3.5,
-          "ativo": true
-        },
-        {
-          "id": "pao-na-chapa",
-          "nome": "Pão na chapa",
-          "descricao": "",
-          "preco": 4.5,
-          "ativo": true
-        },
-        {
-          "id": "pao-com-polenguinho",
-          "nome": "Pão com polenguinho",
-          "descricao": "",
-          "preco": 5.5,
-          "ativo": true
-        },
-        {
-          "id": "pao-com-ovo",
-          "nome": "Pão com ovo",
-          "descricao": "",
-          "preco": 5,
-          "ativo": true
-        },
-        {
-          "id": "pao-com-ovo-e-queijo",
-          "nome": "Pão com ovo e queijo",
-          "descricao": "",
-          "preco": 8.5,
           "ativo": true
         }
       ]

@@ -28,10 +28,20 @@ export function MenuNav({ abas }: { abas: Aba[] }) {
     return () => obs.disconnect();
   }, [abas]);
 
-  // mantém a aba ativa à vista no trilho horizontal
+  /*
+   * Mantém a aba ativa à vista no trilho.
+   *
+   * Aqui era scrollIntoView, e ele roubava a rolagem da página: a cada troca
+   * de seção o navegador reposicionava o documento inteiro, matando o impulso
+   * do dedo e cancelando o salto do clique na aba. Agora só mexe no
+   * scrollLeft do trilho, que não toca no scroll do documento.
+   */
   useEffect(() => {
-    const botao = trilho.current?.querySelector<HTMLElement>(`[data-aba="${ativa}"]`);
-    botao?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    const t = trilho.current;
+    const botao = t?.querySelector<HTMLElement>(`[data-aba="${ativa}"]`);
+    if (!t || !botao) return;
+    const destino = botao.offsetLeft - (t.clientWidth - botao.clientWidth) / 2;
+    t.scrollTo({ left: Math.max(0, destino), behavior: "smooth" });
   }, [ativa]);
 
   return (
