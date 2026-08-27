@@ -46,9 +46,9 @@
       ],
       "foto": "/cardapio/cafe-da-manha.jpg",
       "horario": {
-        "rotulo": "6h às 11h30",
-        "de": "06:00",
-        "ate": "11:30"
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
       }
     },
     {
