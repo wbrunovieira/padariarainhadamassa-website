@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 type Aba = { id: string; titulo: string };
 
 /** Abas grudadas no topo, que acompanham a seção visível. */
 export function MenuNav({ abas }: { abas: Aba[] }) {
   const [ativa, setAtiva] = useState(abas[0]?.id ?? "");
+  const [risco, setRisco] = useState({ x: 0, w: 0 });
   const trilho = useRef<HTMLDivElement>(null);
   const visiveis = useRef(new Map<string, boolean>());
 
@@ -28,28 +29,42 @@ export function MenuNav({ abas }: { abas: Aba[] }) {
     return () => obs.disconnect();
   }, [abas]);
 
-  /*
-   * Mantém a aba ativa à vista no trilho.
-   *
-   * Aqui era scrollIntoView, e ele roubava a rolagem da página: a cada troca
-   * de seção o navegador reposicionava o documento inteiro, matando o impulso
-   * do dedo e cancelando o salto do clique na aba. Agora só mexe no
-   * scrollLeft do trilho, que não toca no scroll do documento.
-   */
-  useEffect(() => {
+  const posicionar = useCallback(() => {
     const t = trilho.current;
     const botao = t?.querySelector<HTMLElement>(`[data-aba="${ativa}"]`);
     if (!t || !botao) return;
+    setRisco({ x: botao.offsetLeft, w: botao.clientWidth });
+    /*
+     * Só o scrollLeft do trilho. scrollIntoView reposicionaria todos os
+     * contêineres de rolagem acima — o documento inclusive — e roubaria a
+     * rolagem da página.
+     */
     const destino = botao.offsetLeft - (t.clientWidth - botao.clientWidth) / 2;
     t.scrollTo({ left: Math.max(0, destino), behavior: "smooth" });
   }, [ativa]);
 
+  useLayoutEffect(posicionar, [posicionar]);
+
+  useEffect(() => {
+    window.addEventListener("resize", posicionar);
+    return () => window.removeEventListener("resize", posicionar);
+  }, [posicionar]);
+
   return (
-    <div className="sticky top-0 z-30 border-b border-espresso/12 bg-cream-light/92 backdrop-blur-md">
+    <div className="sticky top-0 z-30 border-b border-espresso/12 bg-cream-light shadow-[0_10px_18px_-16px_rgba(44,32,26,0.55)]">
       <div
         ref={trilho}
-        className="scrollbar-none mx-auto flex max-w-4xl gap-1.5 overflow-x-auto px-3 py-2"
+        className="scrollbar-none trilho-abas relative mx-auto flex max-w-4xl gap-1 overflow-x-auto px-3 py-1.5"
       >
+        <span
+          aria-hidden
+          className="pointer-events-none absolute bottom-0 left-0 h-0.5 bg-gold transition-transform duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+          style={{
+            width: 1,
+            transform: `translateX(${risco.x}px) scaleX(${risco.w})`,
+            transformOrigin: "left",
+          }}
+        />
         {abas.map((a) => (
           <a
             key={a.id}
@@ -57,10 +72,8 @@ export function MenuNav({ abas }: { abas: Aba[] }) {
             data-aba={a.id}
             aria-current={ativa === a.id ? "true" : undefined}
             className={[
-              "flex min-h-11 shrink-0 items-center rounded-full px-4 text-[0.78rem] font-medium uppercase tracking-[0.12em] transition-colors duration-300",
-              ativa === a.id
-                ? "bg-espresso text-cream"
-                : "text-espresso-soft hover:bg-espresso/8 hover:text-espresso",
+              "flex min-h-11 shrink-0 items-center px-3.5 text-[0.72rem] font-medium uppercase tracking-[0.16em] transition-colors duration-300",
+              ativa === a.id ? "text-espresso" : "text-espresso-soft/65",
             ].join(" ")}
           >
             {a.titulo}

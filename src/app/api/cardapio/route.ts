@@ -30,6 +30,11 @@ export async function PUT(req: Request) {
       descricao: String(s.descricao ?? "").slice(0, 240),
       // só caminho interno: nada de URL externa entrando por aqui
       foto: /^\/[\w./-]*$/.test(String(s.foto ?? "")) ? String(s.foto).slice(0, 160) : "",
+      horario: {
+        rotulo: String(s.horario?.rotulo ?? "").slice(0, 40),
+        de: /^\d{2}:\d{2}$/.test(String(s.horario?.de ?? "")) ? String(s.horario!.de) : "",
+        ate: /^\d{2}:\d{2}$/.test(String(s.horario?.ate ?? "")) ? String(s.horario!.ate) : "",
+      },
       ativo: Boolean(s.ativo),
       itens: (s.itens ?? []).slice(0, 120).map((it, j) => ({
         id: String(it.id || `item-${j}`).slice(0, 60),

@@ -204,7 +204,66 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
 
               {abertaAqui && (
                 <div className="border-t border-espresso/10 px-5 py-6">
-                  <label className="block">
+                  <div className="grid gap-3 sm:grid-cols-[1fr_8rem_8rem]">
+                    <label className="block">
+                      <span className={rotulo}>Horário (texto exibido)</span>
+                      <input
+                        value={s.horario?.rotulo ?? ""}
+                        placeholder="11h30 às 15h"
+                        onChange={(ev) =>
+                          mudarSecao(s.id, {
+                            horario: {
+                              rotulo: ev.target.value,
+                              de: s.horario?.de ?? "",
+                              ate: s.horario?.ate ?? "",
+                            },
+                          })
+                        }
+                        className={`${campo} mt-2`}
+                      />
+                    </label>
+                    <label className="block">
+                      <span className={rotulo}>Começa</span>
+                      <input
+                        type="time"
+                        value={s.horario?.de ?? ""}
+                        onChange={(ev) =>
+                          mudarSecao(s.id, {
+                            horario: {
+                              rotulo: s.horario?.rotulo ?? "",
+                              de: ev.target.value,
+                              ate: s.horario?.ate ?? "",
+                            },
+                          })
+                        }
+                        className={`${campo} mt-2`}
+                      />
+                    </label>
+                    <label className="block">
+                      <span className={rotulo}>Termina</span>
+                      <input
+                        type="time"
+                        value={s.horario?.ate ?? ""}
+                        onChange={(ev) =>
+                          mudarSecao(s.id, {
+                            horario: {
+                              rotulo: s.horario?.rotulo ?? "",
+                              de: s.horario?.de ?? "",
+                              ate: ev.target.value,
+                            },
+                          })
+                        }
+                        className={`${campo} mt-2`}
+                      />
+                    </label>
+                  </div>
+                  <p className="mt-2 text-xs text-espresso-soft/70">
+                    Com hora de início e fim, a seção ganha a marca dourada de
+                    “Agora” no cardápio durante esse intervalo. Deixe as horas em
+                    branco para a seção sair o dia todo.
+                  </p>
+
+                  <label className="mt-5 block">
                     <span className={rotulo}>Foto da seção</span>
                     <select
                       value={s.foto ?? ""}

@@ -44,12 +44,17 @@
           "ativo": true
         }
       ],
-      "foto": "/cardapio/cafe-da-manha.jpg"
+      "foto": "/cardapio/cafe-da-manha.jpg",
+      "horario": {
+        "rotulo": "6h às 11h30",
+        "de": "06:00",
+        "ate": "11:30"
+      }
     },
     {
       "id": "almoco",
       "titulo": "Almoço",
-      "descricao": "Servido no salão, todos os dias. Todo prato do almoço sai por R$ 22,00.",
+      "descricao": "Servido no salão, todos os dias.",
       "ativo": true,
       "itens": [
         {
@@ -130,7 +135,12 @@
           "ativo": true
         }
       ],
-      "foto": "/cardapio/almoco.jpg"
+      "foto": "/cardapio/almoco.jpg",
+      "horario": {
+        "rotulo": "11h30 às 15h",
+        "de": "11:30",
+        "ate": "15:00"
+      }
     },
     {
       "id": "sanduiches",
@@ -202,7 +212,12 @@
           "ativo": true
         }
       ],
-      "foto": ""
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      }
     },
     {
       "id": "omeletes",
@@ -262,7 +277,12 @@
           ]
         }
       ],
-      "foto": ""
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      }
     },
     {
       "id": "salgados",
@@ -306,7 +326,12 @@
           "ativo": true
         }
       ],
-      "foto": ""
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      }
     },
     {
       "id": "bebidas-quentes",
@@ -360,7 +385,12 @@
           "ativo": true
         }
       ],
-      "foto": ""
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      }
     },
     {
       "id": "bebidas-geladas",
@@ -489,7 +519,12 @@
           ]
         }
       ],
-      "foto": ""
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      }
     }
   ]
 }
