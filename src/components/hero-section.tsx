@@ -13,7 +13,7 @@ import {
 
 import { HeroCarousel } from "@/components/hero-carousel";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { deliveryTexto, fullAddress, site } from "@/lib/site";
+import { decadaDeCasa, deliveryTexto, fullAddress, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -113,7 +113,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                   variants={linha}
                   className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-[4.2rem] [@media(max-height:840px)]:lg:text-[3.4rem] xl:text-7xl [@media(max-height:840px)]:xl:text-[3.9rem]"
                 >
-                  há mais de vinte anos.
+                  há mais de {decadaDeCasa()} anos.
                 </motion.span>
               </span>
             </h1>

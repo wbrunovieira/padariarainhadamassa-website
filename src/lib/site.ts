@@ -103,3 +103,38 @@ export const navigationCompleta: NavItem[] = [
 
 /** Horário de funcionamento, para o indicador de aberto/fechado. */
 export const expediente = { abre: 6, fecha: 22, fuso: "America/Sao_Paulo" } as const;
+
+/** Ano corrente em Petrópolis — o fuso de quem acessa não muda a conta. */
+function anoAtual(agora = new Date()) {
+  return Number(
+    new Intl.DateTimeFormat("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      year: "numeric",
+    }).format(agora),
+  );
+}
+
+/** Quantos anos de casa. Em 2026 são 22; a conta se atualiza sozinha. */
+export function anosDeCasa(agora = new Date()) {
+  return anoAtual(agora) - site.since;
+}
+
+const dezenaPorExtenso: Record<number, string> = {
+  20: "vinte",
+  30: "trinta",
+  40: "quarenta",
+  50: "cinquenta",
+  60: "sessenta",
+  70: "setenta",
+  80: "oitenta",
+  90: "noventa",
+};
+
+/**
+ * A década cheia, por extenso, para frases do tipo "há mais de vinte anos".
+ * Vira "trinta" sozinho em 2034, sem ninguém precisar lembrar.
+ */
+export function decadaDeCasa(agora = new Date()) {
+  const d = Math.floor(anosDeCasa(agora) / 10) * 10;
+  return dezenaPorExtenso[d] ?? String(d);
+}

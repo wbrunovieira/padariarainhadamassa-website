@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { MenuSection } from "@/components/menu-section";
 import { confeitaria, tambemTem } from "@/lib/cardapio";
+import { site } from "@/lib/site";
 import rocambole from "@/assets/fotos/rocambole.jpg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -28,7 +29,7 @@ export function ConfectionerySection() {
       texto={
         <p>
           Rainha da <em className="not-italic">Massa</em> é padaria e confeitaria
-          desde 2004. O balcão de doces trabalha o dia inteiro: bolo para levar
+          desde {site.since}. O balcão de doces trabalha o dia inteiro: bolo para levar
           na fatia, torta para a mesa e o sorvete que você mesmo monta.
         </p>
       }

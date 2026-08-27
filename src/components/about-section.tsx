@@ -4,13 +4,13 @@ import { Wheat } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { deliveryTexto, mencoes, site } from "@/lib/site";
+import { anosDeCasa, deliveryTexto, mencoes, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function AboutSection({ stats }: { stats: PlaceStats }) {
   const reduce = useReducedMotion();
-  const anos = new Date().getFullYear() - site.since;
+  const anos = anosDeCasa();
 
   const numeros = [
     { valor: `${anos}`, unidade: "anos", legenda: `Abrimos em ${site.since}` },

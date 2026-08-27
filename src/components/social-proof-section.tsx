@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { depoimentos, temas } from "@/lib/depoimentos";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { googleReviewsUrl } from "@/lib/site";
+import { decadaDeCasa, googleReviewsUrl } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -49,8 +49,8 @@ export function SocialProofSection({ stats }: { stats: PlaceStats }) {
             </motion.div>
 
             <motion.p {...reveal(0.1)} className="mt-4 text-espresso-soft">
-              {stats.count} avaliações no Google, ao longo de mais de vinte anos
-              de balcão.
+              {stats.count} avaliações no Google, ao longo de mais de{" "}
+              {decadaDeCasa()} anos de balcão.
             </motion.p>
 
             <motion.ul {...reveal(0.14)} className="mt-8 flex flex-wrap gap-2.5">
