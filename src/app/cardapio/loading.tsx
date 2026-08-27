@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CoroaSvg } from "@/components/coroa-svg";
 
 /**
  * Esqueleto do cardápio. A pessoa está de pé na mesa com o celular na
@@ -10,15 +10,7 @@ export default function Loading() {
     <div className="min-h-dvh bg-gradient-to-b from-cream-light via-cream to-cream-deep/40">
       <header className="grain relative overflow-hidden border-b border-gold/35 bg-ink px-5 pb-7 pt-7 text-cream">
         <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
-          <Image
-            src="/brand/logo-rainha-da-massa-cream.png"
-            alt=""
-            width={900}
-            height={897}
-            sizes="52px"
-            priority
-            className="anima-respira size-[3.25rem] object-contain"
-          />
+          <CoroaSvg className="anima-respira h-9 w-auto text-cream" />
           <h1 className="mt-3 font-display text-3xl italic leading-none sm:text-4xl">
             Rainha da Massa
           </h1>

@@ -1,9 +1,9 @@
-import Image from "next/image";
+import { CoroaSvg } from "@/components/coroa-svg";
 
 /**
- * Carregamento da casa: o brasão respirando e um fio dourado varrendo.
- * Sem biblioteca de animação — é a primeira coisa que aparece, então
- * precisa ser CSS puro e chegar antes de qualquer JavaScript.
+ * Carregamento da casa: a coroa respirando e um fio dourado varrendo.
+ * Sem imagem e sem biblioteca de animação — é a primeira coisa que
+ * aparece, então precisa funcionar antes de qualquer rede ou JavaScript.
  */
 export function LoadingBrand({
   texto = "Um instante",
@@ -13,23 +13,11 @@ export function LoadingBrand({
   escuro?: boolean;
 }) {
   return (
-    <div
-      role="status"
-      aria-live="polite"
-      className="flex flex-col items-center gap-6"
-    >
-      <Image
-        src={
-          escuro
-            ? "/brand/logo-rainha-da-massa-cream.png"
-            : "/brand/logo-rainha-da-massa.png"
-        }
-        alt=""
-        width={900}
-        height={897}
-        sizes="88px"
-        priority
-        className="anima-respira size-[5.5rem] object-contain"
+    <div role="status" aria-live="polite" className="flex flex-col items-center gap-6">
+      <span className="sr-only">Carregando</span>
+
+      <CoroaSvg
+        className={`anima-respira h-12 w-auto ${escuro ? "text-cream" : "text-espresso"}`}
       />
 
       <span
