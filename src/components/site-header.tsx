@@ -104,6 +104,7 @@ export function SiteHeader() {
               className="group flex items-center gap-3.5"
             >
               <motion.span
+                initial={{ width: 60, height: 60 }}
                 animate={{ width: scrolled ? 44 : 60, height: scrolled ? 44 : 60 }}
                 transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
                 className="relative block shrink-0"
@@ -227,6 +228,8 @@ export function SiteHeader() {
                 alt=""
                 width={420}
                 height={418}
+                quality={40}
+                sizes="288px"
                 className="pointer-events-none absolute -bottom-16 -right-16 w-72 opacity-[0.06]"
               />
 

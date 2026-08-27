@@ -15,7 +15,8 @@ export default function Home() {
           alt=""
           width={900}
           height={897}
-          priority
+          quality={40}
+          sizes="(min-width: 1024px) 46rem, 1px"
           className="pointer-events-none absolute -right-24 top-1/2 hidden w-[46rem] max-w-none -translate-y-1/2 opacity-[0.07] lg:block lg:-right-10"
         />
 
