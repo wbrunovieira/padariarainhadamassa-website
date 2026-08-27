@@ -123,6 +123,41 @@
   }
 }
 
+/* barra indeterminada: vai e volta sem prometer progresso que não sabemos */
+@keyframes varredura {
+  0% {
+    transform: translateX(-100%) scaleX(0.35);
+  }
+  50% {
+    transform: translateX(0%) scaleX(0.6);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.35);
+  }
+}
+
+/* o brasão respira enquanto a página não chega */
+@keyframes respira {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.985);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.anima-varredura {
+  animation: varredura 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  transform-origin: left;
+}
+
+.anima-respira {
+  animation: respira 2.4s ease-in-out infinite;
+}
+
 @keyframes marquee-x {
   from {
     transform: translate3d(0, 0, 0);
@@ -140,7 +175,12 @@
   html {
     scroll-behavior: auto;
   }
-  .marquee-track {
+  .marquee-track,
+  .anima-varredura,
+  .anima-respira {
     animation: none;
+  }
+  .anima-respira {
+    opacity: 0.75;
   }
 }
