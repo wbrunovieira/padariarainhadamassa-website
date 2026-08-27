@@ -26,21 +26,21 @@
           "id": "pao-com-polenguinho",
           "nome": "Pão com polenguinho",
           "descricao": "",
-          "preco": 5.5,
+          "preco": 6.0,
           "ativo": true
         },
         {
           "id": "pao-com-ovo",
           "nome": "Pão com ovo",
           "descricao": "",
-          "preco": 5,
+          "preco": 7.0,
           "ativo": true
         },
         {
           "id": "pao-com-ovo-e-queijo",
           "nome": "Pão com ovo e queijo",
           "descricao": "",
-          "preco": 8.5,
+          "preco": 9.5,
           "ativo": true
         }
       ],
@@ -152,63 +152,63 @@
           "id": "misto-frio",
           "nome": "Misto frio",
           "descricao": "",
-          "preco": 9,
+          "preco": 11.0,
           "ativo": true
         },
         {
           "id": "misto-quente",
           "nome": "Misto quente",
           "descricao": "",
-          "preco": 9.5,
+          "preco": 11.5,
           "ativo": true
         },
         {
           "id": "queijo-minas-frio",
           "nome": "Queijo minas frio",
           "descricao": "",
-          "preco": 11,
+          "preco": 13.5,
           "ativo": true
         },
         {
           "id": "queijo-minas-quente",
           "nome": "Queijo minas quente",
           "descricao": "",
-          "preco": 11.5,
+          "preco": 14.5,
           "ativo": true
         },
         {
           "id": "queijo-minas-com-peito-de-peru",
           "nome": "Queijo minas com peito de peru",
           "descricao": "",
-          "preco": 13.5,
+          "preco": 16.5,
           "ativo": true
         },
         {
           "id": "mortadela-comum",
           "nome": "Mortadela comum",
           "descricao": "",
-          "preco": 6.5,
+          "preco": 7.5,
           "ativo": true
         },
         {
           "id": "mortadela-defumada",
           "nome": "Mortadela defumada",
           "descricao": "",
-          "preco": 7.5,
+          "preco": 8.5,
           "ativo": true
         },
         {
           "id": "mortadela-com-queijo-frio",
           "nome": "Mortadela com queijo frio",
           "descricao": "Mussarela ou prato",
-          "preco": 9,
+          "preco": 11.0,
           "ativo": true
         },
         {
           "id": "mortadela-com-queijo-quente",
           "nome": "Mortadela com queijo quente",
           "descricao": "Mussarela ou prato",
-          "preco": 9.5,
+          "preco": 11.5,
           "ativo": true
         }
       ],
@@ -222,59 +222,29 @@
     {
       "id": "omeletes",
       "titulo": "Omeletes",
-      "descricao": "Todas com tomate, cebola e salsinha.",
+      "descricao": "Dois ovos, com tomate, cebola e salsinha.",
       "ativo": true,
       "itens": [
         {
           "id": "presunto-e-queijo",
           "nome": "Presunto e queijo",
-          "descricao": "Simples, 2 ovos",
-          "preco": 10.5,
-          "ativo": true,
-          "variacoes": [
-            {
-              "rotulo": "Simples · 2 ovos",
-              "preco": 10.5
-            },
-            {
-              "rotulo": "Duplo · 4 ovos",
-              "preco": 20.5
-            }
-          ]
+          "descricao": "",
+          "preco": 16.5,
+          "ativo": true
         },
         {
           "id": "queijo",
           "nome": "Queijo",
-          "descricao": "Simples, 2 ovos",
-          "preco": 10.5,
-          "ativo": true,
-          "variacoes": [
-            {
-              "rotulo": "Simples · 2 ovos",
-              "preco": 10.5
-            },
-            {
-              "rotulo": "Duplo · 4 ovos",
-              "preco": 20.5
-            }
-          ]
+          "descricao": "",
+          "preco": 16.5,
+          "ativo": true
         },
         {
           "id": "peito-de-peru-com-minas",
           "nome": "Peito de peru com minas",
-          "descricao": "Simples, 2 ovos",
-          "preco": 13.5,
-          "ativo": true,
-          "variacoes": [
-            {
-              "rotulo": "Simples · 2 ovos",
-              "preco": 13.5
-            },
-            {
-              "rotulo": "Duplo · 4 ovos",
-              "preco": 23.5
-            }
-          ]
+          "descricao": "",
+          "preco": 18.5,
+          "ativo": true
         }
       ],
       "foto": "",
@@ -294,28 +264,28 @@
           "id": "pao-de-queijo",
           "nome": "Pão de queijo",
           "descricao": "",
-          "preco": 5,
+          "preco": 5.5,
           "ativo": true
         },
         {
           "id": "fritos",
           "nome": "Fritos",
           "descricao": "Coxinha, croquete, carne e ovo, presunto e queijo e salsicha",
-          "preco": 6.5,
+          "preco": 7.0,
           "ativo": true
         },
         {
           "id": "especiais",
           "nome": "Especiais",
           "descricao": "Tapa na cara, coxinha com osso, espetinho de frango, kibe e bolinho de aipim",
-          "preco": 8.5,
+          "preco": 9.0,
           "ativo": true
         },
         {
           "id": "assados",
           "nome": "Assados",
           "descricao": "Brioche, hambúrguer de forno e cachorro quente",
-          "preco": 8.5,
+          "preco": 9.0,
           "ativo": true
         },
         {
@@ -343,14 +313,14 @@
           "id": "cafezinho",
           "nome": "Cafezinho",
           "descricao": "",
-          "preco": 3.5,
+          "preco": 4.0,
           "ativo": true
         },
         {
           "id": "cafe-media",
           "nome": "Café média",
           "descricao": "",
-          "preco": 6.2,
+          "preco": 7.0,
           "ativo": true
         },
         {
@@ -402,16 +372,16 @@
           "id": "suco-natural",
           "nome": "Suco natural",
           "descricao": "",
-          "preco": 9,
+          "preco": 10.0,
           "ativo": true,
           "variacoes": [
             {
               "rotulo": "1 fruta",
-              "preco": 9
+              "preco": 10.0
             },
             {
               "rotulo": "2 frutas",
-              "preco": 10
+              "preco": 11.0
             }
           ]
         },
@@ -436,16 +406,16 @@
           "id": "vitamina",
           "nome": "Vitamina",
           "descricao": "",
-          "preco": 10.5,
+          "preco": 12.0,
           "ativo": true,
           "variacoes": [
             {
               "rotulo": "1 fruta",
-              "preco": 10.5
+              "preco": 12.0
             },
             {
               "rotulo": "2 frutas",
-              "preco": 11.5
+              "preco": 13.0
             }
           ]
         },
@@ -460,16 +430,16 @@
           "id": "refrigerante",
           "nome": "Refrigerante",
           "descricao": "",
-          "preco": 6.5,
+          "preco": 7.0,
           "ativo": true,
           "variacoes": [
             {
               "rotulo": "Lata",
-              "preco": 6.5
+              "preco": 7.0
             },
             {
               "rotulo": "600 ml",
-              "preco": 8.5
+              "preco": 8.9
             }
           ]
         },
@@ -484,14 +454,14 @@
           "id": "guaraviton",
           "nome": "Guaraviton",
           "descricao": "",
-          "preco": 5.5,
+          "preco": 6.5,
           "ativo": true
         },
         {
           "id": "ativ-plus",
           "nome": "Ativ Plus",
           "descricao": "",
-          "preco": 3,
+          "preco": 3.5,
           "ativo": true
         },
         {

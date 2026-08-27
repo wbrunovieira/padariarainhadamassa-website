@@ -31,8 +31,15 @@ formato JSON. O resto do código não muda: só aquelas duas funções.
 
 ## cardapio/
 
-`cardapio-rainha-da-massa.pdf` — cardápio oficial que o cliente passou em
-27/08/2026, com preços. Duas páginas: *Para comer* (café da manhã, sanduíches,
+`cardapio-corrigido-para-comer.jpg` e `cardapio-corrigido-para-beber.jpg` —
+fotos do cardápio de mesa com as **correções manuscritas de preço**, passadas
+em 27/08/2026. **É a fonte válida**, mais recente que o PDF.
+
+Nessa revisão as omeletes perderam o tamanho duplo (4 ovos): o bloco está
+coberto com papel branco na foto. Sobrou só a versão de dois ovos.
+
+`cardapio-rainha-da-massa.pdf` — cardápio oficial anterior, em PDF.
+**Os preços dele estão desatualizados**; serve para a estrutura das seções. Duas páginas: *Para comer* (café da manhã, sanduíches,
 omeletes, salgados) e *Para beber* (bebidas quentes e geladas).
 
 Alimenta `src/lib/cardapio.ts`. **Os preços não vão para o site**, por decisão
