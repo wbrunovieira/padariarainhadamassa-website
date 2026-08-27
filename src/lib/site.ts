@@ -71,7 +71,7 @@ export type NavItem = { label: string; href: string; hint: string };
 export const navigation: NavItem[] = [
   { label: "A Padaria", href: "#a-padaria", hint: `Desde ${site.since}` },
   { label: "Galeria", href: "#galeria", hint: "O que sai do balcão" },
-  { label: "Confeitaria", href: "#confeitaria", hint: "Bolos e tortas" },
+  { label: "Almoço", href: "#almoco", hint: "Todo dia, com prato do dia" },
   { label: "Encomendas", href: "#encomendas", hint: "Pelo telefone" },
   { label: "Onde estamos", href: "#contato", hint: "Saldanha Marinho" },
 ];

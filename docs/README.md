@@ -31,8 +31,12 @@ Também publicado como Artifact, para compartilhar por link:
 - Se já existe WhatsApp e só não está divulgado.
 - **Qual endereço vale.** As artes da própria padaria trazem Rua Washington
   Luiz, 1.255 no rodapé, e não Saldanha Marinho, 7. Ver `fotos-cliente/LEIA-ME.md`.
-- O cardápio do almoço vigente e os preços — as artes trazem duas terças
-  diferentes.
+- **Os preços do almoço.** O cardápio que o cliente passou em 27/08/2026 já
+  está publicado em `src/lib/almoco.ts`, mas sem valores. As artes traziam
+  R$ 27 no prato do dia e R$ 35 na feijoada, de data incerta. Preço é o que
+  mais converte numa busca por almoço — vale confirmar e publicar.
+- Se a quinta-feira é mesmo strogonoff "de frango ou carne, depende da
+  semana". Se houver um padrão, o site pode mostrar o certo.
 - O cardápio de verdade — a lista de itens no site saiu das avaliações de
   clientes, não de um cardápio oficial.
 - A história da casa. Não há nada público além da abertura do CNPJ em 2004.

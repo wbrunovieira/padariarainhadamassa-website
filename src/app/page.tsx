@@ -2,7 +2,9 @@ import { AboutSection } from "@/components/about-section";
 import { BrandDivider } from "@/components/brand-divider";
 import { GallerySection } from "@/components/gallery-section";
 import { HeroSection } from "@/components/hero-section";
+import { LunchSection } from "@/components/lunch-section";
 import { LocationSection } from "@/components/location-section";
+import { acompanhamentos, fixos, semana } from "@/lib/almoco";
 import { getPlaceStats } from "@/lib/google-place";
 import { navigation, site } from "@/lib/site";
 
@@ -43,6 +45,32 @@ const schema = {
     },
   ],
   sameAs: [site.instagram],
+  servesCuisine: "Brasileira",
+  hasMenu: {
+    "@type": "Menu",
+    name: "Almoço",
+    inLanguage: "pt-BR",
+    hasMenuSection: [
+      {
+        "@type": "MenuSection",
+        name: "Todo dia",
+        description: acompanhamentos,
+        hasMenuItem: fixos.map((item) => ({
+          "@type": "MenuItem",
+          name: item.nome,
+        })),
+      },
+      {
+        "@type": "MenuSection",
+        name: "Prato do dia",
+        hasMenuItem: semana.map((d) => ({
+          "@type": "MenuItem",
+          name: `${d.nome}: ${d.prato}`,
+          description: d.detalhe,
+        })),
+      },
+    ],
+  },
 };
 
 export default async function Home() {
@@ -60,6 +88,8 @@ export default async function Home() {
       <BrandDivider />
 
       <AboutSection stats={stats} />
+
+      <LunchSection />
 
       <GallerySection />
 

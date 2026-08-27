@@ -20,14 +20,14 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} — Padaria e confeitaria em ${site.city}/${site.state}`,
+    default: `${site.name} — Almoço e padaria em ${site.city}`,
     template: `%s · ${site.shortName}`,
   },
-  description: `Padaria e confeitaria em ${site.city}/${site.state} desde ${site.since}. ${site.street}. Aberto todos os dias, ${site.hoursShort}. Encomendas pelo telefone ${site.phone} e delivery no ${site.delivery}.`,
+  description: `Almoço caseiro todo dia em ${site.city}/${site.state}: prato feito bem servido, com prato do dia de segunda a domingo. Padaria e confeitaria desde ${site.since}, na ${site.street}. Aberto das 6h às 22h, com delivery no ${site.delivery}.`,
   metadataBase: new URL("https://padariarainhadamassa.com.br"),
   openGraph: {
-    title: `${site.name} — Padaria e confeitaria em ${site.city}/${site.state}`,
-    description: `Padaria e confeitaria em ${site.city}/${site.state} desde ${site.since}. ${site.street}.`,
+    title: `${site.name} — Almoço e padaria em ${site.city}`,
+    description: `Almoço caseiro, padaria e confeitaria em ${site.city}/${site.state}. ${site.street}, aberto todos os dias.`,
     locale: "pt_BR",
     type: "website",
   },
