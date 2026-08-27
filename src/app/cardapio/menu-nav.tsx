@@ -48,7 +48,7 @@ export function MenuNav({ abas }: { abas: Aba[] }) {
     <div className="sticky top-0 z-30 border-b border-espresso/12 bg-cream-light/92 backdrop-blur-md">
       <div
         ref={trilho}
-        className="scrollbar-none mx-auto flex max-w-4xl gap-1 overflow-x-auto px-3 py-2.5"
+        className="scrollbar-none mx-auto flex max-w-4xl gap-1.5 overflow-x-auto px-3 py-2"
       >
         {abas.map((a) => (
           <a
@@ -57,7 +57,7 @@ export function MenuNav({ abas }: { abas: Aba[] }) {
             data-aba={a.id}
             aria-current={ativa === a.id ? "true" : undefined}
             className={[
-              "shrink-0 rounded-full px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300",
+              "flex min-h-11 shrink-0 items-center rounded-full px-4 text-[0.78rem] font-medium uppercase tracking-[0.12em] transition-colors duration-300",
               ativa === a.id
                 ? "bg-espresso text-cream"
                 : "text-espresso-soft hover:bg-espresso/8 hover:text-espresso",

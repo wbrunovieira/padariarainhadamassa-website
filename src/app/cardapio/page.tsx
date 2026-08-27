@@ -49,6 +49,19 @@ export default async function CardapioPage() {
       <main className="mx-auto max-w-4xl px-5 pb-24 pt-10">
         {cardapio.secoes.map((secao) => (
           <section key={secao.id} id={secao.id} className="pb-14">
+            {secao.foto && (
+              <div className="relative mb-7 overflow-hidden rounded-2xl bg-cream-deep">
+                <Image
+                  src={secao.foto}
+                  alt=""
+                  width={1400}
+                  height={700}
+                  quality={68}
+                  sizes="(min-width: 896px) 56rem, 92vw"
+                  className="aspect-[2/1] w-full object-cover"
+                />
+              </div>
+            )}
             <h2 className="font-display text-3xl italic text-espresso sm:text-4xl">
               {secao.titulo}
             </h2>
@@ -74,7 +87,7 @@ export default async function CardapioPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={site.phoneHref}
-              className="inline-flex items-center rounded-full bg-espresso px-5 py-3 text-cream transition-colors hover:bg-ink"
+              className="inline-flex min-h-12 items-center rounded-full bg-espresso px-6 text-cream transition-colors hover:bg-ink"
             >
               <span className="eyebrow">Ligar {site.phone}</span>
             </a>
@@ -82,7 +95,7 @@ export default async function CardapioPage() {
               href={googleMapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-full border border-espresso/25 px-5 py-3 text-espresso transition-colors hover:border-espresso hover:bg-espresso/5"
+              className="inline-flex min-h-12 items-center rounded-full border border-espresso/25 px-6 text-espresso transition-colors hover:border-espresso hover:bg-espresso/5"
             >
               <span className="eyebrow">Como chegar</span>
             </a>
@@ -92,7 +105,7 @@ export default async function CardapioPage() {
                 href={app.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-full border border-espresso/25 px-5 py-3 text-espresso transition-colors hover:border-espresso hover:bg-espresso/5"
+                className="inline-flex min-h-12 items-center rounded-full border border-espresso/25 px-6 text-espresso transition-colors hover:border-espresso hover:bg-espresso/5"
               >
                 <span className="eyebrow">{app.nome}</span>
               </a>
@@ -115,7 +128,7 @@ function Linha({ item }: { item: ItemCardapio }) {
   return (
     <li className="border-b border-espresso/10 py-4">
       <div className="flex items-baseline gap-3">
-        <span className="font-display text-xl italic leading-tight text-espresso sm:text-2xl">
+        <span className="font-display text-[1.35rem] italic leading-tight text-espresso sm:text-2xl">
           {item.nome}
         </span>
         {/* pontilhado, como no cardápio impresso */}
@@ -124,14 +137,14 @@ function Linha({ item }: { item: ItemCardapio }) {
           className="mt-auto hidden h-px min-w-6 flex-1 border-b border-dotted border-espresso/30 sm:block"
         />
         {!temVariacoes && (
-          <span className="ml-auto shrink-0 font-medium tabular-nums text-espresso sm:ml-0">
+          <span className="ml-auto shrink-0 text-[1.05rem] font-medium tabular-nums text-espresso sm:ml-0">
             {formatarPreco(item.preco)}
           </span>
         )}
       </div>
 
       {item.descricao && (
-        <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-espresso-soft">
+        <p className="mt-1.5 max-w-xl text-[0.94rem] leading-relaxed text-espresso-soft">
           {item.descricao}
         </p>
       )}
@@ -141,7 +154,7 @@ function Linha({ item }: { item: ItemCardapio }) {
           {item.variacoes!.map((v) => (
             <li
               key={v.rotulo}
-              className="flex items-baseline gap-2 rounded-full border border-espresso/20 px-3.5 py-1.5 text-sm"
+              className="flex min-h-10 items-center gap-2 rounded-full border border-espresso/20 px-4 text-[0.94rem]"
             >
               <span className="text-espresso-soft">{v.rotulo}</span>
               <span className="font-medium tabular-nums text-espresso">

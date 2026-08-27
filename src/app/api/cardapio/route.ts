@@ -28,6 +28,8 @@ export async function PUT(req: Request) {
       id: String(s.id || `secao-${i}`).slice(0, 60),
       titulo: String(s.titulo ?? "").slice(0, 80),
       descricao: String(s.descricao ?? "").slice(0, 240),
+      // só caminho interno: nada de URL externa entrando por aqui
+      foto: /^\/[\w./-]*$/.test(String(s.foto ?? "")) ? String(s.foto).slice(0, 160) : "",
       ativo: Boolean(s.ativo),
       itens: (s.itens ?? []).slice(0, 120).map((it, j) => ({
         id: String(it.id || `item-${j}`).slice(0, 60),

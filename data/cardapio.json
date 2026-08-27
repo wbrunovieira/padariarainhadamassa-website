@@ -43,7 +43,8 @@
           "preco": 8.5,
           "ativo": true
         }
-      ]
+      ],
+      "foto": "/cardapio/cafe-da-manha.jpg"
     },
     {
       "id": "almoco",
@@ -128,7 +129,8 @@
           "preco": 22,
           "ativo": true
         }
-      ]
+      ],
+      "foto": "/cardapio/almoco.jpg"
     },
     {
       "id": "sanduiches",
@@ -199,7 +201,8 @@
           "preco": 9.5,
           "ativo": true
         }
-      ]
+      ],
+      "foto": ""
     },
     {
       "id": "omeletes",
@@ -258,7 +261,8 @@
             }
           ]
         }
-      ]
+      ],
+      "foto": ""
     },
     {
       "id": "salgados",
@@ -301,7 +305,8 @@
           "preco": 10,
           "ativo": true
         }
-      ]
+      ],
+      "foto": ""
     },
     {
       "id": "bebidas-quentes",
@@ -354,7 +359,8 @@
           "preco": 7.5,
           "ativo": true
         }
-      ]
+      ],
+      "foto": ""
     },
     {
       "id": "bebidas-geladas",
@@ -482,7 +488,8 @@
             }
           ]
         }
-      ]
+      ],
+      "foto": ""
     }
   ]
 }

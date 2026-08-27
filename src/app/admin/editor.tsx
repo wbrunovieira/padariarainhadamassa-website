@@ -4,7 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, GripVertical, Plus, Trash2 } from "lucide-react";
 
-import type { Cardapio, ItemCardapio, SecaoCardapio } from "@/lib/cardapio-digital";
+import {
+  fotosDisponiveis,
+  type Cardapio,
+  type ItemCardapio,
+  type SecaoCardapio,
+} from "@/lib/cardapio-tipos";
 
 const campo =
   "w-full rounded-lg border border-espresso/20 bg-cream px-3 py-2 text-espresso outline-none transition-colors focus:border-gold";
@@ -200,6 +205,21 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
               {abertaAqui && (
                 <div className="border-t border-espresso/10 px-5 py-6">
                   <label className="block">
+                    <span className={rotulo}>Foto da seção</span>
+                    <select
+                      value={s.foto ?? ""}
+                      onChange={(e) => mudarSecao(s.id, { foto: e.target.value })}
+                      className={`${campo} mt-2`}
+                    >
+                      {fotosDisponiveis.map((f) => (
+                        <option key={f.valor} value={f.valor}>
+                          {f.rotulo}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label className="mt-4 block">
                     <span className={rotulo}>Descrição da seção</span>
                     <input
                       value={s.descricao}
