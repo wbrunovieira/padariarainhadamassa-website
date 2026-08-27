@@ -11,6 +11,7 @@ import {
   type Variants,
 } from "motion/react";
 
+import { HeroCarousel } from "@/components/hero-carousel";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
 import { fullAddress, site } from "@/lib/site";
 
@@ -61,7 +62,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
         initial={reduce ? false : { opacity: 0, scale: 1.08 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.8, ease: EASE, delay: 0.1 }}
-        className="pointer-events-none absolute -right-24 top-1/2 hidden w-[46rem] -translate-y-1/2 lg:block lg:-right-10"
+        className="pointer-events-none absolute -right-40 top-1/2 hidden w-[50rem] -translate-y-1/2 lg:block"
       >
         <Image
           src="/brand/logo-rainha-da-massa.png"
@@ -70,7 +71,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
           height={897}
           quality={40}
           sizes="(min-width: 1024px) 46rem, 1px"
-          className="w-full opacity-[0.07]"
+          className="w-full opacity-[0.09]"
         />
       </motion.div>
 
@@ -79,98 +80,110 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto w-full max-w-[88rem] px-5 pb-28 pt-[calc(var(--header-h)+5rem)] lg:px-10"
+        className="relative mx-auto w-full max-w-[88rem] px-5 pb-28 pt-[calc(var(--header-h)+4rem)] lg:px-10"
       >
-        <motion.p
-          variants={rise}
-          className="eyebrow flex items-center gap-2.5 text-espresso-soft"
-        >
-          <Image
-            src="/brand/ornamento-coroa.png"
-            alt=""
-            width={480}
-            height={199}
-            className="h-3 w-auto opacity-70"
-          />
-          {site.city} — {site.state} · Desde {site.since}
-        </motion.p>
-
-        <h1 className="mt-7 max-w-4xl font-display tracking-tight text-espresso">
-          <span className="block overflow-hidden pb-[0.08em]">
-            <motion.span
-              variants={linha}
-              className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-5xl"
+        <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
+          <div>
+            <motion.p
+              variants={rise}
+              className="eyebrow flex items-center gap-2.5 text-espresso-soft"
             >
-              Padaria e confeitaria
-            </motion.span>
-          </span>
-          <span className="mt-1 block overflow-hidden pb-[0.12em]">
-            <motion.span
-              variants={linha}
-              className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-7xl"
+              <Image
+                src="/brand/ornamento-coroa.png"
+                alt=""
+                width={480}
+                height={199}
+                className="h-3 w-auto opacity-70"
+              />
+              {site.city} — {site.state} · Desde {site.since}
+            </motion.p>
+
+            <h1 className="mt-7 font-display tracking-tight text-espresso">
+              <span className="block overflow-hidden pb-[0.08em]">
+                <motion.span
+                  variants={linha}
+                  className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-[2.6rem] xl:text-5xl"
+                >
+                  Padaria e confeitaria
+                </motion.span>
+              </span>
+              <span className="mt-1 block overflow-hidden pb-[0.12em]">
+                <motion.span
+                  variants={linha}
+                  className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-[4.2rem] xl:text-7xl"
+                >
+                  há mais de vinte anos.
+                </motion.span>
+              </span>
+            </h1>
+
+            <motion.p
+              variants={rise}
+              className="mt-8 max-w-md text-xl leading-relaxed text-espresso-soft"
             >
-              há mais de vinte anos.
-            </motion.span>
-          </span>
-        </h1>
+              Aberta todos os dias, das 6h às 22h.
+            </motion.p>
 
-        <motion.p
-          variants={rise}
-          className="mt-8 max-w-md text-xl leading-relaxed text-espresso-soft"
-        >
-          Aberta todos os dias, das 6h às 22h.
-        </motion.p>
+            <motion.ul
+              variants={rise}
+              className="mt-7 flex flex-wrap items-center gap-y-3 text-sm text-espresso-soft"
+            >
+              <li className="flex items-center gap-2 pr-5">
+                <Wheat
+                  className="size-4 text-gold"
+                  strokeWidth={1.6}
+                  aria-hidden
+                />
+                <span>
+                  <strong className="font-medium text-espresso">
+                    {formatRating(stats.rating)}
+                  </strong>{" "}
+                  com {stats.count} avaliações no Google
+                </span>
+              </li>
+              <li className="border-l border-espresso/20 px-5">
+                Encomendas pelo telefone
+              </li>
+              <li className="border-l border-espresso/20 pl-5">
+                Delivery no {site.delivery}
+              </li>
+            </motion.ul>
 
-        <motion.ul
-          variants={rise}
-          className="mt-7 flex flex-wrap items-center gap-y-3 text-sm text-espresso-soft"
-        >
-          <li className="flex items-center gap-2 pr-5">
-            <Wheat className="size-4 text-gold" strokeWidth={1.6} aria-hidden />
-            <span>
-              <strong className="font-medium text-espresso">
-                {formatRating(stats.rating)}
-              </strong>{" "}
-              com {stats.count} avaliações no Google
-            </span>
-          </li>
-          <li className="border-l border-espresso/20 px-5">
-            Encomendas pelo telefone
-          </li>
-          <li className="border-l border-espresso/20 pl-5">
-            Delivery no {site.delivery}
-          </li>
-        </motion.ul>
+            <motion.div
+              variants={rise}
+              className="mt-10 flex flex-wrap items-center gap-4"
+            >
+              <a
+                href={site.phoneHref}
+                className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 text-cream transition-colors duration-300 hover:bg-ink"
+              >
+                <span className="eyebrow">Ligar {site.phone}</span>
+                <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+              <a
+                href={site.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-espresso/25 px-7 py-4 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso/5"
+              >
+                <span className="eyebrow">{site.instagramHandle}</span>
+              </a>
+            </motion.div>
 
-        <motion.div
-          variants={rise}
-          className="mt-10 flex flex-wrap items-center gap-4"
-        >
-          <a
-            href={site.phoneHref}
-            className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 text-cream transition-colors duration-300 hover:bg-ink"
-          >
-            <span className="eyebrow">Ligar {site.phone}</span>
-            <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
-              →
-            </span>
-          </a>
-          <a
-            href={site.instagram}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-espresso/25 px-7 py-4 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso/5"
-          >
-            <span className="eyebrow">{site.instagramHandle}</span>
-          </a>
-        </motion.div>
+            <motion.p
+              variants={rise}
+              className="mt-10 text-sm tracking-wide text-espresso-soft/80"
+            >
+              {fullAddress}
+            </motion.p>
+          </div>
 
-        <motion.p
-          variants={rise}
-          className="mt-10 text-sm tracking-wide text-espresso-soft/80"
-        >
-          {fullAddress}
-        </motion.p>
+          <motion.div variants={rise}>
+            <HeroCarousel />
+          </motion.div>
+        </div>
       </motion.div>
 
       <motion.div

@@ -66,3 +66,27 @@ R. Saldanha Marinho, 7, que é o que está no Google e no site. As duas ruas
 se cruzam exatamente onde fica a padaria, então provavelmente é o mesmo
 imóvel com dois cadastros, mas **é preciso decidir qual endereço usar e
 repetir esse em todos os canais.** Ver `../diagnostico-presenca-digital.html`.
+
+## Do Instagram (27/08/2026)
+
+Extraídos dos arquivos `.html` completos que o Bruno salvou. As originais
+ficam em `instagram/`.
+
+- `rocambole-original.jpg` — rocambole de goiabada com coco, com a fachada
+  desfocada ao fundo. No hero e na galeria.
+- `varanda-original.jpg` — entrada vista de dentro, com a rua. No hero e na galeria.
+- `reel-original.mp4` — reel https://www.instagram.com/reel/CwpkECQubj-/, 6,6 s.
+  Baixado com yt-dlp; "salvar página" não captura vídeo do Instagram. A versão
+  do site (`public/video/padaria.mp4`) está sem áudio e recomprimida: 1,9 MB → 876 KB.
+- `post-01/05/08.jpg` — equipe, salão e pães doces do balcão.
+
+Ainda há dezenas de fotos boas nesses arquivos que não foram aproveitadas —
+café da manhã, coxinha, pão de leite, bolo de chocolate. Vale pescar mais
+quando faltar imagem.
+
+## Encomendas: o que foi para o site
+
+"Assamos frango e pernil" saiu de uma peça publicada pela própria padaria.
+Bolos, tortas e salgados vieram das avaliações e das fotos do balcão.
+**PENDENTE:** prazo mínimo do pedido, se pede sinal, e se salgado de festa
+sai por cento.

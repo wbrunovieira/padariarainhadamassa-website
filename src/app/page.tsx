@@ -3,10 +3,11 @@ import { BrandDivider } from "@/components/brand-divider";
 import { GallerySection } from "@/components/gallery-section";
 import { HeroSection } from "@/components/hero-section";
 import { LunchSection } from "@/components/lunch-section";
+import { OrdersSection } from "@/components/orders-section";
 import { LocationSection } from "@/components/location-section";
 import { acompanhamentos, fixos, semana } from "@/lib/almoco";
 import { getPlaceStats } from "@/lib/google-place";
-import { navigation, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 // Sem aggregateRating de propósito: a nota é do Google, e o Google não
 // aceita avaliação de terceiros no schema do próprio site.
@@ -93,22 +94,7 @@ export default async function Home() {
 
       <GallerySection />
 
-      {/* Ainda sem conteúdo — dependem do cardápio real da padaria */}
-      {navigation.slice(2, 4).map((item) => (
-        <section
-          key={item.href}
-          id={item.href.replace("#", "")}
-          className="border-t border-espresso/10"
-        >
-          <div className="mx-auto flex max-w-[88rem] flex-col gap-2 px-5 py-32 lg:px-10">
-            <p className="eyebrow text-gold">{item.hint}</p>
-            <h2 className="font-display text-4xl italic text-espresso sm:text-5xl">
-              {item.label}
-            </h2>
-            <p className="mt-2 max-w-md text-espresso-soft">Em breve.</p>
-          </div>
-        </section>
-      ))}
+      <OrdersSection />
 
       <LocationSection />
     </>
