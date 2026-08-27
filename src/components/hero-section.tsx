@@ -81,7 +81,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto w-full max-w-[88rem] px-5 pb-28 pt-[calc(var(--header-h)+4rem)] lg:px-10"
+        className="relative mx-auto w-full max-w-[88rem] px-5 pb-28 pt-[calc(var(--header-h)+4rem)] [@media(max-height:840px)]:pb-14 [@media(max-height:840px)]:pt-[calc(var(--header-h)+1.5rem)] lg:px-10"
       >
         <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           <div>
@@ -103,7 +103,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
               <span className="block overflow-hidden pb-[0.08em]">
                 <motion.span
                   variants={linha}
-                  className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-[2.6rem] xl:text-5xl"
+                  className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-[2.6rem] [@media(max-height:840px)]:lg:text-[2.1rem] xl:text-5xl [@media(max-height:840px)]:xl:text-[2.4rem]"
                 >
                   Padaria e confeitaria
                 </motion.span>
@@ -111,7 +111,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
               <span className="mt-1 block overflow-hidden pb-[0.12em]">
                 <motion.span
                   variants={linha}
-                  className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-[4.2rem] xl:text-7xl"
+                  className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-[4.2rem] [@media(max-height:840px)]:lg:text-[3.4rem] xl:text-7xl [@media(max-height:840px)]:xl:text-[3.9rem]"
                 >
                   há mais de vinte anos.
                 </motion.span>
@@ -120,7 +120,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
 
             <motion.p
               variants={rise}
-              className="mt-8 max-w-md text-xl leading-relaxed text-espresso-soft"
+              className="mt-8 max-w-md text-xl leading-relaxed text-espresso-soft [@media(max-height:840px)]:mt-6"
             >
               Aberta todos os dias, das 6h às 22h.
             </motion.p>
@@ -142,17 +142,17 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                   com {stats.count} avaliações no Google
                 </span>
               </li>
-              <li className="border-l border-espresso/20 px-5">
+              <li className="whitespace-nowrap">
                 Encomendas pelo telefone
               </li>
-              <li className="border-l border-espresso/20 pl-5">
+              <li className="whitespace-nowrap">
                 Delivery no {deliveryTexto}
               </li>
             </motion.ul>
 
             <motion.div
               variants={rise}
-              className="mt-10 flex flex-wrap items-center gap-4"
+              className="mt-10 flex flex-wrap items-center gap-4 [@media(max-height:840px)]:mt-7"
             >
               <a
                 href={site.phoneHref}
@@ -175,7 +175,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
 
             <motion.p
               variants={rise}
-              className="mt-10 text-sm tracking-wide text-espresso-soft/80"
+              className="mt-10 text-sm tracking-wide text-espresso-soft/80 [@media(max-height:840px)]:mt-6"
             >
               {fullAddress}
             </motion.p>

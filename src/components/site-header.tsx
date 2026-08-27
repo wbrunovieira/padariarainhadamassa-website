@@ -166,7 +166,7 @@ export function SiteHeader() {
 
             {/* Ações */}
             <div className="flex items-center gap-4">
-              <span className="hidden text-right text-[0.7rem] leading-tight text-espresso-soft xl:block">
+              <span className="hidden text-right text-[0.7rem] leading-tight text-espresso-soft 2xl:block">
                 <span className="block eyebrow text-espresso-soft/70">
                   Todos os dias
                 </span>
@@ -177,7 +177,7 @@ export function SiteHeader() {
 
               <a
                 href={site.phoneHref}
-                className="group relative hidden items-center gap-2 overflow-hidden rounded-full border border-espresso/15 bg-espresso px-5 py-2.5 text-cream transition-colors duration-300 sm:inline-flex"
+                className="group relative hidden shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-espresso/15 bg-espresso px-5 py-2.5 text-cream transition-colors duration-300 sm:inline-flex"
               >
                 <span className="absolute inset-0 -translate-x-[101%] bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
                 <PhoneIcon className="relative size-4" />
@@ -370,7 +370,7 @@ function NavLink({
     <a
       href={href}
       aria-current={ativo ? "true" : undefined}
-      className="group relative py-1.5 text-espresso"
+      className="group relative whitespace-nowrap py-1.5 text-espresso"
     >
       <Wheat
         className={`absolute left-1/2 size-3 -translate-x-1/2 text-gold transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-top-3 group-hover:opacity-100 ${ativo ? "-top-3 opacity-100" : "-top-2.5 opacity-0"}`}

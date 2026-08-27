@@ -33,7 +33,7 @@ export function HeroCarousel() {
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[26rem] lg:mx-0 lg:ml-auto lg:max-w-[27rem]"
+      className="relative mx-auto w-full max-w-[26rem] lg:mx-0 lg:ml-auto lg:max-w-[27rem] [@media(max-height:840px)]:lg:max-w-[21rem]"
       onMouseEnter={() => setPausado(true)}
       onMouseLeave={() => setPausado(false)}
       onFocusCapture={() => setPausado(true)}
