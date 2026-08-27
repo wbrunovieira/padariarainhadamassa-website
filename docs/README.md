@@ -2,6 +2,13 @@
 
 Material interno de trabalho. Nada aqui é publicado no site.
 
+## fotos-cliente/
+
+As 21 fotos que a padaria enviou em 26/08/2026, renomeadas e sem metadados.
+`fotos-cliente/LEIA-ME.md` classifica cada uma, registra o cardápio semanal
+com preços que apareceu nas artes e explica por que as duas peças de
+tabacaria ficaram fora do site.
+
 ## diagnostico-presenca-digital.html
 
 Diagnóstico da presença digital da padaria, levantado em 27/08/2026 a partir de
@@ -22,6 +29,10 @@ Também publicado como Artifact, para compartilhar por link:
 - Se R. Saldanha Marinho, 7 e Rua Washington Luiz, 1255 são o mesmo ponto.
   As ruas se cruzam onde fica a padaria, então provavelmente sim.
 - Se já existe WhatsApp e só não está divulgado.
+- **Qual endereço vale.** As artes da própria padaria trazem Rua Washington
+  Luiz, 1.255 no rodapé, e não Saldanha Marinho, 7. Ver `fotos-cliente/LEIA-ME.md`.
+- O cardápio do almoço vigente e os preços — as artes trazem duas terças
+  diferentes.
 - O cardápio de verdade — a lista de itens no site saiu das avaliações de
   clientes, não de um cardápio oficial.
 - A história da casa. Não há nada público além da abertura do CNPJ em 2004.

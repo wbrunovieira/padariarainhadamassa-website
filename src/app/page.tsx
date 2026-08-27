@@ -1,5 +1,6 @@
 import { AboutSection } from "@/components/about-section";
 import { BrandDivider } from "@/components/brand-divider";
+import { GallerySection } from "@/components/gallery-section";
 import { HeroSection } from "@/components/hero-section";
 import { LocationSection } from "@/components/location-section";
 import { getPlaceStats } from "@/lib/google-place";
@@ -60,8 +61,10 @@ export default async function Home() {
 
       <AboutSection stats={stats} />
 
+      <GallerySection />
+
       {/* Ainda sem conteúdo — dependem do cardápio real da padaria */}
-      {navigation.slice(1, 4).map((item) => (
+      {navigation.slice(2, 4).map((item) => (
         <section
           key={item.href}
           id={item.href.replace("#", "")}

@@ -70,7 +70,7 @@ export type NavItem = { label: string; href: string; hint: string };
 
 export const navigation: NavItem[] = [
   { label: "A Padaria", href: "#a-padaria", hint: `Desde ${site.since}` },
-  { label: "Padaria", href: "#padaria", hint: "Pães e sanduíches" },
+  { label: "Galeria", href: "#galeria", hint: "O que sai do balcão" },
   { label: "Confeitaria", href: "#confeitaria", hint: "Bolos e tortas" },
   { label: "Encomendas", href: "#encomendas", hint: "Pelo telefone" },
   { label: "Onde estamos", href: "#contato", hint: "Saldanha Marinho" },
