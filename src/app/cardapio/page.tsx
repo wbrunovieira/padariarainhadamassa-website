@@ -184,16 +184,16 @@ function Secao({
   return (
     <section
       id={secao.id}
-      className={`scroll-mt-[4.5rem] pb-20 ${eAgora ? "relative -ml-5 border-l-2 border-gold/70 pl-5" : ""}`}
+      className={`scroll-mt-[4.5rem] pb-20 ${eAgora ? "relative -ml-5 border-l-2 border-gold/70 pl-5 pt-1" : ""}`}
     >
       {eAgora && (
         <Image
-          src="/brand/ornamento-coroa.png"
+          src="/brand/ornamento-coroa-gold.png"
           alt=""
           width={480}
           height={199}
           aria-hidden
-          className="absolute -left-[0.85rem] top-0 size-6 w-auto opacity-70"
+          className="absolute -left-[2px] -top-5 h-[1.15rem] w-auto"
         />
       )}
 
@@ -201,9 +201,6 @@ function Secao({
         <p
           className={`eyebrow flex items-center gap-2 ${eAgora ? "text-gold" : "text-espresso-soft/60"}`}
         >
-          {eAgora && (
-            <span aria-hidden className="block size-[5px] rounded-full bg-gold" />
-          )}
           {eAgora ? "Agora · " : ""}
           {secao.horario.rotulo}
         </p>
