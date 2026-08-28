@@ -18,7 +18,7 @@ export const perguntas: Pergunta[] = [
   {
     pergunta: "Vocês entregam?",
     resposta:
-      "Sim, pelo iFood e pelo 99Food — os dois links estão no rodapé desta página. Encomenda de bolo, salgado, frango e pernil é combinada pelo telefone e retirada na loja.",
+      "Sim, pelo iFood e pelo 99Food — os dois links estão no rodapé desta página. Encomenda de bolo, torta e salgado é combinada pelo telefone e retirada na loja.",
   },
   {
     pergunta: "Aceitam cartão?",

@@ -53,7 +53,7 @@ export const confeitaria: Item[] = [
 export const tambemTem: Item[] = [
   { nome: "Açaí" },
   { nome: "Tabacaria" },
-  { nome: "Sorvete" },
+  { nome: "Sorvete" }, // PENDENTE: confirmar se é picolé/pote de marca ou próprio
   { nome: "Bebidas geladas" },
   { nome: "Mercearia do dia a dia" },
   { nome: "Opções sem açúcar" },

@@ -85,7 +85,6 @@ export const mencoes = [
   "Bolos",
   "Tortas",
   "Sanduíches",
-  "Pizza",
   "Sem açúcar",
   "Sem lactose",
 ];

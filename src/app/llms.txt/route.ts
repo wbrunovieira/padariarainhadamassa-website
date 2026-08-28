@@ -71,7 +71,7 @@ export async function GET() {
     "",
     "## Observações",
     "",
-    `- Delivery pelos aplicativos ${deliveryTexto}. Encomenda de bolo, salgado, frango e pernil é por telefone, com retirada na loja.`,
+    `- Delivery pelos aplicativos ${deliveryTexto}. Encomenda de bolo, torta e salgado é por telefone, com retirada na loja.`,
     "- O almoço é servido no salão, para comer sentado. Não é marmitaria.",
     "- Preços não são divulgados online, a pedido da casa.",
     "",

@@ -86,7 +86,12 @@ quando faltar imagem.
 
 ## Encomendas: o que foi para o site
 
-"Assamos frango e pernil" saiu de uma peça publicada pela própria padaria.
-Bolos, tortas e salgados vieram das avaliações e das fotos do balcão.
+**CORREÇÃO (28/08/2026):** eu havia escrito aqui que "Assamos frango e pernil"
+saiu de uma peça publicada pela padaria. **Não saiu.** Conferi as 21 imagens
+uma a uma e nenhuma menciona isso — foi invenção minha, com fonte falsa
+atribuída. Removido do site.
+
+Bolos, tortas e salgados vieram das avaliações e das fotos do balcão, e a bio
+do Instagram diz "aceitamos encomendas". Continua sendo lastro fraco.
 **PENDENTE:** prazo mínimo do pedido, se pede sinal, e se salgado de festa
 sai por cento.
