@@ -40,12 +40,20 @@ export const confeitaria: Item[] = [
   { nome: "Rocambole", nota: "De goiabada com coco" },
   { nome: "Fios de ovos", nota: "Dos mais citados pelos clientes" },
   { nome: "Sonhos e folhados", nota: "Do balcão de doces" },
-  { nome: "Sorvete a quilo", nota: "Você monta o pote" },
 ];
 
-/** Conveniência: o que mais tem na loja além da padaria. */
+/**
+ * Conveniência: o que mais tem na loja além da padaria.
+ *
+ * "Tabacaria" aparece como menção neutra, sem imagem de produto, preço
+ * ou apelo de compra. A Lei 9.294/1996, com a redação da Lei 10.167/2000,
+ * proíbe propaganda de cigarro em qualquer meio e só permite a exposição
+ * no ponto de venda — uma seção própria com foto de maço e chamada de
+ * venda seria propaganda. Ver docs/fotos-cliente/LEIA-ME.md.
+ */
 export const tambemTem: Item[] = [
   { nome: "Açaí" },
+  { nome: "Tabacaria" },
   { nome: "Sorvete" },
   { nome: "Bebidas geladas" },
   { nome: "Mercearia do dia a dia" },

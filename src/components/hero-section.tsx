@@ -83,7 +83,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
         animate="show"
         className="relative mx-auto w-full max-w-[88rem] px-5 pb-28 pt-[calc(var(--header-h)+4rem)] [@media(max-height:840px)]:pb-14 [@media(max-height:840px)]:pt-[calc(var(--header-h)+1.5rem)] lg:px-10"
       >
-        <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 xl:grid-cols-[1.02fr_0.98fr] xl:gap-16">
           <div>
             <motion.p
               variants={rise}
@@ -103,7 +103,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
               <span className="block overflow-hidden pb-[0.08em]">
                 <motion.span
                   variants={linha}
-                  className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-[2.6rem] [@media(max-height:840px)]:lg:text-[2.1rem] xl:text-5xl [@media(max-height:840px)]:xl:text-[2.4rem]"
+                  className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-[2.1rem] xl:text-[2.6rem] [@media(max-height:840px)]:xl:text-[2.1rem] 2xl:text-5xl [@media(max-height:840px)]:2xl:text-[2.4rem]"
                 >
                   Padaria e confeitaria
                 </motion.span>
@@ -111,7 +111,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
               <span className="mt-1 block overflow-hidden pb-[0.12em]">
                 <motion.span
                   variants={linha}
-                  className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-[4.2rem] [@media(max-height:840px)]:lg:text-[3.4rem] xl:text-7xl [@media(max-height:840px)]:xl:text-[3.9rem]"
+                  className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-[3.3rem] xl:text-[4.2rem] [@media(max-height:840px)]:xl:text-[3.4rem] 2xl:text-7xl [@media(max-height:840px)]:2xl:text-[3.9rem]"
                 >
                   há mais de {decadaDeCasa()} anos.
                 </motion.span>
@@ -127,9 +127,9 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
 
             <motion.ul
               variants={rise}
-              className="mt-7 flex flex-wrap items-center gap-y-3 text-sm text-espresso-soft"
+              className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-sm text-espresso-soft"
             >
-              <li className="flex items-center gap-2 pr-5">
+              <li className="flex items-center gap-2 whitespace-nowrap">
                 <Wheat
                   className="size-4 text-gold"
                   strokeWidth={1.6}
@@ -156,7 +156,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
             >
               <a
                 href={site.phoneHref}
-                className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 text-cream transition-colors duration-300 hover:bg-ink"
+                className="group inline-flex items-center gap-2 rounded-full bg-espresso px-5 py-4 text-cream transition-colors duration-300 hover:bg-ink xl:px-7"
               >
                 <span className="eyebrow">Ligar {site.phone}</span>
                 <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
@@ -167,7 +167,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                 href={site.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-espresso/25 px-7 py-4 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso/5"
+                className="inline-flex items-center gap-2 rounded-full border border-espresso/25 px-5 py-4 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso/5 xl:px-7"
               >
                 <span className="eyebrow">{site.instagramHandle}</span>
               </a>

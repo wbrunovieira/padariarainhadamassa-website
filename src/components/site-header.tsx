@@ -116,7 +116,7 @@ export function SiteHeader() {
             <Link
               href="/"
               aria-label={`${site.name} — início`}
-              className="group flex items-center gap-3.5"
+              className="group flex shrink-0 items-center gap-3.5"
             >
               <motion.span
                 initial={{ width: 60, height: 60 }}
@@ -137,7 +137,7 @@ export function SiteHeader() {
                 />
               </motion.span>
 
-              <span className="hidden flex-col leading-none sm:flex">
+              <span className="hidden flex-col whitespace-nowrap leading-none sm:flex">
                 <span className="eyebrow text-espresso-soft/80">Padaria</span>
                 <motion.span
                   animate={{ fontSize: scrolled ? "1.28rem" : "1.5rem" }}
@@ -177,11 +177,12 @@ export function SiteHeader() {
 
               <a
                 href={site.phoneHref}
-                className="group relative hidden shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-espresso/15 bg-espresso px-5 py-2.5 text-cream transition-colors duration-300 sm:inline-flex"
+                className="group relative hidden shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-espresso/15 bg-espresso px-4 py-2.5 text-cream transition-colors duration-300 sm:inline-flex xl:px-5"
               >
                 <span className="absolute inset-0 -translate-x-[101%] bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
                 <PhoneIcon className="relative size-4" />
-                <span className="relative eyebrow">{site.phone}</span>
+                <span className="relative eyebrow hidden xl:inline">{site.phone}</span>
+                <span className="sr-only">Ligar {site.phone}</span>
               </a>
 
               <button
@@ -378,7 +379,7 @@ function NavLink({
         aria-hidden
       />
       <span
-        className={`eyebrow transition-colors duration-300 group-hover:text-ink ${ativo ? "text-ink" : ""}`}
+        className={`whitespace-nowrap text-[0.62rem] font-medium uppercase tracking-[0.16em] transition-colors duration-300 group-hover:text-ink xl:text-[0.7rem] xl:tracking-[0.24em] 2xl:tracking-[0.34em] ${ativo ? "text-ink" : ""}`}
       >
         {label}
       </span>

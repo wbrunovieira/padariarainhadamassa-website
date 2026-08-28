@@ -1,13 +1,106 @@
 "use client";
 
-import { Star } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { useCallback, useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { depoimentos, temas } from "@/lib/depoimentos";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
 import { decadaDeCasa, googleReviewsUrl } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+const INTERVALO = 7000;
+
+/** Um depoimento por vez, trocando sozinho, com setas para passar. */
+function Depoimentos() {
+  const reduce = useReducedMotion();
+  const [i, setI] = useState(0);
+  const [pausado, setPausado] = useState(false);
+
+  const ir = useCallback(
+    (passo: number) =>
+      setI((atual) => (atual + passo + depoimentos.length) % depoimentos.length),
+    [],
+  );
+
+  useEffect(() => {
+    if (pausado || reduce || depoimentos.length < 2) return;
+    const t = setTimeout(() => ir(1), INTERVALO);
+    return () => clearTimeout(t);
+  }, [pausado, reduce, ir, i]);
+
+  if (!depoimentos.length) return null;
+  const d = depoimentos[i];
+
+  return (
+    <div
+      className="flex flex-col justify-center"
+      onMouseEnter={() => setPausado(true)}
+      onMouseLeave={() => setPausado(false)}
+      onFocusCapture={() => setPausado(true)}
+      onBlurCapture={() => setPausado(false)}
+    >
+      <div className="min-h-[15rem] sm:min-h-[13rem]">
+        <AnimatePresence mode="wait">
+          <motion.blockquote
+            key={d.autor}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
+          >
+            <p className="font-display text-2xl leading-snug text-espresso sm:text-[1.9rem]">
+              <span className="text-gold">“</span>
+              {d.texto}
+              <span className="text-gold">”</span>
+            </p>
+            <footer className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <cite className="eyebrow not-italic text-espresso">{d.autor}</cite>
+              <span aria-hidden className="h-px w-6 bg-espresso/25" />
+              <span className="text-sm text-espresso-soft">
+                {d.detalhe} · {d.quando}
+              </span>
+            </footer>
+          </motion.blockquote>
+        </AnimatePresence>
+      </div>
+
+      {depoimentos.length > 1 && (
+        <div className="mt-8 flex items-center justify-between gap-4">
+          <ul className="flex items-center gap-2" aria-hidden>
+            {depoimentos.map((x, n) => (
+              <li key={x.autor}>
+                <span
+                  className={`block h-px transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${n === i ? "w-8 bg-gold" : "w-4 bg-espresso/25"}`}
+                />
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => ir(-1)}
+              aria-label="Depoimento anterior"
+              className="flex size-11 items-center justify-center rounded-full border border-espresso/20 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso hover:text-cream"
+            >
+              <ChevronLeft className="size-5" strokeWidth={1.8} aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={() => ir(1)}
+              aria-label="Próximo depoimento"
+              className="flex size-11 items-center justify-center rounded-full border border-espresso/20 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso hover:text-cream"
+            >
+              <ChevronRight className="size-5" strokeWidth={1.8} aria-hidden />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function SocialProofSection({ stats }: { stats: PlaceStats }) {
   const reduce = useReducedMotion();
@@ -75,24 +168,7 @@ export function SocialProofSection({ stats }: { stats: PlaceStats }) {
             </motion.a>
           </div>
 
-          <ul className="flex flex-col justify-center gap-10">
-            {depoimentos.map((d, i) => (
-              <motion.li key={d.autor} {...reveal(0.12 + i * 0.08)}>
-                <blockquote>
-                  <p className="font-display text-2xl leading-snug text-espresso sm:text-3xl">
-                    <span className="text-gold">“</span>
-                    {d.texto}
-                    <span className="text-gold">”</span>
-                  </p>
-                  <footer className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <cite className="not-italic eyebrow text-espresso">{d.autor}</cite>
-                    <span aria-hidden className="h-px w-6 bg-espresso/25" />
-                    <span className="text-sm text-espresso-soft">{d.origem}</span>
-                  </footer>
-                </blockquote>
-              </motion.li>
-            ))}
-          </ul>
+          <Depoimentos />
         </div>
       </div>
     </section>

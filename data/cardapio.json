@@ -1,11 +1,17 @@
 {
-  "atualizadoEm": "2026-08-27T15:51:41.703Z",
+  "atualizadoEm": "2026-08-28T15:08:00.894Z",
   "aviso": "Preços sujeitos a alteração. Consulte o balcão.",
   "secoes": [
     {
       "id": "cafe-da-manha",
       "titulo": "Café da manhã",
       "descricao": "",
+      "foto": "/cardapio/cafe-da-manha.jpg",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      },
       "ativo": true,
       "itens": [
         {
@@ -26,14 +32,14 @@
           "id": "pao-com-polenguinho",
           "nome": "Pão com polenguinho",
           "descricao": "",
-          "preco": 6.0,
+          "preco": 6,
           "ativo": true
         },
         {
           "id": "pao-com-ovo",
           "nome": "Pão com ovo",
           "descricao": "",
-          "preco": 7.0,
+          "preco": 7,
           "ativo": true
         },
         {
@@ -43,18 +49,18 @@
           "preco": 9.5,
           "ativo": true
         }
-      ],
-      "foto": "/cardapio/cafe-da-manha.jpg",
-      "horario": {
-        "rotulo": "O dia todo",
-        "de": "",
-        "ate": ""
-      }
+      ]
     },
     {
       "id": "almoco",
       "titulo": "Almoço",
       "descricao": "Servido no salão, todos os dias.",
+      "foto": "/cardapio/almoco.jpg",
+      "horario": {
+        "rotulo": "11h30 às 15h",
+        "de": "11:30",
+        "ate": "15:00"
+      },
       "ativo": true,
       "itens": [
         {
@@ -134,25 +140,25 @@
           "preco": 22,
           "ativo": true
         }
-      ],
-      "foto": "/cardapio/almoco.jpg",
-      "horario": {
-        "rotulo": "11h30 às 15h",
-        "de": "11:30",
-        "ate": "15:00"
-      }
+      ]
     },
     {
       "id": "sanduiches",
       "titulo": "Sanduíches",
       "descricao": "",
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      },
       "ativo": true,
       "itens": [
         {
           "id": "misto-frio",
           "nome": "Misto frio",
           "descricao": "",
-          "preco": 11.0,
+          "preco": 11,
           "ativo": true
         },
         {
@@ -201,7 +207,7 @@
           "id": "mortadela-com-queijo-frio",
           "nome": "Mortadela com queijo frio",
           "descricao": "Mussarela ou prato",
-          "preco": 11.0,
+          "preco": 11,
           "ativo": true
         },
         {
@@ -211,18 +217,18 @@
           "preco": 11.5,
           "ativo": true
         }
-      ],
-      "foto": "",
-      "horario": {
-        "rotulo": "O dia todo",
-        "de": "",
-        "ate": ""
-      }
+      ]
     },
     {
       "id": "omeletes",
       "titulo": "Omeletes",
       "descricao": "Dois ovos, com tomate, cebola e salsinha.",
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      },
       "ativo": true,
       "itens": [
         {
@@ -246,18 +252,18 @@
           "preco": 18.5,
           "ativo": true
         }
-      ],
-      "foto": "",
-      "horario": {
-        "rotulo": "O dia todo",
-        "de": "",
-        "ate": ""
-      }
+      ]
     },
     {
       "id": "salgados",
       "titulo": "Salgados",
       "descricao": "",
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      },
       "ativo": true,
       "itens": [
         {
@@ -271,21 +277,21 @@
           "id": "fritos",
           "nome": "Fritos",
           "descricao": "Coxinha, croquete, carne e ovo, presunto e queijo e salsicha",
-          "preco": 7.0,
+          "preco": 7,
           "ativo": true
         },
         {
           "id": "especiais",
           "nome": "Especiais",
           "descricao": "Tapa na cara, coxinha com osso, espetinho de frango, kibe e bolinho de aipim",
-          "preco": 9.0,
+          "preco": 9,
           "ativo": true
         },
         {
           "id": "assados",
           "nome": "Assados",
           "descricao": "Brioche, hambúrguer de forno e cachorro quente",
-          "preco": 9.0,
+          "preco": 9,
           "ativo": true
         },
         {
@@ -295,32 +301,32 @@
           "preco": 10,
           "ativo": true
         }
-      ],
-      "foto": "",
-      "horario": {
-        "rotulo": "O dia todo",
-        "de": "",
-        "ate": ""
-      }
+      ]
     },
     {
       "id": "bebidas-quentes",
       "titulo": "Bebidas quentes",
       "descricao": "",
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      },
       "ativo": true,
       "itens": [
         {
           "id": "cafezinho",
           "nome": "Cafezinho",
           "descricao": "",
-          "preco": 4.0,
+          "preco": 4,
           "ativo": true
         },
         {
           "id": "cafe-media",
           "nome": "Café média",
           "descricao": "",
-          "preco": 7.0,
+          "preco": 7,
           "ativo": true
         },
         {
@@ -354,34 +360,34 @@
           "preco": 7.5,
           "ativo": true
         }
-      ],
-      "foto": "",
-      "horario": {
-        "rotulo": "O dia todo",
-        "de": "",
-        "ate": ""
-      }
+      ]
     },
     {
       "id": "bebidas-geladas",
       "titulo": "Bebidas geladas",
       "descricao": "",
+      "foto": "",
+      "horario": {
+        "rotulo": "O dia todo",
+        "de": "",
+        "ate": ""
+      },
       "ativo": true,
       "itens": [
         {
           "id": "suco-natural",
           "nome": "Suco natural",
           "descricao": "",
-          "preco": 10.0,
+          "preco": 10,
           "ativo": true,
           "variacoes": [
             {
               "rotulo": "1 fruta",
-              "preco": 10.0
+              "preco": 10
             },
             {
               "rotulo": "2 frutas",
-              "preco": 11.0
+              "preco": 11
             }
           ]
         },
@@ -406,16 +412,16 @@
           "id": "vitamina",
           "nome": "Vitamina",
           "descricao": "",
-          "preco": 12.0,
+          "preco": 12,
           "ativo": true,
           "variacoes": [
             {
               "rotulo": "1 fruta",
-              "preco": 12.0
+              "preco": 12
             },
             {
               "rotulo": "2 frutas",
-              "preco": 13.0
+              "preco": 13
             }
           ]
         },
@@ -430,12 +436,12 @@
           "id": "refrigerante",
           "nome": "Refrigerante",
           "descricao": "",
-          "preco": 7.0,
+          "preco": 7,
           "ativo": true,
           "variacoes": [
             {
               "rotulo": "Lata",
-              "preco": 7.0
+              "preco": 7
             },
             {
               "rotulo": "600 ml",
@@ -488,13 +494,7 @@
             }
           ]
         }
-      ],
-      "foto": "",
-      "horario": {
-        "rotulo": "O dia todo",
-        "de": "",
-        "ate": ""
-      }
+      ]
     }
   ]
 }

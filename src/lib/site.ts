@@ -10,11 +10,16 @@ export const site = {
   cnpj: "06.280.419/0001-20",
   since: 2004,
 
-  street: "R. Saldanha Marinho, 7",
+  street: "Rua Washington Luiz, 1.255",
   city: "Petrópolis",
   state: "RJ",
-  zip: "25640-233",
-  // do perfil do Google
+  zip: "25655-007",
+  /*
+   * Coordenadas do pino do Google, que fica na esquina da Saldanha Marinho
+   * com a Washington Luiz. O endereço exibido é o que o cliente confirmou;
+   * a rota continua caindo onde o Google marca a loja. Se o pino estiver
+   * errado, só reivindicar o perfil corrige — ver o diagnóstico.
+   */
   lat: -22.5206973,
   lng: -43.1882965,
 
@@ -55,7 +60,7 @@ export const fullAddress = `${site.street} — ${site.city}/${site.state} · ${s
 const coords = `${site.lat},${site.lng}`;
 
 export const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
-  `${site.name}, ${site.street}, ${site.city} - ${site.state}`,
+  `${site.name}, ${site.city} - ${site.state}`,
 )}&z=17&hl=pt-BR&output=embed`;
 
 export const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(coords)}`;
@@ -77,7 +82,6 @@ export const mencoes = [
   "Sanduíches",
   "Pizza",
   "Fios de ovos",
-  "Sorvete a quilo",
   "Sem açúcar",
   "Sem lactose",
 ];
@@ -89,7 +93,7 @@ export const navigation: NavItem[] = [
   { label: "Almoço", href: "#almoco", hint: "O prato de hoje" },
   { label: "Confeitaria", href: "#confeitaria", hint: "Bolos, tortas e doces" },
   { label: "Encomendas", href: "#encomendas", hint: "Festa e fim de ano" },
-  { label: "Onde estamos", href: "#contato", hint: "Saldanha Marinho" },
+  { label: "Onde estamos", href: "#contato", hint: "Centro de Petrópolis" },
 ];
 
 /** Navegação completa, usada no rodapé. */
