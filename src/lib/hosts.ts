@@ -8,7 +8,7 @@
  */
 export const hosts = {
   apex: process.env.SITE_HOST ?? "padariarainhadamassa.com.br",
-  preview: process.env.PREVIEW_HOST ?? "preview.padariarainhadamassa.com.br",
+  preview: process.env.PREVIEW_HOST ?? "aprovacao.padariarainhadamassa.com.br",
 } as const;
 
 export const siteNoAr = () => process.env.SITE_LIVE === "true";

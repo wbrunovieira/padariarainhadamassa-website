@@ -56,7 +56,7 @@ com o que existe no ambiente *development* da Vercel.
 | | `SITE_LIVE` ausente ou `false` | `SITE_LIVE=true` |
 |---|---|---|
 | raiz | página "em construção", `noindex` | o site |
-| `preview.` | o site, com `noindex, nofollow` | **301 para a raiz**, `/admin` incluído |
+| `aprovacao.` | o site, com `noindex, nofollow` | **301 para a raiz**, `/admin` incluído |
 | `www.` | 301 para a raiz | 301 para a raiz |
 | `robots.txt` | `Disallow: /` | libera, menos `/admin` e `/api/` |
 
