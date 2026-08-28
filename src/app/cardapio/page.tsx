@@ -16,9 +16,20 @@ import { googleMapsUrl, site } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * Fora do Google, a pedido do cliente: os preços não devem ser divulgados.
+ * Esta página existe para o QR Code das mesas, não para busca.
+ *
+ * O noindex vai na meta E no cabeçalho, e o robots.txt continua PERMITINDO
+ * o rastreamento desta rota de propósito: página bloqueada no robots é
+ * página cujo noindex o Google nunca lê, e que pode aparecer no resultado
+ * como URL nua se alguém linkar. Deixar entrar para ler o "não me indexe"
+ * é o que realmente tira do índice.
+ */
 export const metadata: Metadata = {
   title: "Cardápio",
-  description: `Cardápio da ${site.name}, em ${site.city}/${site.state}: café da manhã, almoço, sanduíches, omeletes, salgados e bebidas.`,
+  description: `Cardápio da ${site.name}, para quem está no salão.`,
+  robots: { index: false, follow: false, nocache: true },
 };
 
 /** Preço em Bodoni romana, com o "R$" fora do caminho. */

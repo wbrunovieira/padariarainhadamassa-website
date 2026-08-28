@@ -26,6 +26,17 @@ export function proxy(request: NextRequest) {
     );
   }
 
+  /*
+   * O cardápio com preços fica fora do Google em qualquer endereço, a
+   * pedido do cliente. O robots continua deixando rastrear — é assim que
+   * o buscador lê este cabeçalho e tira a página do índice.
+   */
+  if (url.pathname.startsWith("/cardapio")) {
+    const r = NextResponse.next();
+    r.headers.set("x-robots-tag", "noindex, nofollow, noarchive");
+    return r;
+  }
+
   // o preview serve o site, mas nunca entra em buscador
   if (ehPreview(host)) {
     const r = NextResponse.next();

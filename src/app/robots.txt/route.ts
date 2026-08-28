@@ -19,6 +19,9 @@ export async function GET(request: Request) {
         "Disallow: /admin",
         "Disallow: /api/",
         "",
+        "# /cardapio nao entra aqui de proposito: ele sai do indice pelo",
+        "# noindex, e para isso o rastreador precisa poder ler a pagina.",
+        "",
         `Sitemap: https://${hosts.apex}/sitemap.xml`,
         "",
       ].join("\n");

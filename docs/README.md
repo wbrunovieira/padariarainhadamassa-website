@@ -25,7 +25,17 @@ ou advogado da casa antes de ir além disso.
 ## Cardápio digital e /admin
 
 O cardápio de mesa fica em `/cardapio` (QR Code nas mesas, sem link na home)
-e é editado em `/admin`. Os dados ficam em `data/cardapio.json`.
+e é editado em `/admin`. Os dados ficam em `src/data/cardapio.json`.
+
+**Fora do Google, a pedido do cliente**: os preços não devem ser divulgados na
+busca. A página leva `noindex` na meta e no cabeçalho `X-Robots-Tag`, e fica
+fora do sitemap.
+
+Detalhe que importa: o `robots.txt` **permite** rastrear `/cardapio` de
+propósito. Página bloqueada no robots é página cujo `noindex` o Google nunca
+lê — e que pode acabar aparecendo no resultado como URL nua se alguém linkar.
+Deixar o rastreador entrar para ler o "não me indexe" é o que de fato tira do
+índice. Bloquear no robots seria o erro clássico aqui.
 
 Variáveis de ambiente (ver `.env.local.example`):
 
