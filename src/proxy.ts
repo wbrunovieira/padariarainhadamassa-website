@@ -75,6 +75,6 @@ export const config = {
    * receberia HTML no lugar das regras.
    */
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|opengraph-image|twitter-image|robots.txt|sitemap.xml|brand/|video/|fotos/).*)",
+    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|opengraph-image|twitter-image|robots.txt|sitemap.xml|llms.txt|brand/|video/|fotos/).*)",
   ],
 };

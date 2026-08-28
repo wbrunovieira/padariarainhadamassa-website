@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import WBSignature from "@/components/wb-signature";
 import { OpenNow } from "@/components/open-now";
-import { fullAddress, googlePlaceUrl, navigationCompleta, site } from "@/lib/site";
+import { fullAddress, googleMapsUrl, navigationCompleta, site } from "@/lib/site";
 
 export function SiteFooter() {
   const ano = new Date().getFullYear();
@@ -60,7 +60,7 @@ export function SiteFooter() {
             <ul className="mt-6 flex flex-col gap-4 text-cream/75">
               <li>
                 <a
-                  href={googlePlaceUrl}
+                  href={googleMapsUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="underline decoration-wheat/30 decoration-1 underline-offset-4 transition-colors hover:decoration-wheat"
