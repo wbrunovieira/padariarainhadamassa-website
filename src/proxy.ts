@@ -41,8 +41,17 @@ export function proxy(request: NextRequest) {
     return r;
   }
 
-  // localhost e *.vercel.app trabalham sempre com o site completo
-  if (ehAmbienteDeTrabalho(host)) return NextResponse.next();
+  /*
+   * localhost e *.vercel.app servem o site completo, para dar para revisar
+   * — mas as URLs de deploy também levam noindex. Elas são públicas até
+   * alguém ligar a Deployment Protection, e não podem virar uma cópia do
+   * site competindo no Google com o domínio de verdade.
+   */
+  if (ehAmbienteDeTrabalho(host)) {
+    const r = NextResponse.next();
+    r.headers.set("x-robots-tag", "noindex, nofollow");
+    return r;
+  }
 
   return NextResponse.next();
 }

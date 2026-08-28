@@ -1,4 +1,4 @@
-import { ehPreview, hosts, siteNoAr } from "@/lib/hosts";
+import { foraDoIndice, hosts } from "@/lib/hosts";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
  */
 export async function GET(request: Request) {
   const host = request.headers.get("host");
-  const fechado = ehPreview(host) || !siteNoAr();
+  const fechado = foraDoIndice(host);
 
   const corpo = fechado
     ? ["User-agent: *", "Disallow: /", ""].join("\n")

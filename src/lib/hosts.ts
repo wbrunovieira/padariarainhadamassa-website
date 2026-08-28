@@ -27,3 +27,8 @@ export function ehAmbienteDeTrabalho(host: string | null) {
   const h = normalizar(host);
   return h === "localhost" || h.endsWith(".vercel.app") || h.startsWith("127.0.0.1");
 }
+
+/** Endereço provisório: preview, deploy da Vercel, ou a raiz antes da virada. */
+export function foraDoIndice(host: string | null) {
+  return ehPreview(host) || ehAmbienteDeTrabalho(host) || !siteNoAr();
+}
