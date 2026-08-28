@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 
 import { sessaoValida } from "@/lib/admin-auth";
-import { gravarCardapio, lerCardapio, type Cardapio } from "@/lib/cardapio-digital";
+import {
+  armazenamento,
+  gravarCardapio,
+  lerCardapio,
+  type Cardapio,
+} from "@/lib/cardapio-digital";
 
 export async function GET() {
   if (!(await sessaoValida())) {
@@ -60,7 +65,9 @@ export async function PUT(req: Request) {
     return NextResponse.json(
       {
         erro:
-          "Não foi possível gravar. Em hospedagem serverless o disco é somente leitura — ver o comentário em src/lib/cardapio-digital.ts.",
+          armazenamento() === "blob"
+            ? "Não foi possível gravar no armazenamento. Tente de novo em alguns segundos."
+            : "Não foi possível gravar o arquivo. Em hospedagem serverless o disco é somente leitura: falta configurar o Vercel Blob (BLOB_READ_WRITE_TOKEN).",
         detalhe: e instanceof Error ? e.message : String(e),
       },
       { status: 500 },

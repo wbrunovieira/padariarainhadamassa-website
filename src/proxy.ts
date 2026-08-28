@@ -1,0 +1,60 @@
+import { NextResponse, type NextRequest } from "next/server";
+
+import { ehApex, ehAmbienteDeTrabalho, ehPreview, ehWww, hosts, siteNoAr } from "@/lib/hosts";
+
+export function proxy(request: NextRequest) {
+  const host = request.headers.get("host");
+  const url = request.nextUrl;
+
+  /*
+   * Quando o site vai ao ar, o preview deixa de existir: 301 para a raiz,
+   * e essa regra vem ANTES de qualquer outra. Se ficasse depois, o /admin
+   * continuaria vivo no endereço antigo.
+   */
+  if (siteNoAr() && ehPreview(host)) {
+    return NextResponse.redirect(
+      new URL(url.pathname + url.search, `https://${hosts.apex}`),
+      301,
+    );
+  }
+
+  // um site, um endereço
+  if (ehWww(host)) {
+    return NextResponse.redirect(
+      new URL(url.pathname + url.search, `https://${hosts.apex}`),
+      301,
+    );
+  }
+
+  // o preview serve o site, mas nunca entra em buscador
+  if (ehPreview(host)) {
+    const r = NextResponse.next();
+    r.headers.set("x-robots-tag", "noindex, nofollow");
+    return r;
+  }
+
+  // antes da aprovação, a raiz mostra a página de espera
+  if (ehApex(host) && !siteNoAr()) {
+    if (url.pathname === "/em-construcao") return NextResponse.next();
+    const r = NextResponse.rewrite(new URL("/em-construcao", request.url));
+    r.headers.set("x-robots-tag", "noindex, nofollow");
+    return r;
+  }
+
+  // localhost e *.vercel.app trabalham sempre com o site completo
+  if (ehAmbienteDeTrabalho(host)) return NextResponse.next();
+
+  return NextResponse.next();
+}
+
+export const config = {
+  /*
+   * Fora do proxy: arquivos do Next, ícones, a imagem de compartilhamento e
+   * o robots. Sem isso o preview do WhatsApp fica sem imagem, a aba sem
+   * ícone, e o robots.txt vira a página de espera em HTML — o rastreador
+   * receberia HTML no lugar das regras.
+   */
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|opengraph-image|twitter-image|robots.txt|sitemap.xml|brand/|video/|fotos/).*)",
+  ],
+};

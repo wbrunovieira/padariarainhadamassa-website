@@ -49,6 +49,17 @@ export type Cardapio = {
   secoes: SecaoCardapio[];
 };
 
+/** Só o que está ativo, para a página pública. */
+export function somenteAtivos(c: Cardapio): Cardapio {
+  return {
+    ...c,
+    secoes: c.secoes
+      .filter((s) => s.ativo)
+      .map((s) => ({ ...s, itens: s.itens.filter((i) => i.ativo) }))
+      .filter((s) => s.itens.length > 0),
+  };
+}
+
 export const formatarPreco = (v: number) =>
   v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 

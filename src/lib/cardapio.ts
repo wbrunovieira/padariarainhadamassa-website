@@ -38,7 +38,6 @@ export const confeitaria: Item[] = [
   { nome: "Bolos", nota: "Chocolate, fubá e o que o dia pedir" },
   { nome: "Tortas", nota: "Doces e salgadas, na fatia ou inteiras" },
   { nome: "Rocambole", nota: "De goiabada com coco" },
-  { nome: "Fios de ovos", nota: "Dos mais citados pelos clientes" },
   { nome: "Sonhos e folhados", nota: "Do balcão de doces" },
 ];
 

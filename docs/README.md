@@ -32,15 +32,48 @@ Variáveis de ambiente (ver `.env.local.example`):
     ADMIN_PASSWORD=...   # senha do /admin
     ADMIN_SECRET=...     # assina o cookie de sessão; openssl rand -hex 32
 
+### Onde o cardápio fica guardado
+
+`src/lib/cardapio-digital.ts` decide sozinho:
+
+- **Com `BLOB_READ_WRITE_TOKEN`** (produção): lê e grava num blob da Vercel,
+  em `cardapio/cardapio.json`. É o caminho de produção.
+- **Sem o token** (desenvolvimento): lê e grava `src/data/cardapio.json`, o
+  arquivo versionado. Dá para editar pelo /admin na máquina local.
+
+O JSON versionado é sempre a **semente**: enquanto o blob não existe, é ele que
+aparece no site, e a primeira gravação no /admin cria o blob. Ou seja, o deploy
+já sobe com o cardápio certo mesmo antes de alguém abrir o admin.
+
+Para provisionar: `vercel blob create-store` ou pelo painel. **Faça
+`cp .env.local .env.local.bak` antes** — esse comando reescreve o `.env.local`
+com o que existe no ambiente *development* da Vercel.
+
+## Subdomínio provisório e a virada
+
+`src/proxy.ts` roteia por hostname. A chave é a variável `SITE_LIVE`.
+
+| | `SITE_LIVE` ausente ou `false` | `SITE_LIVE=true` |
+|---|---|---|
+| raiz | página "em construção", `noindex` | o site |
+| `preview.` | o site, com `noindex, nofollow` | **301 para a raiz**, `/admin` incluído |
+| `www.` | 301 para a raiz | 301 para a raiz |
+| `robots.txt` | `Disallow: /` | libera, menos `/admin` e `/api/` |
+
+O 301 do preview vem **antes** de qualquer outra regra no proxy: se viesse
+depois, o `/admin` continuaria vivo no endereço antigo depois da virada.
+
+`localhost` e `*.vercel.app` sempre servem o site completo, para não atrapalhar
+o trabalho nem os previews de deploy.
+
+Virar é mudar `SITE_LIVE` para `true` no ambiente da Vercel e redeployar —
+não é mudança de código, então voltar atrás leva o mesmo tempo.
+
 ### ATENÇÃO ANTES DE PUBLICAR
 
-O `/admin` grava num arquivo no disco. **Isso não funciona na Vercel** nem em
-nenhuma hospedagem serverless: o disco é somente leitura e efêmero. Ler o
-cardápio funciona; salvar vai dar erro 500 com a explicação na tela.
-
-Para produção é preciso trocar `gravar` em `src/lib/cardapio-digital.ts` por um
-armazenamento de verdade — Vercel Blob é o caminho mais curto, e mantém o
-formato JSON. O resto do código não muda: só aquelas duas funções.
+~~O `/admin` grava num arquivo no disco~~ — **RESOLVIDO**: o Vercel Blob está
+implementado. Falta só provisionar o store e deixar o `BLOB_READ_WRITE_TOKEN` no
+ambiente. Sem ele, o admin em produção avisa na tela exatamente o que falta.
 
 ## cardapio/
 
