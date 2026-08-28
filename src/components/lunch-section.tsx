@@ -5,9 +5,10 @@ import { useSyncExternalStore } from "react";
 import { UtensilsCrossed, Wheat } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
+import { DeliveryLinks } from "@/components/delivery-links";
 import { acompanhamentos, diaEmPetropolis, fixos, semana } from "@/lib/almoco";
 import { pratosDoAlmoco } from "@/lib/fotos";
-import { deliveryTexto, googleMapsUrl, site } from "@/lib/site";
+import { googleMapsUrl, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -230,7 +231,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
           </a>
           <p className="max-w-md text-sm leading-relaxed text-espresso-soft">
             Servido no salão, na {site.street}. Quem não pode sair, pede pelo{" "}
-            {deliveryTexto}. Dúvidas:{" "}
+            <DeliveryLinks />. Dúvidas:{" "}
             <a href={site.phoneHref} className="underline decoration-gold/40 underline-offset-4 hover:decoration-gold">
               {site.phone}
             </a>

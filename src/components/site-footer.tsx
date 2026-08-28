@@ -113,7 +113,7 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col gap-6 border-t border-cream/12 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs leading-relaxed text-cream/45">
-            © {ano} {site.legalName} · CNPJ {site.cnpj}
+            © {ano} {site.legalName}
           </p>
           <WBSignature className="text-cream/70" />
         </div>

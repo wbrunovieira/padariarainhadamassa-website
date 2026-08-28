@@ -126,13 +126,12 @@ Também publicado como Artifact, para compartilhar por link:
 - **O cardápio da confeitaria** (`src/lib/cardapio.ts`). Ainda vem das fotos e
   das avaliações — o PDF oficial cobre só a lanchonete, não a confeitaria.
   O café da manhã já foi corrigido pelo cardápio real.
-- **As respostas do FAQ** (`src/lib/perguntas.ts`), principalmente
-  estacionamento e acessibilidade — vieram do Restaurant Guru e de uma
-  avaliação, não da padaria.
+- **As respostas do FAQ** (`src/lib/perguntas.ts`). As de estacionamento e
+  acessibilidade foram removidas a pedido do cliente em 28/08/2026 — vinham de
+  terceiros. As quatro restantes ainda precisam de conferência.
 - ~~A citação da avaliação~~ — **RESOLVIDO**: o cliente enviou capturas de três
   avaliações públicas de 5 estrelas (Bre Mi, Nathalia Karl, Renata Kally). Estão
   em `src/lib/depoimentos.ts`, transcritas literalmente, num carrossel.
-- **O link da loja no iFood.** Hoje o iFood é citado em texto, sem link.
 - Se a quinta-feira é mesmo strogonoff "de frango ou carne, depende da
   semana". Se houver um padrão, o site pode mostrar o certo.
 - O cardápio de verdade — a lista de itens no site saiu das avaliações de

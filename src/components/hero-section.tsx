@@ -12,8 +12,9 @@ import {
 } from "motion/react";
 
 import { HeroCarousel } from "@/components/hero-carousel";
+import { DeliveryLinks } from "@/components/delivery-links";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { decadaDeCasa, deliveryTexto, fullAddress, site } from "@/lib/site";
+import { decadaDeCasa, fullAddress, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -146,7 +147,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                 Encomendas pelo telefone
               </li>
               <li className="whitespace-nowrap">
-                Delivery no {deliveryTexto}
+                Delivery no <DeliveryLinks />
               </li>
             </motion.ul>
 

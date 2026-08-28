@@ -3,8 +3,9 @@
 import { Wheat } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
+import { DeliveryLinks } from "@/components/delivery-links";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { anosDeCasa, deliveryTexto, mencoes, site } from "@/lib/site";
+import { anosDeCasa, mencoes, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -65,7 +66,7 @@ export function AboutSection({ stats }: { stats: PlaceStats }) {
               <p>
                 O balcão junta as duas metades do nome: a padaria de todo dia e
                 a confeitaria das ocasiões. Encomendas saem pelo telefone e o
-                delivery corre pelo {deliveryTexto}.
+                delivery corre pelo <DeliveryLinks />.
               </p>
             </motion.div>
 
