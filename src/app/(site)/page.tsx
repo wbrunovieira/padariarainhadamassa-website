@@ -34,7 +34,6 @@ const schema = {
     postalCode: site.zip,
     addressCountry: "BR",
   },
-  geo: { "@type": "GeoCoordinates", latitude: site.lat, longitude: site.lng },
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",

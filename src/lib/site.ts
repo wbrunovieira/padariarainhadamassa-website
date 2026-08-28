@@ -15,13 +15,14 @@ export const site = {
   state: "RJ",
   zip: "25655-007",
   /*
-   * Coordenadas do pino do Google, que fica na esquina da Saldanha Marinho
-   * com a Washington Luiz. O endereço exibido é o que o cliente confirmou;
-   * a rota continua caindo onde o Google marca a loja. Se o pino estiver
-   * errado, só reivindicar o perfil corrige — ver o diagnóstico.
+   * SEM COORDENADAS DE PROPÓSITO.
+   *
+   * O pino do Google fica na R. Saldanha Marinho, a cerca de 2 km do
+   * endereço que o cliente confirmou. Publicar essa coordenada mandaria
+   * o cliente para o lugar errado, e publicar o centro do CEP seria um
+   * palpite. Rota e mapa passam a usar o endereço por extenso, que é o
+   * dado confirmado. Ver docs/diagnostico-presenca-digital.html.
    */
-  lat: -22.5206973,
-  lng: -43.1882965,
 
   phone: "(24) 3302-2752",
   phoneHref: "tel:+552433022752",
@@ -57,18 +58,22 @@ export const deliveryTexto = site.delivery
 
 export const fullAddress = `${site.street} — ${site.city}/${site.state} · ${site.zip}`;
 
-const coords = `${site.lat},${site.lng}`;
+/** Endereço por extenso: é o dado confirmado, e o que os apps entendem. */
+const enderecoBusca = `${site.street}, ${site.city} - ${site.state}, ${site.zip}`;
 
 export const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
-  `${site.name}, ${site.city} - ${site.state}`,
+  enderecoBusca,
 )}&z=17&hl=pt-BR&output=embed`;
 
-export const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(coords)}`;
+export const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+  enderecoBusca,
+)}`;
+export const wazeUrl = `https://www.waze.com/ul?q=${encodeURIComponent(
+  enderecoBusca,
+)}&navigate=yes`;
 
-/** Ficha da padaria no Google, pelo CID do perfil. */
 export const googlePlaceUrl = "https://www.google.com/maps?cid=9761951682365984765";
 export const googleReviewsUrl = `${googlePlaceUrl}#lrd=0x9908161e97f039:0x87796b5585f38ffd,1`;
-export const wazeUrl = `https://www.waze.com/ul?ll=${encodeURIComponent(coords)}&navigate=yes&zoom=17`;
 
 /**
  * O que os clientes mais citam nas avaliações públicas (Google e
