@@ -60,7 +60,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             Todo dia são dois cardápios ao mesmo tempo: quatro pratos que nunca
             saem — {nomesFixos} — e o prato do dia, que muda de segunda a
             domingo. Você almoça sentado no salão, na {site.street}, com o prato
-            servido na hora, no Centro de Petrópolis.
+            servido na hora.
           </motion.p>
         </div>
 
