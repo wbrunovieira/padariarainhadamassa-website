@@ -121,6 +121,14 @@ export function SocialProofSection({ stats }: { stats: PlaceStats }) {
               O que dizem por aí
             </motion.p>
 
+            <motion.h2
+              {...reveal(0.04)}
+              className="mt-6 font-display text-3xl leading-[1.05] tracking-tight text-espresso sm:text-4xl"
+            >
+              O que os clientes de Petrópolis
+              <span className="block italic text-ink">escrevem sobre a casa.</span>
+            </motion.h2>
+
             <motion.div {...reveal(0.06)} className="mt-7 flex items-end gap-4">
               <span className="font-display text-7xl leading-none text-espresso lg:text-8xl">
                 {formatRating(stats.rating)}

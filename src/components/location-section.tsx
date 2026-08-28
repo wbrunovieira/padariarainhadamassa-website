@@ -50,7 +50,7 @@ export function LocationSection() {
             >
               {site.street}
               <span className="block italic text-wheat/90">
-                {site.city} — {site.state}
+                Centro — {`${site.city}, ${site.state}`}
               </span>
             </motion.h2>
           </div>

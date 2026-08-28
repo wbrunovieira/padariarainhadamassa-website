@@ -22,8 +22,8 @@ export function ConfectionerySection() {
       marca={<Wheat className="size-4" strokeWidth={1.6} aria-hidden />}
       titulo={
         <>
-          A outra metade
-          <span className="block italic text-ink">do nome da casa.</span>
+          Bolos, tortas e doces —
+          <span className="block italic text-ink">a outra metade do nome da casa.</span>
         </>
       }
       texto={

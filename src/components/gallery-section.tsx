@@ -50,7 +50,8 @@ export function GallerySection() {
             O que sai do balcão
           </p>
           <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-espresso sm:text-5xl lg:text-6xl">
-            Fotos de um dia <span className="italic text-ink">qualquer</span>.
+            Fotos de um dia qualquer
+            <span className="block italic text-ink">na Washington Luiz.</span>
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-espresso-soft">
             Pão francês saindo do forno, o almoço do dia, os doces do balcão e a

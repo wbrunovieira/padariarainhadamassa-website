@@ -49,7 +49,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             {...reveal(0.06)}
             className="mt-6 font-display text-4xl leading-[1.03] tracking-tight text-espresso sm:text-5xl lg:text-6xl"
           >
-            O almoço de todo dia,
+            Onde almoçar no Centro,
             <span className="block italic text-ink">com tempero de casa.</span>
           </motion.h2>
 
@@ -60,7 +60,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             Todo dia são dois cardápios ao mesmo tempo: quatro pratos que nunca
             saem — {nomesFixos} — e o prato do dia, que muda de segunda a
             domingo. Você almoça sentado no salão, na {site.street}, com o prato
-            servido na hora.
+            servido na hora, no Centro de Petrópolis.
           </motion.p>
         </div>
 

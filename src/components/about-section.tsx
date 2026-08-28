@@ -50,8 +50,8 @@ export function AboutSection({ stats }: { stats: PlaceStats }) {
               {...reveal(0.06)}
               className="mt-6 max-w-2xl font-display text-4xl leading-[1.02] tracking-tight text-espresso sm:text-5xl lg:text-6xl"
             >
-              Uma padaria de bairro que
-              <span className="italic text-ink"> abre todo dia às seis</span>.
+              Uma padaria de bairro no Centro de Petrópolis,
+              <span className="block italic text-ink">que abre todo dia às seis.</span>
             </motion.h2>
 
             <motion.div

@@ -41,8 +41,8 @@ export function OrdersSection() {
               {...reveal(0.06)}
               className="mt-6 font-display text-4xl leading-[1.03] tracking-tight text-espresso sm:text-5xl lg:text-6xl"
             >
-              A festa começa com
-              <span className="block italic text-ink">um telefonema.</span>
+              Bolo, torta e salgado:
+              <span className="block italic text-ink">a encomenda começa por um telefonema.</span>
             </motion.h2>
 
             <motion.p

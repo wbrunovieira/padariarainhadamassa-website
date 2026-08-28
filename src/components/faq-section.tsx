@@ -22,8 +22,8 @@ export function FaqSection() {
           <div>
             <p className="eyebrow text-gold">Perguntas frequentes</p>
             <h2 className="mt-6 font-display text-4xl leading-[1.03] tracking-tight text-espresso sm:text-5xl">
-              O que a gente
-              <span className="block italic text-ink">mais escuta.</span>
+              Horário, delivery e encomendas:
+              <span className="block italic text-ink">o que a gente mais escuta.</span>
             </h2>
           </div>
 

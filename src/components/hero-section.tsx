@@ -106,7 +106,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                   variants={linha}
                   className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-[2.1rem] xl:text-[2.6rem] [@media(max-height:840px)]:xl:text-[2.1rem] 2xl:text-5xl [@media(max-height:840px)]:2xl:text-[2.4rem]"
                 >
-                  Padaria e confeitaria
+                  Padaria e confeitaria no Centro de Petrópolis
                 </motion.span>
               </span>
               <span className="mt-1 block overflow-hidden pb-[0.12em]">
@@ -123,7 +123,9 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
               variants={rise}
               className="mt-8 max-w-md text-xl leading-relaxed text-espresso-soft [@media(max-height:840px)]:mt-6"
             >
-              Aberta todos os dias, das 6h às 22h.
+              Café da manhã desde as seis, almoço servido no salão todo dia e o
+          balcão de doces até a noite. Na Rua Washington Luiz, no Centro —
+          aberta todos os dias, das 6h às 22h.
             </motion.p>
 
             <motion.ul

@@ -30,8 +30,9 @@ export function SiteFooter() {
             </div>
 
             <p className="mt-8 max-w-sm leading-relaxed text-cream/70">
-              Padaria e confeitaria em {site.city}/{site.state} desde {site.since}.
-              Café da manhã, almoço no salão, confeitaria e encomendas.
+              Padaria e confeitaria no Centro de {site.city} desde {site.since}.
+              Café da manhã, almoço no salão, confeitaria e encomendas pelo
+              telefone.
             </p>
 
             <p className="mt-6">
