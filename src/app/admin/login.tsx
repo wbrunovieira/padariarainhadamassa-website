@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function Login() {
   const router = useRouter();
   const [senha, setSenha] = useState("");
+  const [visivel, setVisivel] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
 
@@ -37,16 +39,34 @@ export function Login() {
         Editar o cardápio
       </h1>
 
-      <label className="mt-8 block">
-        <span className="eyebrow text-espresso-soft/70">Senha</span>
-        <input
-          type="password"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          autoComplete="current-password"
-          className="mt-2 w-full rounded-xl border border-espresso/20 bg-cream px-4 py-3 text-espresso outline-none focus:border-gold"
-        />
-      </label>
+      <div className="mt-8">
+        <label htmlFor="senha" className="eyebrow text-espresso-soft/70">
+          Senha
+        </label>
+        <div className="relative mt-2">
+          <input
+            id="senha"
+            type={visivel ? "text" : "password"}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            autoComplete="current-password"
+            className="w-full rounded-xl border border-espresso/20 bg-cream px-4 py-3 pr-12 text-espresso outline-none focus:border-gold"
+          />
+          <button
+            type="button"
+            onClick={() => setVisivel((v) => !v)}
+            aria-label={visivel ? "Ocultar senha" : "Mostrar senha"}
+            aria-pressed={visivel}
+            className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-espresso-soft/70 transition-colors hover:text-espresso"
+          >
+            {visivel ? (
+              <EyeOff className="size-5" strokeWidth={1.6} aria-hidden />
+            ) : (
+              <Eye className="size-5" strokeWidth={1.6} aria-hidden />
+            )}
+          </button>
+        </div>
+      </div>
 
       {erro && <p className="mt-4 text-sm text-red-700">{erro}</p>}
 
