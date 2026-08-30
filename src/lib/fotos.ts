@@ -78,7 +78,7 @@ export const fotos: Foto[] = [
   {
     src: varanda,
     alt: "Entrada da padaria vista de dentro, com o freezer de sorvete, as mesas altas e a rua de Petrópolis ao fundo",
-    legenda: "A varanda, de frente para a rua",
+    legenda: "O salão, de frente para a rua",
   },
   {
     src: equipe,
@@ -88,7 +88,7 @@ export const fotos: Foto[] = [
   {
     src: salao,
     alt: "Salão da padaria, com mesas, balcão e o painel de produtos com o brasão na parede",
-    legenda: "O salão, para comer sentado",
+    legenda: "As mesas do salão",
   },
   {
     src: fachada,
@@ -130,7 +130,7 @@ export const heroSlides: Slide[] = [
   {
     src: varanda,
     alt: "Entrada da padaria vista de dentro, com o freezer de sorvete, as mesas altas e a rua de Petrópolis ao fundo",
-    legenda: "A varanda, de frente para a rua",
+    legenda: "O salão, de frente para a rua",
   },
   {
     src: paesFranceses,
@@ -147,7 +147,7 @@ export const heroSlides: Slide[] = [
   {
     src: salao,
     alt: "Salão da padaria, com mesas, balcão e o painel de produtos com o brasão na parede",
-    legenda: "O salão, para almoçar sentado",
+    legenda: "As mesas, postas para o almoço",
   },
   {
     src: rocambole,
