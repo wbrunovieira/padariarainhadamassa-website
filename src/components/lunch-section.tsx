@@ -60,7 +60,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             <p>
               Todo dia são dois cardápios ao mesmo tempo: quatro pratos que
               nunca saem — {nomesFixos} — e o prato do dia, que muda de segunda
-              a domingo.
+              a sábado.
             </p>
             <p className="mt-5">
               Você almoça sentado no salão, na {site.street}, com o prato
@@ -109,6 +109,8 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                     eHoje
                       ? "-ml-[3px] border-l-[3px] border-l-gold bg-cream-light pl-4 lg:pl-6"
                       : "px-4 lg:px-6",
+                    // domingo não é almoço de salão: o fundo o separa da lista
+                    d.foraDoSalao && !eHoje ? "bg-espresso/[0.035]" : "",
                   ].join(" ")}
                 >
                   <span className="flex items-center gap-3">
@@ -116,6 +118,14 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                       <span className="rounded-full bg-gold px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-[0.18em] text-ink">
                         Hoje
                       </span>
+                    )}
+                    {d.foraDoSalao && (
+                      <a
+                        href="#frango-assado"
+                        className="whitespace-nowrap rounded-full border border-gold/60 px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-[0.18em] text-gold transition-colors duration-300 hover:bg-gold hover:text-ink"
+                      >
+                        No balcão
+                      </a>
                     )}
                     <span
                       className={`eyebrow ${eHoje ? "text-espresso" : "text-espresso-soft"}`}

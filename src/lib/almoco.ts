@@ -37,6 +37,13 @@ export type PratoDoDia = {
   nome: string;
   prato: string;
   detalhe: string;
+  /**
+   * Domingo não é almoço de salão como os outros: é o frango assado
+   * vendido no balcão, com maionese e salpicão a quilo. A marca fica no
+   * dado, e não só no CSS, para a seção não precisar saber que "domingo é
+   * o caso especial" — se um dia mudar, muda aqui.
+   */
+  foraDoSalao?: boolean;
 };
 
 export const semana: PratoDoDia[] = [
@@ -81,5 +88,6 @@ export const semana: PratoDoDia[] = [
     nome: "Domingo",
     prato: "Frango assado",
     detalhe: "Com maionese e salpicão a quilo",
+    foraDoSalao: true,
   },
 ];
