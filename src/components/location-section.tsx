@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { MapPin, Navigation } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
@@ -10,6 +11,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function LocationSection() {
   const reduce = useReducedMotion();
+  const { caixaMapa, preparar, montar } = useMapaSobDemanda();
 
   const reveal = (delay = 0) => ({
     initial: { opacity: 0, y: 24 },
@@ -136,14 +138,35 @@ export function LocationSection() {
             {...reveal(0.14)}
             className="order-3 self-start lg:order-none lg:col-start-2 lg:row-span-3 lg:row-start-1"
           >
-            <div className="overflow-hidden rounded-3xl border border-cream/15 shadow-[0_40px_80px_-50px_rgba(0,0,0,0.9)]">
-              <iframe
-                src={mapEmbedUrl}
-                title={`Mapa com a localização da ${site.name}`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-[380px] w-full border-0 lg:h-[560px]"
-              />
+            {/*
+              O iframe só entra quando a seção se aproxima. `loading="lazy"`
+              sozinho não segurava: em conexão lenta o Chrome usa uma margem
+              enorme e baixava o mapa no carregamento inicial — 457 KB, 39% do
+              peso da home. A altura fica reservada nos dois estados, então
+              montar o mapa não empurra nada.
+            */}
+            <div
+              ref={caixaMapa}
+              className="h-[380px] overflow-hidden rounded-3xl border border-cream/15 shadow-[0_40px_80px_-50px_rgba(0,0,0,0.9)] lg:h-[560px]"
+            >
+              {preparar && (
+                <>
+                  {/* abrem a conexão enquanto o iframe ainda é montado */}
+                  <link rel="preconnect" href="https://maps.google.com" />
+                  <link rel="preconnect" href="https://www.google.com" />
+                  <link rel="preconnect" href="https://maps.gstatic.com" crossOrigin="" />
+                </>
+              )}
+              {montar ? (
+                <iframe
+                  src={mapEmbedUrl}
+                  title={`Mapa com a localização da ${site.name}`}
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="size-full border-0"
+                />
+              ) : (
+                <div aria-hidden className="size-full bg-cream/5" />
+              )}
             </div>
             <p className="mt-4 text-xs tracking-wide text-cream/45">
               Toque no mapa para abrir a rota no seu aplicativo.
@@ -153,4 +176,44 @@ export function LocationSection() {
       </div>
     </section>
   );
+}
+
+/**
+ * Monta o mapa só quando a seção se aproxima, em dois tempos.
+ *
+ * A 900px de distância abre as conexões (`preconnect`): eram 868 ms parados
+ * em handshake — 534 ms no google.com e 334 ms no maps.google.com. Um quadro
+ * depois monta o iframe, já com a conexão de pé.
+ *
+ * Sem isso o preconnect teria de ficar no <head>, abrindo conexão para um
+ * domínio que quem não rola até o fim nunca usa.
+ */
+function useMapaSobDemanda() {
+  const caixaMapa = useRef<HTMLDivElement>(null);
+  const [preparar, setPreparar] = useState(false);
+  const [montar, setMontar] = useState(false);
+
+  useEffect(() => {
+    const alvo = caixaMapa.current;
+    // sem IntersectionObserver, mostra o mapa em vez de esconder
+    if (!alvo || typeof IntersectionObserver === "undefined") {
+      setPreparar(true);
+      setMontar(true);
+      return;
+    }
+
+    const obs = new IntersectionObserver(
+      ([entrada]) => {
+        if (!entrada.isIntersecting) return;
+        obs.disconnect();
+        setPreparar(true);
+        requestAnimationFrame(() => setMontar(true));
+      },
+      { rootMargin: "900px" },
+    );
+    obs.observe(alvo);
+    return () => obs.disconnect();
+  }, []);
+
+  return { caixaMapa, preparar, montar };
 }

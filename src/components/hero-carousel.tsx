@@ -15,6 +15,7 @@ export function HeroCarousel() {
   const [i, setI] = useState(0);
   const [direcao, setDirecao] = useState(1);
   const [pausado, setPausado] = useState(false);
+  const podeGirar = useDepoisDoLcp();
 
   const ir = useCallback((passo: number) => {
     setDirecao(passo);
@@ -26,10 +27,10 @@ export function HeroCarousel() {
   const duracao = foto.duracao ?? INTERVALO;
 
   useEffect(() => {
-    if (pausado || reduce) return;
+    if (pausado || reduce || !podeGirar) return;
     const t = setTimeout(() => ir(1), duracao);
     return () => clearTimeout(t);
-  }, [pausado, reduce, ir, i, duracao]);
+  }, [pausado, reduce, podeGirar, ir, i, duracao]);
 
   return (
     <div
@@ -127,4 +128,40 @@ export function HeroCarousel() {
       </div>
     </div>
   );
+}
+
+/**
+ * `true` depois que o navegador reporta o LCP.
+ *
+ * O carrossel trocava de slide a cada 5,2s desde o primeiro instante, e cada
+ * slide novo virava um candidato a LCP. Como cada um entra em fade, a métrica
+ * era reescrita para mais tarde a cada volta: duas medições do Lighthouse
+ * deram 5,5s e 6,7s — o número não estabilizava, subia.
+ *
+ * Segurar o giro até o LCP fechar resolve sem tirar o carrossel do ar.
+ */
+function useDepoisDoLcp() {
+  const [pronto, setPronto] = useState(false);
+
+  useEffect(() => {
+    // rede de segurança: navegador sem a API, ou LCP que nunca dispara
+    // porque a aba abriu em segundo plano
+    const limite = setTimeout(() => setPronto(true), 4000);
+
+    if (typeof PerformanceObserver === "undefined") return () => clearTimeout(limite);
+
+    let obs: PerformanceObserver | undefined;
+    try {
+      obs = new PerformanceObserver(() => setPronto(true));
+      obs.observe({ type: "largest-contentful-paint", buffered: true });
+    } catch {
+      // tipo de entrada não suportado — o timeout acima cobre
+    }
+    return () => {
+      clearTimeout(limite);
+      obs?.disconnect();
+    };
+  }, []);
+
+  return pronto;
 }

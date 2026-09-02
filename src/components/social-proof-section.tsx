@@ -135,6 +135,7 @@ export function SocialProofSection({ stats }: { stats: PlaceStats }) {
               </span>
               <span
                 className="mb-2 flex gap-1 text-gold"
+                role="img"
                 aria-label={`${formatRating(stats.rating)} de 5 estrelas`}
               >
                 {[0, 1, 2, 3, 4].map((n) => (

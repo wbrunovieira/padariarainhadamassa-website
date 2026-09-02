@@ -170,9 +170,15 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
             </motion.div>
           </div>
 
-          <motion.div variants={rise}>
+          {/*
+            SEM `variants={rise}` de propósito. Este bloco é o LCP da página.
+            Dentro do stagger ele nascia em opacity 0 e só aparecia depois do
+            atraso escalonado — 51% do LCP era esse tempo de espera, com a
+            imagem já baixada. O texto continua animando; a foto, não.
+          */}
+          <div>
             <HeroCarousel />
-          </motion.div>
+          </div>
         </div>
       </motion.div>
 
