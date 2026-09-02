@@ -41,7 +41,7 @@ export async function GET() {
     "",
     "## Almoço",
     "",
-    "Servido no salão, todos os dias. Preço único para qualquer prato — consulte no local ou por telefone.",
+    "Servido no salão, de segunda a sábado. Preço único para qualquer prato — consulte no local ou por telefone. No domingo, o prato é o frango assado.",
     "",
     `Fixos de segunda a sábado: ${fixos.map((f) => f.nome).join(", ")}.`,
     "",

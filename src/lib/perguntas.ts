@@ -13,7 +13,7 @@ export const perguntas: Pergunta[] = [
   {
     pergunta: "Precisa reservar para almoçar?",
     resposta:
-      "Não. O almoço é servido no salão, por ordem de chegada, todos os dias. Se for um grupo grande, vale avisar pelo telefone.",
+      "Não. O almoço é servido no salão, por ordem de chegada, de segunda a sábado. Se for um grupo grande, vale avisar pelo telefone.",
   },
   {
     pergunta: "Vocês entregam?",
