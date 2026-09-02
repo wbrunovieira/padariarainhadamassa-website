@@ -45,6 +45,10 @@ export function RoastChickenSection() {
       itens={frangoAssado}
       foto={posterFrango}
       video="/video/frango-assado.mp4"
+      // O vídeo é retrato (374x848). Numa caixa 4/5 o object-cover ampliava
+      // demais; aqui a moldura acompanha melhor e fica menor na página.
+      proporcao="aspect-[3/4] sm:aspect-[3/4] lg:aspect-[5/7]"
+      midiaMax="mx-auto max-w-[22rem] lg:max-w-[24rem]"
       fotoAlt="Frangos temperados girando nos espetos da rotisserie da padaria"
       fotoLegenda="Os frangos na rotisserie"
       rodape={

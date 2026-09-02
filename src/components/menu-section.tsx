@@ -21,6 +21,14 @@ type Props = {
    * o poster dele, o que aparece antes de o vídeo carregar.
    */
   video?: string;
+  /**
+   * Proporção da moldura da mídia. O padrão serve às fotos, que são
+   * paisagem; vídeo de celular é retrato e pede uma caixa mais estreita,
+   * senão o object-cover amplia demais e come as bordas.
+   */
+  proporcao?: string;
+  /** Largura máxima da moldura, para a mídia não dominar a seção. */
+  midiaMax?: string;
   fotoAlt: string;
   fotoLegenda: string;
   /** true põe a foto à direita */
@@ -39,6 +47,8 @@ export function MenuSection({
   itens,
   foto,
   video,
+  proporcao = "aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]",
+  midiaMax = "",
   fotoAlt,
   fotoLegenda,
   invertido = false,
@@ -62,7 +72,9 @@ export function MenuSection({
             {...reveal(0.1)}
             className={invertido ? "lg:order-2" : undefined}
           >
-            <div className="group relative overflow-hidden rounded-b-3xl rounded-t-[6rem] border border-espresso/12 bg-cream-deep lg:rounded-t-[8rem]">
+            <div
+              className={`group relative overflow-hidden rounded-b-3xl rounded-t-[6rem] border border-espresso/12 bg-cream-deep lg:rounded-t-[8rem] ${midiaMax}`}
+            >
               {video ? (
                 /*
                  * `autoPlay` só quando o sistema não pede menos movimento —
@@ -78,7 +90,7 @@ export function MenuSection({
                   playsInline
                   preload="none"
                   aria-label={fotoAlt}
-                  className="aspect-[4/5] w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] sm:aspect-[5/4] lg:aspect-[4/5]"
+                  className={`w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] ${proporcao}`}
                 />
               ) : (
                 <Image
@@ -87,7 +99,7 @@ export function MenuSection({
                   placeholder="blur"
                   quality={68}
                   sizes="(min-width: 1024px) 44vw, 92vw"
-                  className="aspect-[4/5] w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] sm:aspect-[5/4] lg:aspect-[4/5]"
+                  className={`w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] ${proporcao}`}
                 />
               )}
               <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent p-6 pt-20">
