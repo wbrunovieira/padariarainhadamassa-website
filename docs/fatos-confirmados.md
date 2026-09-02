@@ -46,6 +46,9 @@ cliente que eu tenha visto — é o que ela passou ao Bruno nessa data.
 - **Aceita vouchers de alimentação**, a maioria do mercado, além de crédito e débito
 - **WhatsApp é o MESMO número do fixo**: (24) 3302-2752
 - Almoço com prato do dia de **segunda a sábado**
+- **Os quatro pratos fixos** (frango grelhado, à milanesa, à parmegiana e
+  contra-filé) também são **de segunda a sábado** — não saem no domingo.
+  O site dizia "em qualquer dia" e "como em todo dia"; corrigido em 02/09/2026.
 - **Domingo é frango assado** — e o frango **não** é a quilo; a quilo são a
   maionese e o salpicão
 - **Rocambole também de doce de leite**, além do de goiabada com coco

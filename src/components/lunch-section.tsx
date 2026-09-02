@@ -58,9 +58,9 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             className="mt-8 text-lg leading-relaxed text-espresso-soft"
           >
             <p>
-              Todo dia são dois cardápios ao mesmo tempo: quatro pratos que
-              nunca saem — {nomesFixos} — e o prato do dia, que muda de segunda
-              a sábado.
+              De segunda a sábado são dois cardápios ao mesmo tempo: quatro
+              pratos fixos — {nomesFixos} — e o prato do dia, que muda a cada
+              dia da semana.
             </p>
             <p className="mt-5">
               Você almoça sentado no salão, na {site.street}, com o prato
@@ -84,7 +84,11 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             </div>
 
             <p className="border-t border-espresso/15 pt-7 leading-relaxed text-espresso-soft lg:border-l lg:border-t-0 lg:pl-14 lg:pt-0">
-              E, como em todo dia: {nomesFixos}.
+              {pratoDeHoje.foraDoSalao ? (
+                <>Os quatro pratos fixos voltam na segunda.</>
+              ) : (
+                <>E, como de segunda a sábado: {nomesFixos}.</>
+              )}
             </p>
           </div>
         </motion.div>
@@ -153,10 +157,10 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
 
         {/* Os fixos, agora como referência */}
         <motion.div {...reveal(0.16)} className="mt-20">
-          <h3 className="eyebrow text-espresso-soft/70">Sempre no cardápio</h3>
+          <h3 className="eyebrow text-espresso-soft/70">Fixos do cardápio</h3>
           <p className="mt-4 max-w-xl font-display text-2xl leading-snug text-espresso sm:text-3xl">
-            Quatro pratos que você encontra em qualquer dia —{" "}
-            <span className="italic text-ink">inclusive hoje</span>.
+            Quatro pratos que você encontra{" "}
+            <span className="italic text-ink">de segunda a sábado</span>.
           </p>
 
           <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">

@@ -61,7 +61,7 @@ const schema = {
     hasMenuSection: [
       {
         "@type": "MenuSection",
-        name: "Sempre no cardápio",
+        name: "Fixos de segunda a sábado",
         description: acompanhamentos,
         hasMenuItem: fixos.map((item) => ({
           "@type": "MenuItem",

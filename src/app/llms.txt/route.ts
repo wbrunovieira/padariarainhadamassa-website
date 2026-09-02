@@ -43,7 +43,7 @@ export async function GET() {
     "",
     "Servido no salão, todos os dias. Preço único para qualquer prato — consulte no local ou por telefone.",
     "",
-    `Sempre no cardápio: ${fixos.map((f) => f.nome).join(", ")}.`,
+    `Fixos de segunda a sábado: ${fixos.map((f) => f.nome).join(", ")}.`,
     "",
     "Prato do dia:",
     "",
