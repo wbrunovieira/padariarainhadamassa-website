@@ -28,6 +28,8 @@ site, regardless of the `SITE_LIVE` switch described below.
 | `SITE_HOST` | Apex hostname. Defaults to `padariarainhadamassa.com.br`. |
 | `PREVIEW_HOST` | Approval subdomain. Defaults to `aprovacao.padariarainhadamassa.com.br`. |
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob token. Without it the menu is written to a local file instead — see *Where the menu lives*. |
+| `GOOGLE_SITE_VERIFICATION` | Optional. Google Search Console meta-tag token. Leave empty if the property is verified by DNS. |
+| `BING_SITE_VERIFICATION` | Optional. Bing Webmaster Tools meta-tag token. |
 
 **Careful with `vercel env pull`**: it overwrites `.env.local` with whatever
 is in Vercel's *development* environment. Back the file up first.

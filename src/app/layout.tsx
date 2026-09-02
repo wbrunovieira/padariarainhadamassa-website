@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Bodoni_Moda, Jost } from "next/font/google";
 
 import { deliveryTexto, site } from "@/lib/site";
@@ -41,8 +43,32 @@ export const metadata: Metadata = {
     description: `Almoço, padaria e confeitaria no Centro de ${site.city}.`,
   },
   alternates: { canonical: "/" },
+  /*
+   * Preenchido por variável de ambiente, não no código: assim dá para
+   * verificar o site no Search Console e no Bing colando o código no painel
+   * da Vercel, sem commit nem deploy de código.
+   *
+   * Se a verificação for por DNS (TXT na Cloudflare), estas ficam vazias —
+   * DNS vale para o domínio inteiro e sobrevive a qualquer mudança no site.
+   */
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : {},
+  },
 };
 
+/*
+ * Analytics da Vercel em vez do Google Analytics de propósito: os dois não
+ * usam cookie, então o site não precisa de banner de consentimento — o que,
+ * sob a LGPD, seria obrigatório com o GA4. Numa padaria de bairro, banner é
+ * atrito para ver o cardápio.
+ *
+ * O Speed Insights é o que mais importa agora: ele mede Core Web Vitals de
+ * usuário real. Todo número da auditoria de 02/09/2026 é de laboratório —
+ * o que o Google usa para ranquear é o de campo, e ainda não temos nenhum.
+ */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -51,6 +77,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col bg-cream">
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
