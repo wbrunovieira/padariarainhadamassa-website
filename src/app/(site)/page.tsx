@@ -26,8 +26,13 @@ const schema = {
   // Deriva do phoneHref para o número não existir digitado em dois lugares.
   telephone: site.phoneHref.replace("tel:", ""),
   email: site.email,
+  url: "https://padariarainhadamassa.com.br",
   priceRange: "R$",
   foundingDate: String(site.since),
+  // Confirmado pela cliente em 02/09/2026. Dinheiro fica fora: ela não
+  // falou disso, e schema é o que o Google lê ao pé da letra.
+  paymentAccepted: "Cartão de crédito, cartão de débito, vouchers de alimentação",
+  currenciesAccepted: "BRL",
   address: {
     "@type": "PostalAddress",
     streetAddress: site.street,

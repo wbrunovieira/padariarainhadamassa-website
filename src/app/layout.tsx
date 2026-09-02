@@ -22,14 +22,25 @@ export const metadata: Metadata = {
     default: `${site.name} — Almoço e padaria em ${site.city}`,
     template: `%s · ${site.shortName}`,
   },
-  description: `Almoço caseiro todo dia em ${site.city}/${site.state}: prato feito bem servido, com prato do dia de segunda a domingo. Padaria e confeitaria desde ${site.since}, na ${site.street}. Aberto das 6h às 22h, com delivery no ${deliveryTexto}.`,
+  description: `Almoço em ${site.city}/${site.state}: prato feito bem servido, com prato do dia de segunda a sábado. Padaria e confeitaria desde ${site.since}, na ${site.street}. Aberta todos os dias, ${site.hoursShort}, com delivery no ${deliveryTexto}.`,
   metadataBase: new URL("https://padariarainhadamassa.com.br"),
   openGraph: {
     title: `${site.name} — Almoço e padaria em ${site.city}`,
-    description: `Almoço caseiro, padaria e confeitaria em ${site.city}/${site.state}. ${site.street}, aberto todos os dias.`,
+    description: `Almoço, padaria e confeitaria em ${site.city}/${site.state}. ${site.street}, aberta todos os dias.`,
+    url: "/",
+    siteName: site.name,
     locale: "pt_BR",
     type: "website",
+    // A imagem vem de src/app/opengraph-image.jpg pela convenção de arquivo
+    // do Next — não precisa ser listada aqui.
   },
+  twitter: {
+    // sem isso o cartão sai pequeno, com a imagem em miniatura ao lado
+    card: "summary_large_image",
+    title: `${site.name} — Almoço e padaria em ${site.city}`,
+    description: `Almoço, padaria e confeitaria no Centro de ${site.city}.`,
+  },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
