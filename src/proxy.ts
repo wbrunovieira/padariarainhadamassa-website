@@ -53,6 +53,22 @@ export function proxy(request: NextRequest) {
   }
 
   /*
+   * O /admin e a API saem do índice pelo cabeçalho, não pelo robots.txt.
+   * O robots deixa o /admin ser rastreado de propósito: é lendo a página
+   * que o buscador vê o noindex e a descarta. Bloqueado no robots ele
+   * nunca leria, e a URL poderia acabar listada nua.
+   *
+   * A API segue com Disallow no robots — são endpoints JSON, sem link
+   * apontando e sem caminho de descoberta, e bloquear poupa rastreio. O
+   * cabeçalho vai junto para o dia em que alguém tirar aquele Disallow.
+   */
+  if (url.pathname.startsWith("/admin") || url.pathname.startsWith("/api/")) {
+    const r = NextResponse.next();
+    r.headers.set("x-robots-tag", "noindex, nofollow, noarchive");
+    return r;
+  }
+
+  /*
    * localhost e *.vercel.app servem o site completo, para dar para revisar
    * — mas as URLs de deploy também levam noindex. Elas são públicas até
    * alguém ligar a Deployment Protection, e não podem virar uma cópia do

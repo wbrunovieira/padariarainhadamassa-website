@@ -53,15 +53,20 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             <span className="block italic text-ink">com tempero de casa.</span>
           </motion.h2>
 
-          <motion.p
+          <motion.div
             {...reveal(0.12)}
             className="mt-8 text-lg leading-relaxed text-espresso-soft"
           >
-            Todo dia são dois cardápios ao mesmo tempo: quatro pratos que nunca
-            saem — {nomesFixos} — e o prato do dia, que muda de segunda a
-            domingo. Você almoça sentado no salão, na {site.street}, com o prato
-            servido na hora.
-          </motion.p>
+            <p>
+              Todo dia são dois cardápios ao mesmo tempo: quatro pratos que
+              nunca saem — {nomesFixos} — e o prato do dia, que muda de segunda
+              a domingo.
+            </p>
+            <p className="mt-5">
+              Você almoça sentado no salão, na {site.street}, com o prato
+              servido na hora.
+            </p>
+          </motion.div>
         </div>
 
         {/* O que tem hoje — a pergunta que a pessoa veio fazer */}
