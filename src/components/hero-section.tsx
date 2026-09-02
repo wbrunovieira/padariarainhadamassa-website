@@ -14,7 +14,7 @@ import {
 import { HeroCarousel } from "@/components/hero-carousel";
 import { DeliveryLinks } from "@/components/delivery-links";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { decadaDeCasa, fullAddress, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -84,11 +84,11 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
         animate="show"
         className="relative mx-auto w-full max-w-[88rem] px-5 pb-28 pt-[calc(var(--header-h)+4rem)] [@media(max-height:840px)]:pb-14 [@media(max-height:840px)]:pt-[calc(var(--header-h)+1.5rem)] lg:px-10"
       >
-        <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 xl:grid-cols-[1.02fr_0.98fr] xl:gap-16">
+        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_27rem] lg:gap-12 xl:gap-16 [@media(max-height:840px)]:lg:grid-cols-[minmax(0,1fr)_21rem]">
           <div>
             <motion.p
               variants={rise}
-              className="eyebrow flex items-center gap-2.5 text-espresso-soft"
+              className="eyebrow flex items-center gap-2.5 text-espresso-soft lg:mt-10"
             >
               <Image
                 src="/brand/ornamento-coroa.png"
@@ -100,37 +100,30 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
               {site.city} — {site.state} · Desde {site.since}
             </motion.p>
 
-            <h1 className="mt-7 font-display tracking-tight text-espresso">
+            <h1 className="mt-7 font-display tracking-tight text-espresso [@media(max-height:840px)]:mt-5">
               <span className="block overflow-hidden pb-[0.08em]">
                 <motion.span
                   variants={linha}
-                  className="block text-3xl leading-tight text-espresso-soft sm:text-4xl lg:text-[2.1rem] xl:text-[2.6rem] [@media(max-height:840px)]:xl:text-[2.1rem] 2xl:text-5xl [@media(max-height:840px)]:2xl:text-[2.4rem]"
+                  className="block text-balance text-3xl leading-[1.06] sm:text-4xl lg:text-[2.9rem] xl:text-[3.5rem] [@media(max-height:840px)]:xl:text-[2.9rem] 2xl:text-[4.2rem] [@media(max-height:840px)]:2xl:text-[3.4rem]"
                 >
                   Padaria e confeitaria no Centro de Petrópolis
-                </motion.span>
-              </span>
-              <span className="mt-1 block overflow-hidden pb-[0.12em]">
-                <motion.span
-                  variants={linha}
-                  className="block text-5xl italic leading-[0.98] text-ink sm:text-6xl lg:text-[3.3rem] xl:text-[4.2rem] [@media(max-height:840px)]:xl:text-[3.4rem] 2xl:text-7xl [@media(max-height:840px)]:2xl:text-[3.9rem]"
-                >
-                  há mais de {decadaDeCasa()} anos.
                 </motion.span>
               </span>
             </h1>
 
             <motion.p
               variants={rise}
-              className="mt-8 max-w-md text-xl leading-relaxed text-espresso-soft [@media(max-height:840px)]:mt-6"
+              className="mt-8 max-w-lg text-balance text-xl leading-relaxed text-espresso-soft [@media(max-height:840px)]:mt-6"
             >
-              Café da manhã desde as seis, almoço servido no salão todo dia e o
-          balcão de doces até a noite. Na Rua Washington Luiz, no Centro —
-          aberta todos os dias, das 6h às 22h.
+              Aberta desde as seis da manhã, com almoço de segunda a sábado.
+              <span className="mt-2 block">
+                Na Rua Washington Luiz, no Centro.
+              </span>
             </motion.p>
 
             <motion.ul
               variants={rise}
-              className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-sm text-espresso-soft"
+              className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-sm text-espresso-soft [@media(max-height:840px)]:mt-5"
             >
               <li className="flex items-center gap-2 whitespace-nowrap">
                 <Wheat
@@ -146,7 +139,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                 </span>
               </li>
               <li className="whitespace-nowrap">
-                Encomendas pelo telefone
+                Encomendas por telefone ou WhatsApp
               </li>
               <li className="whitespace-nowrap">
                 Delivery no <DeliveryLinks />
@@ -155,7 +148,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
 
             <motion.div
               variants={rise}
-              className="mt-10 flex flex-wrap items-center gap-4 [@media(max-height:840px)]:mt-7"
+              className="mt-10 flex flex-wrap items-center gap-4 [@media(max-height:840px)]:mt-6"
             >
               <a
                 href={site.phoneHref}
@@ -175,13 +168,6 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                 <span className="eyebrow">{site.instagramHandle}</span>
               </a>
             </motion.div>
-
-            <motion.p
-              variants={rise}
-              className="mt-10 text-sm tracking-wide text-espresso-soft/80 [@media(max-height:840px)]:mt-6"
-            >
-              {fullAddress}
-            </motion.p>
           </div>
 
           <motion.div variants={rise}>

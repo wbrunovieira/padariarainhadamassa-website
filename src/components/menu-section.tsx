@@ -106,7 +106,7 @@ export function MenuSection({
                     ease: EASE,
                     delay: reduce ? 0 : 0.14 + i * 0.04,
                   }}
-                  className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-espresso/12 py-4"
+                  className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-espresso/12 py-4"
                 >
                   <span className="font-display text-xl italic text-espresso sm:text-2xl">
                     {item.nome}
