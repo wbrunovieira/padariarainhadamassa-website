@@ -68,7 +68,22 @@ export function HeroCarousel() {
                 alt={foto.alt}
                 placeholder="blur"
                 quality={68}
-                priority={i === 0}
+                /*
+                 * `preload`, não `priority`: a doc do Next 16 instalado marca
+                 * `priority` como deprecado e aponta `preload` como o
+                 * substituto que mantém o mesmo comportamento (link de
+                 * preload no <head>).
+                 *
+                 * Tentei `loading="eager" + fetchPriority="high"`, que a doc
+                 * também sugere. A requisição de fato subiu de prioridade
+                 * Low para High — mas o LCP PIOROU: mediana de 3,52s para
+                 * 4,08s em 5 medições do Lighthouse. Faz sentido: em High a
+                 * foto passa a disputar banda com as fontes e o CSS, que
+                 * precisam chegar antes para a página conseguir pintar.
+                 * Prioridade alta demais para imagem de hero custa mais do
+                 * que rende.
+                 */
+                preload={i === 0}
                 sizes="(min-width: 1024px) 30rem, 92vw"
                 className="size-full object-cover"
               />
