@@ -79,7 +79,7 @@ export const semana: PratoDoDia[] = [
   {
     dia: 0,
     nome: "Domingo",
-    prato: "Frango assado a quilo",
-    detalhe: "Com maionese e salpicão",
+    prato: "Frango assado",
+    detalhe: "Com maionese e salpicão a quilo",
   },
 ];

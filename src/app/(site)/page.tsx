@@ -8,6 +8,7 @@ import { GallerySection } from "@/components/gallery-section";
 import { HeroSection } from "@/components/hero-section";
 import { LunchSection } from "@/components/lunch-section";
 import { OrdersSection } from "@/components/orders-section";
+import { RoastChickenSection } from "@/components/roast-chicken-section";
 import { LocationSection } from "@/components/location-section";
 import { acompanhamentos, diaEmPetropolis, fixos, semana } from "@/lib/almoco";
 import { getPlaceStats } from "@/lib/google-place";
@@ -22,7 +23,8 @@ const schema = {
   name: site.name,
   legalName: site.legalName,
   image: "https://padariarainhadamassa.com.br/brand/logo-rainha-da-massa.png",
-  telephone: "+552433022752",
+  // Deriva do phoneHref para o número não existir digitado em dois lugares.
+  telephone: site.phoneHref.replace("tel:", ""),
   email: site.email,
   priceRange: "R$",
   foundingDate: String(site.since),
@@ -116,6 +118,8 @@ export default async function Home() {
       <BreakfastSection />
 
       <LunchSection diaInicial={diaInicial} />
+
+      <RoastChickenSection />
 
       <ConfectionerySection />
 
