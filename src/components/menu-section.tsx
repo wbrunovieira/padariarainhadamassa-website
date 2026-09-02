@@ -16,6 +16,11 @@ type Props = {
   texto: ReactNode;
   itens: Item[];
   foto: StaticImageData;
+  /**
+   * Se vier, um vídeo em loop entra no lugar da foto — e a foto passa a ser
+   * o poster dele, o que aparece antes de o vídeo carregar.
+   */
+  video?: string;
   fotoAlt: string;
   fotoLegenda: string;
   /** true põe a foto à direita */
@@ -33,6 +38,7 @@ export function MenuSection({
   texto,
   itens,
   foto,
+  video,
   fotoAlt,
   fotoLegenda,
   invertido = false,
@@ -57,14 +63,33 @@ export function MenuSection({
             className={invertido ? "lg:order-2" : undefined}
           >
             <div className="group relative overflow-hidden rounded-b-3xl rounded-t-[6rem] border border-espresso/12 bg-cream-deep lg:rounded-t-[8rem]">
-              <Image
-                src={foto}
-                alt={fotoAlt}
-                placeholder="blur"
-                quality={68}
-                sizes="(min-width: 1024px) 44vw, 92vw"
-                className="aspect-[4/5] w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] sm:aspect-[5/4] lg:aspect-[4/5]"
-              />
+              {video ? (
+                /*
+                 * `autoPlay` só quando o sistema não pede menos movimento —
+                 * senão fica o poster parado, que é o primeiro quadro do
+                 * próprio loop, então ninguém percebe a diferença.
+                 */
+                <video
+                  src={video}
+                  poster={foto.src}
+                  autoPlay={!reduce}
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  aria-label={fotoAlt}
+                  className="aspect-[4/5] w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] sm:aspect-[5/4] lg:aspect-[4/5]"
+                />
+              ) : (
+                <Image
+                  src={foto}
+                  alt={fotoAlt}
+                  placeholder="blur"
+                  quality={68}
+                  sizes="(min-width: 1024px) 44vw, 92vw"
+                  className="aspect-[4/5] w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] sm:aspect-[5/4] lg:aspect-[4/5]"
+                />
+              )}
               <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent p-6 pt-20">
                 <span className="eyebrow text-cream">{fotoLegenda}</span>
               </span>

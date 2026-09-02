@@ -5,13 +5,9 @@ import Image from "next/image";
 import { MenuSection } from "@/components/menu-section";
 import { frangoAssado } from "@/lib/cardapio";
 import { site } from "@/lib/site";
-/*
- * FOTO PROVISÓRIA. A cliente vai enviar a foto do frango assado.
- * Esta é a do prato do dia (frango ensopado) — serve de lugar-guardado para
- * a seção não nascer quebrada, mas mostra outro prato. Ao trocar, atualize
- * também `fotoAlt` e `fotoLegenda`, que descrevem a imagem de hoje.
- */
-import fotoProvisoria from "@/assets/fotos/prato-do-dia.jpg";
+// Vídeo da rotisserie, enviado pela cliente em 02/09/2026. O JPG é o
+// primeiro quadro do próprio loop, e serve de poster.
+import posterFrango from "@/assets/fotos/frango-assado.jpg";
 
 export function RoastChickenSection() {
   return (
@@ -47,9 +43,10 @@ export function RoastChickenSection() {
         </>
       }
       itens={frangoAssado}
-      foto={fotoProvisoria}
-      fotoAlt="Prato servido no salão da padaria, com frango, polenta, arroz e couve refogada"
-      fotoLegenda="O almoço servido no salão"
+      foto={posterFrango}
+      video="/video/frango-assado.mp4"
+      fotoAlt="Frangos temperados girando nos espetos da rotisserie da padaria"
+      fotoLegenda="Os frangos na rotisserie"
       rodape={
         <div className="mt-10 rounded-2xl bg-espresso/[0.05] px-6 py-6">
           <p className="text-sm leading-relaxed text-espresso-soft/85">
