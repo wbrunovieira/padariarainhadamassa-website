@@ -18,15 +18,18 @@ export const perguntas: Pergunta[] = [
   {
     pergunta: "Vocês entregam?",
     resposta:
-      "Sim, pelo iFood e pelo 99Food — os dois links estão no rodapé desta página. Encomenda de bolo, torta e salgado é combinada pelo telefone e retirada na loja.",
+      "Sim, pelo iFood e pelo 99Food — os dois links estão no rodapé desta página. Encomenda de bolo, torta e salgado é combinada pelo telefone ou WhatsApp e retirada na loja.",
   },
   {
     pergunta: "Aceitam cartão?",
-    resposta: "Sim, cartão de crédito e débito.",
+    resposta:
+      "Sim, cartão de crédito e débito, e também a maioria dos vouchers de alimentação do mercado.",
   },
   {
-    pergunta: "Tem opção sem açúcar ou sem lactose?",
+    // Sem lactose saiu em 02/09/2026: a cliente confirmou que NÃO tem.
+    // Antes esta resposta dizia "sim" para as duas coisas.
+    pergunta: "Tem opção sem açúcar?",
     resposta:
-      "Sim. É uma das coisas que os clientes mais comentam nas avaliações. A variedade muda de um dia para o outro — vale perguntar no balcão.",
+      "Sim. A variedade muda de um dia para o outro — vale perguntar no balcão.",
   },
 ];

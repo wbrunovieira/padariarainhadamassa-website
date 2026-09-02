@@ -30,7 +30,7 @@ export function ConfectionerySection() {
         <p>
           Rainha da <em className="not-italic">Massa</em> é padaria e confeitaria
           desde {site.since}. O balcão de doces trabalha o dia inteiro: bolo para levar
-          na fatia, torta para a mesa, rocambole, sonho e folhado.
+          na fatia, torta para a mesa, rocambole, sonho e folhados.
         </p>
       }
       itens={confeitaria}

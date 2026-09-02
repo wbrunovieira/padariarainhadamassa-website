@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Wheat, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { fotos } from "@/lib/fotos";
+import { site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -51,7 +52,7 @@ export function GallerySection() {
           </p>
           <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-espresso sm:text-5xl lg:text-6xl">
             Fotos de um dia qualquer
-            <span className="block italic text-ink">na Washington Luiz.</span>
+            <span className="block italic text-ink">na {site.shortName}.</span>
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-espresso-soft">
             Pão francês saindo do forno, o almoço do dia, os doces do balcão e a

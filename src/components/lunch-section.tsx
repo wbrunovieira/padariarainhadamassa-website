@@ -42,7 +42,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
         <div className="max-w-3xl">
           <motion.p {...reveal()} className="eyebrow flex items-center gap-2 text-gold">
             <UtensilsCrossed className="size-4" strokeWidth={1.6} aria-hidden />
-            Almoço · todos os dias
+            Almoço · de segunda a sábado
           </motion.p>
 
           <motion.h2

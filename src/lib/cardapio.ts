@@ -1,9 +1,15 @@
 /**
  * Itens do café da manhã, da confeitaria e da conveniência.
  *
- * `cafeDaManha` e `maisNoCardapio` saem do cardápio oficial que o cliente
- * passou em 27/08/2026 — docs/cardapio/cardapio-rainha-da-massa.pdf.
+ * `maisNoCardapio` sai do cardápio oficial que o cliente passou em
+ * 27/08/2026 — docs/cardapio/cardapio-rainha-da-massa.pdf.
  * Sem preços por decisão do cliente.
+ *
+ * `cafeDaManha` deixou de ser recorte só do PDF: em 02/09/2026 eram seis
+ * itens de pão. Os pães viraram uma linha só, com as variações na `nota` e
+ * reticências para indicar que há mais no balcão, e entraram salgados, bolos
+ * e pizza. Pizza foi confirmada pela cliente nessa data, depois de ter sido
+ * removida do site por falta de confirmação.
  *
  * `confeitaria` e `tambemTem` ainda vêm das fotos, dos posts e das
  * avaliações. PENDENTE: confirmar com o cliente.
@@ -12,12 +18,10 @@
 export type Item = { nome: string; nota?: string };
 
 export const cafeDaManha: Item[] = [
-  { nome: "Pão com manteiga" },
-  { nome: "Pão na chapa" },
-  { nome: "Pão com ovo" },
-  { nome: "Pão com ovo e queijo" },
-  { nome: "Pão com polenguinho" },
-  { nome: "Pão de queijo" },
+  { nome: "Pães", nota: "Com manteiga, na chapa, com ovo…" },
+  { nome: "Salgados diversos" },
+  { nome: "Bolos" },
+  { nome: "Pizza" },
 ];
 
 /**
@@ -34,10 +38,24 @@ export const maisNoCardapio = [
   "Sucos naturais e vitaminas",
 ];
 
+/**
+ * O frango assado de domingo. Só o que a cliente confirmou em 02/09/2026:
+ * frango assado, com maionese e salpicão vendidos a quilo. O frango NÃO é
+ * a quilo — foi a correção dela. Nada sobre tempero, forno ou modo de
+ * preparo entra aqui sem ela dizer: "assamos frango e pernil" já foi uma
+ * afirmação inventada que precisou ser removida do site (ver
+ * docs/fatos-confirmados.md).
+ */
+export const frangoAssado: Item[] = [
+  { nome: "Frango assado" },
+  { nome: "Maionese", nota: "A quilo" },
+  { nome: "Salpicão", nota: "A quilo" },
+];
+
 export const confeitaria: Item[] = [
   { nome: "Bolos", nota: "Chocolate, fubá e o que o dia pedir" },
   { nome: "Tortas", nota: "Doces e salgadas, na fatia ou inteiras" },
-  { nome: "Rocambole", nota: "De goiabada com coco" },
+  { nome: "Rocambole", nota: "De goiabada com coco ou de doce de leite" },
   { nome: "Sonhos e folhados", nota: "Do balcão de doces" },
 ];
 
@@ -57,5 +75,4 @@ export const tambemTem: Item[] = [
   { nome: "Bebidas geladas" },
   { nome: "Mercearia do dia a dia" },
   { nome: "Opções sem açúcar" },
-  { nome: "Opções sem lactose" },
 ];

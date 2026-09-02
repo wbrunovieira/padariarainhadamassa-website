@@ -5,16 +5,14 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { DeliveryLinks } from "@/components/delivery-links";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
-import { anosDeCasa, mencoes, site } from "@/lib/site";
+import { oQueTem, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function AboutSection({ stats }: { stats: PlaceStats }) {
   const reduce = useReducedMotion();
-  const anos = anosDeCasa();
 
   const numeros = [
-    { valor: `${anos}`, unidade: "anos", legenda: `Abrimos em ${site.since}` },
     {
       valor: formatRating(stats.rating),
       unidade: "estrelas",
@@ -50,8 +48,10 @@ export function AboutSection({ stats }: { stats: PlaceStats }) {
               {...reveal(0.06)}
               className="mt-6 max-w-2xl font-display text-4xl leading-[1.02] tracking-tight text-espresso sm:text-5xl lg:text-6xl"
             >
-              Uma padaria de bairro no Centro de Petrópolis,
-              <span className="block italic text-ink">que abre todo dia às seis.</span>
+              Do pão das seis ao prato do dia,
+              <span className="block italic text-ink">
+                sete dias por semana, no Centro de Petrópolis.
+              </span>
             </motion.h2>
 
             <motion.div
@@ -60,12 +60,13 @@ export function AboutSection({ stats }: { stats: PlaceStats }) {
             >
               <p>
                 A Rainha da Massa abriu as portas em {site.since}, na{" "}
-                {site.street}, e desde então funciona todos os dias — do café da
-                manhã até a noite.
+                {site.street}, e desde então funciona todos os dias, das{" "}
+                {site.hoursShort} — do café da manhã até a noite.
               </p>
               <p>
                 O balcão junta as duas metades do nome: a padaria de todo dia e
-                a confeitaria das ocasiões. Encomendas saem pelo telefone e o
+                a confeitaria das ocasiões. Encomendas saem pelo telefone ou
+                WhatsApp, e o
                 delivery corre pelo <DeliveryLinks />.
               </p>
             </motion.div>
@@ -77,10 +78,10 @@ export function AboutSection({ stats }: { stats: PlaceStats }) {
                   strokeWidth={1.6}
                   aria-hidden
                 />
-                O que os clientes mais citam nas avaliações
+                O que você encontra na {site.name}:
               </p>
               <ul className="mt-5 flex flex-wrap gap-2.5">
-                {mencoes.map((item) => (
+                {oQueTem.map((item) => (
                   <li
                     key={item}
                     className="rounded-full border border-espresso/20 px-4 py-2 text-sm tracking-wide text-espresso-soft transition-colors duration-300 hover:border-gold hover:text-espresso"

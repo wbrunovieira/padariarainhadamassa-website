@@ -45,11 +45,42 @@ export const site = {
     },
     { nome: "99Food", url: "https://oia.99app.com/dlp9/dI57qr" },
   ],
-  // PENDENTE: cliente não divulga número de WhatsApp em nenhum canal.
-  whatsapp: null as string | null,
+  /**
+   * Confirmado pela cliente em 02/09/2026: é o MESMO número do telefone
+   * fixo, com WhatsApp. Fica num campo próprio mesmo assim — se um dia ela
+   * usar um celular separado, muda aqui e nada mais precisa saber disso.
+   */
+  whatsapp: "+55 24 3302-2752" as string | null,
 
   rating: { value: 4.5, count: 168, source: "Google" },
 } as const;
+
+/**
+ * Link do WhatsApp, ou `null` enquanto não houver número.
+ *
+ * O `wa.me` só abre conversa com o número internacional, em dígitos puros:
+ * 55 + DDD + número. Preencher `site.whatsapp` em qualquer formato basta —
+ * a pontuação é descartada e o 55 é posto quando falta.
+ *
+ * Celular brasileiro tem 11 dígitos com DDD (10 nos fixos), e 13 com o DDI.
+ * Por isso o corte em 11: acima disso o número já veio com o país, e
+ * prefixar de novo geraria "5555…", que o WhatsApp rejeita em silêncio —
+ * o link abre e diz que o número é inválido, sem erro nenhum no console.
+ */
+function linkWhatsapp(numero: string, texto: string) {
+  const digitos = numero.replace(/\D/g, "");
+  const comDdi = digitos.length > 11 ? digitos : `55${digitos}`;
+  return `https://wa.me/${comDdi}?text=${encodeURIComponent(texto)}`;
+}
+
+/** Link do WhatsApp com a mensagem já escrita, ou `null` sem número. */
+export function whatsappCom(texto: string) {
+  return site.whatsapp ? linkWhatsapp(site.whatsapp, texto) : null;
+}
+
+export const whatsappUrl = whatsappCom(
+  "Olá! Gostaria de fazer uma encomenda.",
+);
 
 /** "iFood e 99Food" — para usar no meio de uma frase. */
 export const deliveryTexto = site.delivery
@@ -76,17 +107,24 @@ export const googlePlaceUrl = "https://www.google.com/maps?cid=97619516823659847
 export const googleReviewsUrl = `${googlePlaceUrl}#lrd=0x9908161e97f039:0x87796b5585f38ffd,1`;
 
 /**
- * O que os clientes mais citam nas avaliações públicas (Google e
- * Restaurant Guru). São menções deles, não um cardápio oficial.
+ * O que a casa oferece, uma palavra cada.
+ *
+ * ATENÇÃO: antes isto era "o que os clientes mais citam nas avaliações" —
+ * uma lista de terceiros, com o hedge embutido no rótulo. Agora o site diz
+ * na primeira pessoa "o que você encontra aqui", então cada item virou
+ * afirmação da padaria. O que entrar nesta lista precisa estar em
+ * `docs/fatos-confirmados.md`.
  */
-export const mencoes = [
+export const oQueTem = [
   "Café da manhã",
+  "Almoço",
   "Pães",
   "Bolos",
   "Tortas",
   "Sanduíches",
   "Sem açúcar",
-  "Sem lactose",
+  "Mercearia",
+  "Tabacaria",
 ];
 
 export type NavItem = { label: string; href: string; hint: string };

@@ -25,17 +25,20 @@ export function BreakfastSection() {
       }
       titulo={
         <>
-          Café da manhã desde as seis,
+          Café da manhã,
           <span className="block italic text-ink">com o pão saindo do forno.</span>
         </>
       }
       texto={
         <>
           <p>
-            É o que a cidade mais lembra da Rainha da Massa: a fila da manhã, o
-            pão quente e o café na xícara. E o café da manhã não tem hora para
-            acabar: pão na chapa, pão com ovo e pão de queijo saem o dia todo,
-            até a noite.
+            Uma padaria casual, com variedade, qualidade nos produtos e
+            excelente atendimento.
+          </p>
+          <p className="mt-5">
+            E o café da manhã não tem hora para acabar: pão na chapa, pão de
+            queijo, salgados diversos, bolos e pizza saem o dia todo, até a
+            noite.
           </p>
           <p className="mt-5">
             <OpenNow className="text-base text-espresso" />

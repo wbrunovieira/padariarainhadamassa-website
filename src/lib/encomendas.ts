@@ -12,6 +12,10 @@
  *
  * PENDENTE: pedir à cliente o que ela realmente aceita por encomenda,
  * o prazo mínimo, se pede sinal, e se salgado sai por cento.
+ *
+ * Em 02/09/2026 entrou "salgados mini para festa e confraternização".
+ * O tamanho mini é afirmação nova, ainda sem lastro nos documentos —
+ * confirmar junto com o resto.
  */
 export const encomendas = [
   {
@@ -22,6 +26,6 @@ export const encomendas = [
   {
     titulo: "Salgados",
     texto:
-      "Coxinha, pastel, empada e o que mais sair do forno naquele dia, em quantidade combinada.",
+      "Salgados mini para festa, confraternização, aniversário de escritório — coxinha, pastel, empada e o que mais a bandeja pedir, em quantidade combinada.",
   },
 ];

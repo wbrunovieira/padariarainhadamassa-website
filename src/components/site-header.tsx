@@ -21,7 +21,7 @@ const TICKER = [
   `Padaria e confeitaria desde ${site.since}`,
   `${site.rating.value} estrelas com ${site.rating.count} avaliações no ${site.rating.source}`,
   `${site.street} · ${site.city}/${site.state}`,
-  `Encomendas pelo telefone · Delivery no ${deliveryTexto}`,
+  `Encomendas pelo telefone ou WhatsApp · Delivery no ${deliveryTexto}`,
 ];
 
 export function SiteHeader() {

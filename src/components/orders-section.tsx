@@ -4,7 +4,8 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 
 import { encomendas } from "@/lib/encomendas";
-import { site } from "@/lib/site";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
+import { site, whatsappUrl } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -41,7 +42,7 @@ export function OrdersSection() {
               {...reveal(0.06)}
               className="mt-6 font-display text-4xl leading-[1.03] tracking-tight text-espresso sm:text-5xl lg:text-6xl"
             >
-              Bolo, torta e salgado:
+              Bolos, tortas e salgados:
               <span className="block italic text-ink">a encomenda começa por um telefonema.</span>
             </motion.h2>
 
@@ -49,21 +50,37 @@ export function OrdersSection() {
               {...reveal(0.12)}
               className="mt-8 max-w-md text-lg leading-relaxed text-espresso-soft"
             >
-              Combine o que precisa pelo telefone e retire na loja, na {site.street}.
+              Combine o que precisa pelo telefone ou WhatsApp e retire na loja, na{" "}
+              {site.street}.
               Quanto antes avisar, melhor — véspera de festa e fim de ano enchem o
               forno rápido.
             </motion.p>
 
-            <motion.a
+            <motion.div
               {...reveal(0.18)}
-              href={site.phoneHref}
-              className="group mt-10 inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 text-cream transition-colors duration-300 hover:bg-ink"
+              className="mt-10 flex flex-wrap items-center gap-3"
             >
-              <span className="eyebrow">Encomendar {site.phone}</span>
-              <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
-                →
-              </span>
-            </motion.a>
+              <a
+                href={site.phoneHref}
+                className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-espresso px-6 py-4 text-cream transition-colors duration-300 hover:bg-ink"
+              >
+                <PhoneIcon className="size-4 shrink-0" />
+                <span className="eyebrow">Ligar {site.phone}</span>
+              </a>
+
+              {/* Só aparece quando `site.whatsapp` tiver número. */}
+              {whatsappUrl && (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full border border-espresso/25 px-6 py-4 text-espresso transition-colors duration-300 hover:border-espresso hover:bg-espresso/5"
+                >
+                  <WhatsAppIcon className="size-4 shrink-0" />
+                  <span className="eyebrow">WhatsApp</span>
+                </a>
+              )}
+            </motion.div>
           </div>
 
           <ul className="flex flex-col">
@@ -100,5 +117,18 @@ export function OrdersSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function PhoneIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      className={className}
+    >
+      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" />
+    </svg>
   );
 }
