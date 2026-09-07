@@ -13,18 +13,28 @@ import {
   useSpring,
 } from "motion/react";
 
+import { formatRating, type PlaceStats } from "@/lib/google-place";
 import { deliveryTexto, navigation, site } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const TICKER = [
+/*
+ * Recebe `stats` em vez de ler a constante `site.rating`: o herói já mostra o
+ * número vindo de `getPlaceStats()`, e com duas fontes os dois podiam sair
+ * diferentes na mesma tela.
+ *
+ * E `formatRating` em vez de interpolar direto — cru saía "4.5 estrelas", com
+ * ponto, num site em português.
+ */
+const ticker = (stats: PlaceStats) => [
   `Padaria e confeitaria desde ${site.since}`,
-  `${site.rating.value} estrelas com ${site.rating.count} avaliações no ${site.rating.source}`,
+  `${formatRating(stats.rating)} estrelas com ${stats.count} avaliações no ${site.rating.source}`,
   `${site.street} · ${site.city}/${site.state}`,
   `Encomendas pelo telefone ou WhatsApp · Delivery no ${deliveryTexto}`,
 ];
 
-export function SiteHeader() {
+export function SiteHeader({ stats }: { stats: PlaceStats }) {
+  const TICKER = ticker(stats);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const ativo = useSecaoAtiva();

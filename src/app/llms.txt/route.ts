@@ -1,6 +1,7 @@
 import { cafeDaManha, confeitaria, maisNoCardapio, tambemTem } from "@/lib/cardapio";
 import { encomendas } from "@/lib/encomendas";
 import { fixos, semana } from "@/lib/almoco";
+import { formatRating } from "@/lib/google-place";
 import { hosts, siteNoAr } from "@/lib/hosts";
 import { anosDeCasa, deliveryTexto, fullAddress, site } from "@/lib/site";
 
@@ -28,7 +29,7 @@ export async function GET() {
   const linhas = [
     `# ${site.name}`,
     "",
-    `> Padaria e confeitaria de bairro em ${site.city}/${site.state}, aberta desde ${site.since} — ${anosDeCasa()} anos. Café da manhã, almoço servido no salão, confeitaria e encomendas. ${site.rating.value.toString().replace(".", ",")} estrelas com ${site.rating.count} avaliações no Google.`,
+    `> Padaria e confeitaria de bairro em ${site.city}/${site.state}, aberta desde ${site.since} — ${anosDeCasa()} anos. Café da manhã, almoço servido no salão, confeitaria e encomendas. ${formatRating(site.rating.value)} estrelas com ${site.rating.count} avaliações no Google.`,
     "",
     "## Onde e quando",
     "",

@@ -34,7 +34,14 @@ export const metadata: Metadata = {
 
 /** Preço em Bodoni romana, com o "R$" fora do caminho. */
 function Preco({ valor, grande = false }: { valor: number; grande?: boolean }) {
-  const [moeda, numero] = formatarPreco(valor).split(" ");
+  /*
+   * `/\s/` e não o NBSP literal: o separador que o Intl põe entre símbolo e
+   * número depende da versão do ICU — era espaço comum, virou NBSP (U+00A0)
+   * no ICU 72, e nada garante que fique assim. Amarrado a um caractere só, o
+   * dia em que mudar o preço inteiro cai dentro do span minúsculo, sem erro
+   * nenhum. `\s` casa os dois.
+   */
+  const [moeda, numero] = formatarPreco(valor).split(/\s/);
   return (
     <span
       className={`shrink-0 font-display tabular-nums not-italic text-espresso ${grande ? "text-[1.5rem]" : "text-[1.15rem]"}`}

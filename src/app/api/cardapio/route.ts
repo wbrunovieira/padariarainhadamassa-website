@@ -7,6 +7,7 @@ import {
   lerCardapio,
   type Cardapio,
 } from "@/lib/cardapio-digital";
+import { fotosDisponiveis } from "@/lib/cardapio-tipos";
 
 export async function GET() {
   if (!(await sessaoValida())) {
@@ -33,8 +34,15 @@ export async function PUT(req: Request) {
       id: String(s.id || `secao-${i}`).slice(0, 60),
       titulo: String(s.titulo ?? "").slice(0, 80),
       descricao: String(s.descricao ?? "").slice(0, 240),
-      // só caminho interno: nada de URL externa entrando por aqui
-      foto: /^\/[\w./-]*$/.test(String(s.foto ?? "")) ? String(s.foto).slice(0, 160) : "",
+      /*
+       * Validado contra a lista fechada que o /admin oferece, e não por
+       * regex. O regex anterior dizia bloquear URL externa e não bloqueava:
+       * `//evil.com/x.jpg` (protocolo-relativo) e `/../../etc/passwd`
+       * passavam nele. Como a origem é um <select> com opções fixas, comparar
+       * com a fonte de verdade é mais simples E mais seguro que qualquer
+       * expressão — nada fora da lista entra, por construção.
+       */
+      foto: fotosDisponiveis.some((f) => f.valor === s.foto) ? String(s.foto) : "",
       horario: {
         rotulo: String(s.horario?.rotulo ?? "").slice(0, 40),
         de: /^\d{2}:\d{2}$/.test(String(s.horario?.de ?? "")) ? String(s.horario!.de) : "",

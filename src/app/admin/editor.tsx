@@ -95,20 +95,31 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
   async function salvar() {
     setEstado("salvando");
     setMsg(null);
-    const r = await fetch("/api/cardapio", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(c),
-    });
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok) {
+    /*
+     * O try existe para o caso mais provável: editar do celular, no balcão,
+     * e a rede cair no meio. Sem ele a promise rejeita, nenhum setEstado
+     * roda, o botão fica preso em "Salvando…" e a única saída é recarregar
+     * — perdendo tudo o que foi digitado.
+     */
+    try {
+      const r = await fetch("/api/cardapio", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(c),
+      });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        setEstado("erro");
+        setMsg(d.erro ?? "Não foi possível salvar.");
+        return;
+      }
+      setEstado("salvo");
+      setMsg("Cardápio salvo. Já está no ar.");
+      setTimeout(() => setEstado("parado"), 3000);
+    } catch {
       setEstado("erro");
-      setMsg(d.erro ?? "Não foi possível salvar.");
-      return;
+      setMsg("Sem conexão. O que você editou continua aqui — tente salvar de novo.");
     }
-    setEstado("salvo");
-    setMsg("Cardápio salvo. Já está no ar.");
-    setTimeout(() => setEstado("parado"), 3000);
   }
 
   async function sair() {

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { getPlaceStats } from "@/lib/google-place";
 import { navigationCompleta, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,10 +12,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function NotFound() {
+export default async function NotFound() {
+  const stats = await getPlaceStats();
+
   return (
     <>
-      <SiteHeader />
+      <SiteHeader stats={stats} />
 
       <main className="grain relative flex flex-1 items-center overflow-hidden bg-gradient-to-b from-cream-light via-cream to-cream-deep/50">
         <Image

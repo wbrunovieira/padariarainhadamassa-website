@@ -15,18 +15,24 @@ export function Login() {
     e.preventDefault();
     setEnviando(true);
     setErro(null);
-    const r = await fetch("/api/admin/sessao", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ senha }),
-    });
-    setEnviando(false);
-    if (!r.ok) {
-      const d = await r.json().catch(() => ({}));
-      setErro(d.erro ?? "Não foi possível entrar.");
-      return;
+    // sem o catch, rede caindo deixava o botão preso em "Entrando…" sem dizer nada
+    try {
+      const r = await fetch("/api/admin/sessao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ senha }),
+      });
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        setErro(d.erro ?? "Não foi possível entrar.");
+        return;
+      }
+      router.refresh();
+    } catch {
+      setErro("Sem conexão. Tente de novo.");
+    } finally {
+      setEnviando(false);
     }
-    router.refresh();
   }
 
   return (
