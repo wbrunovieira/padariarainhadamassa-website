@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, GripVertical, Plus, Trash2 } from "lucide-react";
 
@@ -23,6 +23,16 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
   const [aberta, setAberta] = useState<string | null>(inicial.secoes[0]?.id ?? null);
   const [estado, setEstado] = useState<"parado" | "salvando" | "salvo" | "erro">("parado");
   const [msg, setMsg] = useState<string | null>(null);
+  /*
+   * Guarda o timer que devolve o botão a "parado" depois de salvar. Sem
+   * cancelar: salvar duas vezes em menos de 3s fazia o timer da primeira
+   * disparar no meio da segunda, reabilitando o botão durante o PUT — e
+   * permitindo um envio duplicado.
+   */
+  const timerVolta = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (timerVolta.current) clearTimeout(timerVolta.current);
+  }, []);
 
   function mudarSecao(id: string, muda: Partial<SecaoCardapio>) {
     setC((v) => ({
@@ -93,6 +103,7 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
   }
 
   async function salvar() {
+    if (timerVolta.current) clearTimeout(timerVolta.current);
     setEstado("salvando");
     setMsg(null);
     /*
@@ -115,7 +126,7 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
       }
       setEstado("salvo");
       setMsg("Cardápio salvo. Já está no ar.");
-      setTimeout(() => setEstado("parado"), 3000);
+      timerVolta.current = setTimeout(() => setEstado("parado"), 3000);
     } catch {
       setEstado("erro");
       setMsg("Sem conexão. O que você editou continua aqui — tente salvar de novo.");
@@ -123,7 +134,15 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
   }
 
   async function sair() {
-    await fetch("/api/admin/sessao", { method: "DELETE" });
+    // mesmo motivo do try em salvar(): sem ele, rede caindo deixa o clique
+    // sem efeito e sem aviso nenhum
+    try {
+      await fetch("/api/admin/sessao", { method: "DELETE" });
+    } catch {
+      setEstado("erro");
+      setMsg("Sem conexão. Não foi possível sair agora.");
+      return;
+    }
     router.refresh();
   }
 

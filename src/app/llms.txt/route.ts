@@ -1,7 +1,7 @@
 import { cafeDaManha, confeitaria, maisNoCardapio, tambemTem } from "@/lib/cardapio";
 import { encomendas } from "@/lib/encomendas";
 import { fixos, semana } from "@/lib/almoco";
-import { formatRating } from "@/lib/google-place";
+import { formatRating, getPlaceStats } from "@/lib/google-place";
 import { hosts, siteNoAr } from "@/lib/hosts";
 import { anosDeCasa, deliveryTexto, fullAddress, site } from "@/lib/site";
 
@@ -26,10 +26,18 @@ export async function GET() {
     });
   }
 
+  /*
+   * Mesma fonte que o cabeçalho e o herói usam. Antes daqui saía a
+   * constante `site.rating`, então este arquivo — que existe para ser lido
+   * por assistente de IA — podia afirmar uma nota diferente da que o site
+   * mostrava na mesma hora.
+   */
+  const stats = await getPlaceStats();
+
   const linhas = [
     `# ${site.name}`,
     "",
-    `> Padaria e confeitaria de bairro em ${site.city}/${site.state}, aberta desde ${site.since} — ${anosDeCasa()} anos. Café da manhã, almoço servido no salão, confeitaria e encomendas. ${formatRating(site.rating.value)} estrelas com ${site.rating.count} avaliações no Google.`,
+    `> Padaria e confeitaria de bairro em ${site.city}/${site.state}, aberta desde ${site.since} — ${anosDeCasa()} anos. Café da manhã, almoço servido no salão, confeitaria e encomendas. ${formatRating(stats.rating)} estrelas com ${stats.count} avaliações no Google.`,
     "",
     "## Onde e quando",
     "",

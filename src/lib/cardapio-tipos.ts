@@ -34,7 +34,18 @@ export type SecaoCardapio = {
   itens: ItemCardapio[];
 };
 
-/** Fotos disponíveis para as seções, oferecidas no /admin. */
+/**
+ * Fotos disponíveis para as seções, oferecidas no /admin.
+ *
+ * ATENÇÃO: esta lista também **valida** o que a API aceita gravar
+ * (`api/cardapio/route.ts`). O `valor` é o que fica salvo no blob.
+ *
+ * Renomear ou remover um `valor` daqui não migra o que já está gravado: a
+ * seção continua mostrando a foto no /cardapio, mas o <select> do editor
+ * não acha a opção e exibe "Sem foto" — e o próximo save apaga o campo em
+ * silêncio, mesmo sem ninguém ter tocado nele. Ao mexer aqui, migre o blob
+ * junto.
+ */
 export const fotosDisponiveis = [
   { valor: "", rotulo: "Sem foto" },
   { valor: "/cardapio/cafe-da-manha.jpg", rotulo: "Pães franceses" },
