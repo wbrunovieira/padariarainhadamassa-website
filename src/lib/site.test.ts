@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { linkWhatsapp, whatsappCom } from "@/lib/site";
+import { anosDeCasa, decadaDeCasa, linkWhatsapp, whatsappCom } from "@/lib/site";
 
 /**
  * O corte em 11 dígitos tem 8 linhas de comentário em site.ts explicando que
@@ -56,5 +56,47 @@ describe("whatsappCom", () => {
    */
   it("monta um link com país a partir do número configurado", () => {
     expect(whatsappCom("oi")).toMatch(/^https:\/\/wa\.me\/55\d{10,11}\?text=/);
+  });
+});
+
+/**
+ * `decadaDeCasa` sai literalmente na página — "há mais de vinte anos" no
+ * herói e "vinte anos de balcão" na prova social. É por extenso de propósito,
+ * e o `?? String(d)` do final é o que estraga isso em silêncio: devolve o
+ * número, e a frase vira "há mais de 20 anos" no meio de um texto que evita
+ * algarismo.
+ */
+describe("decadaDeCasa", () => {
+  const em = (ano: number) => new Date(Date.UTC(ano, 5, 15));
+
+  it("conta os anos a partir da abertura", () => {
+    expect(anosDeCasa(em(2026))).toBe(22);
+    expect(anosDeCasa(em(2034))).toBe(30);
+  });
+
+  it("arredonda para a dezena de baixo, por extenso", () => {
+    expect(decadaDeCasa(em(2026))).toBe("vinte");
+    expect(decadaDeCasa(em(2033))).toBe("vinte");
+    expect(decadaDeCasa(em(2034))).toBe("trinta");
+  });
+
+  it("cobre a dezena de 10, que faltava na tabela", () => {
+    /*
+     * Em 2020 a casa tinha 16 anos -> dezena 10. Sem a chave `10` no mapa, o
+     * `?? String(d)` devolvia "10" e a frase virava "há mais de 10 anos" no
+     * meio de um texto que evita algarismo.
+     *
+     * Hoje é inalcançável pelo relógio (a casa tem 22 e o número só sobe),
+     * mas alcançável pelo parâmetro — e vira alcançável de verdade no dia em
+     * que alguém corrigir `site.since`.
+     */
+    expect(decadaDeCasa(em(2020))).toBe("dez");
+  });
+
+  it("nunca devolve algarismo dentro da faixa que a casa vai viver", () => {
+    // de hoje até 2094: nada pode sair como número
+    for (let ano = 2026; ano <= 2094; ano++) {
+      expect(decadaDeCasa(em(ano))).not.toMatch(/\d/);
+    }
   });
 });

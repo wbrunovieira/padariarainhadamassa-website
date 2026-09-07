@@ -166,6 +166,11 @@ export function anosDeCasa(agora = new Date()) {
 }
 
 const dezenaPorExtenso: Record<number, string> = {
+  // O 10 fecha o buraco de 15-19 anos, que imprimia "há mais de 10 anos" —
+  // dígito no meio de uma frase por extenso. Hoje é inalcançável (a casa tem
+  // 22 anos e o número só sobe), mas vira alcançável no dia em que alguém
+  // corrigir `site.since`.
+  10: "dez",
   20: "vinte",
   30: "trinta",
   40: "quarenta",

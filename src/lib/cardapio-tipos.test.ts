@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatarPreco, secaoDeAgora } from "@/lib/cardapio-tipos";
+import { ehPratoDeHoje, formatarPreco, secaoDeAgora } from "@/lib/cardapio-tipos";
 import type { SecaoCardapio } from "@/lib/cardapio-tipos";
 
 /**
@@ -67,5 +67,46 @@ describe("secaoDeAgora", () => {
   it("fora de qualquer faixa devolve null", () => {
     expect(secaoDeAgora(secoes, as(5, 59))).toBeNull();
     expect(secaoDeAgora(secoes, as(23))).toBeNull();
+  });
+});
+
+/**
+ * `ehPratoDeHoje` destaca o prato do dia comparando o começo do nome com o
+ * dia da semana. Duas armadilhas empilhadas:
+ *
+ * 1. O mesmo `-feira` de `diaDaSemana` — "segunda-feira" nunca casaria com
+ *    um nome que começa com "Segunda ·".
+ * 2. O separador é o PONTO MÉDIO "·" (U+00B7), digitado pela cliente no
+ *    /admin. Um hífen no lugar apaga o destaque para sempre, sem erro nenhum
+ *    em lugar nenhum — o prato do dia simplesmente deixa de aparecer marcado.
+ */
+describe("ehPratoDeHoje", () => {
+  // 9/9/2026 é uma quarta-feira em Petrópolis
+  const quarta = new Date(Date.UTC(2026, 8, 9, 15, 0));
+
+  it("casa o dia certo, apesar do '-feira'", () => {
+    expect(ehPratoDeHoje("Quarta · Carne assada", quarta)).toBe(true);
+  });
+
+  it("não casa outro dia", () => {
+    expect(ehPratoDeHoje("Terça · Carré", quarta)).toBe(false);
+    expect(ehPratoDeHoje("Domingo · Frango assado", quarta)).toBe(false);
+  });
+
+  it("ignora a caixa do que a cliente digitou", () => {
+    expect(ehPratoDeHoje("QUARTA · Carne assada", quarta)).toBe(true);
+    expect(ehPratoDeHoje("quarta · carne assada", quarta)).toBe(true);
+  });
+
+  it("hífen no lugar do ponto médio NÃO casa — é a falha silenciosa", () => {
+    expect(ehPratoDeHoje("Quarta - Carne assada", quarta)).toBe(false);
+    expect(ehPratoDeHoje("Quarta: Carne assada", quarta)).toBe(false);
+  });
+
+  it("sábado e domingo, que não têm '-feira', também casam", () => {
+    const sabado = new Date(Date.UTC(2026, 8, 12, 15, 0));
+    const domingo = new Date(Date.UTC(2026, 8, 13, 15, 0));
+    expect(ehPratoDeHoje("Sábado · Tilápia", sabado)).toBe(true);
+    expect(ehPratoDeHoje("Domingo · Frango assado", domingo)).toBe(true);
   });
 });
