@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 import { MenuSection } from "@/components/menu-section";

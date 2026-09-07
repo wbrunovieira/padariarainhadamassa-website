@@ -4,17 +4,9 @@ import { sessaoValida } from "@/lib/admin-auth";
 import {
   armazenamento,
   gravarCardapio,
-  lerCardapio,
   type Cardapio,
 } from "@/lib/cardapio-digital";
 import { fotosDisponiveis } from "@/lib/cardapio-tipos";
-
-export async function GET() {
-  if (!(await sessaoValida())) {
-    return NextResponse.json({ erro: "Não autorizado." }, { status: 401 });
-  }
-  return NextResponse.json(await lerCardapio());
-}
 
 export async function PUT(req: Request) {
   if (!(await sessaoValida())) {

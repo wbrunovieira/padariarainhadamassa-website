@@ -1,5 +1,5 @@
 import { minutosDoDia } from "@/lib/agora";
-import { expediente, site } from "./site";
+import { expediente } from "./site";
 
 export type Estado = {
   aberto: boolean;
@@ -33,4 +33,3 @@ export function estadoAgora(agora = new Date()): Estado {
   };
 }
 
-export const horarioTexto = site.hours;

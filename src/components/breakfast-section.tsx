@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 import { MenuSection } from "@/components/menu-section";
@@ -47,7 +45,12 @@ export function BreakfastSection() {
       }
       itens={cafeDaManha}
       foto={paesFranceses}
-      fotoAlt="Cesta cheia de pães franceses recém-saídos do forno, segurada por um funcionário da padaria"
+      /*
+       * Mesmo texto do alt desta foto em fotos.ts. Antes divergia, e a versão
+       * daqui afirmava "recém-saídos do forno" — isso é conteúdo, não
+       * descrição de imagem, e ninguém verificou. Alt descreve o que se vê.
+       */
+      fotoAlt="Funcionário com o brasão bordado na camiseta segurando uma cesta cheia de pães franceses"
       fotoLegenda="A fornada de pão francês"
       rodape={
         <div className="mt-10 rounded-2xl bg-espresso/[0.05] px-6 py-6">

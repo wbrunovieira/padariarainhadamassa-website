@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronDown, GripVertical, Plus, Trash2 } from "lucide-react";
+import { ChevronDown, Plus, Trash2 } from "lucide-react";
 
 import {
   fotosDisponiveis,
@@ -19,7 +19,7 @@ const idNovo = (p: string) => `${p}-${Math.random().toString(36).slice(2, 8)}`;
 
 export function Editor({ inicial }: { inicial: Cardapio }) {
   const router = useRouter();
-  const [c, setC] = useState<Cardapio>(inicial);
+  const [cardapio, setCardapio] = useState<Cardapio>(inicial);
   const [aberta, setAberta] = useState<string | null>(inicial.secoes[0]?.id ?? null);
   const [estado, setEstado] = useState<"parado" | "salvando" | "salvo" | "erro">("parado");
   const [msg, setMsg] = useState<string | null>(null);
@@ -35,16 +35,16 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
   }, []);
 
   function mudarSecao(id: string, muda: Partial<SecaoCardapio>) {
-    setC((v) => ({
-      ...v,
-      secoes: v.secoes.map((s) => (s.id === id ? { ...s, ...muda } : s)),
+    setCardapio((anterior) => ({
+      ...anterior,
+      secoes: anterior.secoes.map((s) => (s.id === id ? { ...s, ...muda } : s)),
     }));
   }
 
   function mudarItem(secaoId: string, itemId: string, muda: Partial<ItemCardapio>) {
-    setC((v) => ({
-      ...v,
-      secoes: v.secoes.map((s) =>
+    setCardapio((anterior) => ({
+      ...anterior,
+      secoes: anterior.secoes.map((s) =>
         s.id !== secaoId
           ? s
           : { ...s, itens: s.itens.map((i) => (i.id === itemId ? { ...i, ...muda } : i)) },
@@ -60,16 +60,16 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
       preco: 0,
       ativo: true,
     };
-    setC((v) => ({
-      ...v,
-      secoes: v.secoes.map((s) => (s.id === secaoId ? { ...s, itens: [...s.itens, item] } : s)),
+    setCardapio((anterior) => ({
+      ...anterior,
+      secoes: anterior.secoes.map((s) => (s.id === secaoId ? { ...s, itens: [...s.itens, item] } : s)),
     }));
   }
 
   function removerItem(secaoId: string, itemId: string) {
-    setC((v) => ({
-      ...v,
-      secoes: v.secoes.map((s) =>
+    setCardapio((anterior) => ({
+      ...anterior,
+      secoes: anterior.secoes.map((s) =>
         s.id === secaoId ? { ...s, itens: s.itens.filter((i) => i.id !== itemId) } : s,
       ),
     }));
@@ -83,22 +83,22 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
       ativo: true,
       itens: [],
     };
-    setC((v) => ({ ...v, secoes: [...v.secoes, s] }));
+    setCardapio((anterior) => ({ ...anterior, secoes: [...anterior.secoes, s] }));
     setAberta(s.id);
   }
 
   function removerSecao(id: string) {
-    setC((v) => ({ ...v, secoes: v.secoes.filter((s) => s.id !== id) }));
+    setCardapio((anterior) => ({ ...anterior, secoes: anterior.secoes.filter((s) => s.id !== id) }));
   }
 
   function moverSecao(id: string, passo: number) {
-    setC((v) => {
-      const i = v.secoes.findIndex((s) => s.id === id);
+    setCardapio((anterior) => {
+      const i = anterior.secoes.findIndex((s) => s.id === id);
       const j = i + passo;
-      if (i < 0 || j < 0 || j >= v.secoes.length) return v;
-      const secoes = [...v.secoes];
+      if (i < 0 || j < 0 || j >= anterior.secoes.length) return anterior;
+      const secoes = [...anterior.secoes];
       [secoes[i], secoes[j]] = [secoes[j], secoes[i]];
-      return { ...v, secoes };
+      return { ...anterior, secoes };
     });
   }
 
@@ -116,12 +116,12 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
       const r = await fetch("/api/cardapio", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(c),
+        body: JSON.stringify(cardapio),
       });
-      const d = await r.json().catch(() => ({}));
+      const resposta = await r.json().catch(() => ({}));
       if (!r.ok) {
         setEstado("erro");
-        setMsg(d.erro ?? "Não foi possível salvar.");
+        setMsg(resposta.erro ?? "Não foi possível salvar.");
         return;
       }
       setEstado("salvo");
@@ -146,7 +146,7 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
     router.refresh();
   }
 
-  const totalAtivos = c.secoes.reduce(
+  const totalAtivos = cardapio.secoes.reduce(
     (n, s) => n + (s.ativo ? s.itens.filter((i) => i.ativo).length : 0),
     0,
   );
@@ -174,14 +174,14 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
       <label className="mt-8 block">
         <span className={rotulo}>Aviso no rodapé do cardápio</span>
         <input
-          value={c.aviso}
-          onChange={(e) => setC({ ...c, aviso: e.target.value })}
+          value={cardapio.aviso}
+          onChange={(e) => setCardapio({ ...cardapio, aviso: e.target.value })}
           className={`${campo} mt-2`}
         />
       </label>
 
       <div className="mt-10 flex flex-col gap-4">
-        {c.secoes.map((s, idx) => {
+        {cardapio.secoes.map((s, idx) => {
           const abertaAqui = aberta === s.id;
           return (
             <section
@@ -200,7 +200,7 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
                   </button>
                   <button
                     onClick={() => moverSecao(s.id, 1)}
-                    disabled={idx === c.secoes.length - 1}
+                    disabled={idx === cardapio.secoes.length - 1}
                     aria-label="Descer seção"
                     className="disabled:opacity-25"
                   >
@@ -216,7 +216,7 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
 
                 <Interruptor
                   ligado={s.ativo}
-                  aoMudar={(v) => mudarSecao(s.id, { ativo: v })}
+                  aoMudar={(ligado) => mudarSecao(s.id, { ativo: ligado })}
                   rotulo={`Seção ${s.titulo}`}
                 />
 
@@ -324,10 +324,6 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
                         className={`rounded-xl border border-espresso/12 bg-cream p-4 ${item.ativo ? "" : "opacity-55"}`}
                       >
                         <div className="flex items-start gap-3">
-                          <GripVertical
-                            className="mt-2.5 size-4 shrink-0 text-espresso-soft/30"
-                            aria-hidden
-                          />
                           <div className="grid flex-1 gap-3 sm:grid-cols-[1fr_7rem]">
                             <input
                               value={item.nome}
@@ -359,14 +355,14 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
                               className={`${campo} sm:col-span-2`}
                             />
 
-                            {item.variacoes?.map((v, vi) => (
+                            {item.variacoes?.map((variacao, vi) => (
                               <div key={vi} className="flex gap-2 sm:col-span-2">
                                 <input
-                                  value={v.rotulo}
+                                  value={variacao.rotulo}
                                   placeholder="Variação"
                                   onChange={(e) => {
                                     const variacoes = [...item.variacoes!];
-                                    variacoes[vi] = { ...v, rotulo: e.target.value };
+                                    variacoes[vi] = { ...variacao, rotulo: e.target.value };
                                     mudarItem(s.id, item.id, { variacoes });
                                   }}
                                   className={campo}
@@ -375,10 +371,10 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
                                   type="number"
                                   step="0.10"
                                   min="0"
-                                  value={v.preco}
+                                  value={variacao.preco}
                                   onChange={(e) => {
                                     const variacoes = [...item.variacoes!];
-                                    variacoes[vi] = { ...v, preco: Number(e.target.value) };
+                                    variacoes[vi] = { ...variacao, preco: Number(e.target.value) };
                                     mudarItem(s.id, item.id, { variacoes });
                                   }}
                                   className={`${campo} w-28 tabular-nums`}
@@ -415,7 +411,7 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
                           <div className="flex shrink-0 flex-col items-end gap-3">
                             <Interruptor
                               ligado={item.ativo}
-                              aoMudar={(v) => mudarItem(s.id, item.id, { ativo: v })}
+                              aoMudar={(ligado) => mudarItem(s.id, item.id, { ativo: ligado })}
                               rotulo={item.nome || "item"}
                             />
                             <button
@@ -490,7 +486,7 @@ function Interruptor({
   rotulo,
 }: {
   ligado: boolean;
-  aoMudar: (v: boolean) => void;
+  aoMudar: (ligado: boolean) => void;
   rotulo: string;
 }) {
   return (

@@ -3,14 +3,11 @@ import { site } from "./site";
 export type PlaceStats = {
   rating: number;
   count: number;
-  /** true quando o número veio da API agora; false quando é o valor de reserva */
-  live: boolean;
 };
 
 const fallback: PlaceStats = {
   rating: site.rating.value,
   count: site.rating.count,
-  live: false,
 };
 
 const FIELDS = "rating,userRatingCount";
@@ -37,7 +34,7 @@ export async function getPlaceStats(): Promise<PlaceStats> {
     if (typeof data?.rating !== "number" || typeof data?.userRatingCount !== "number") {
       return fallback;
     }
-    return { rating: data.rating, count: data.userRatingCount, live: true };
+    return { rating: data.rating, count: data.userRatingCount };
   } catch {
     return fallback;
   }
