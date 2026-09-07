@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { whatsappCom } from "@/lib/site";
+import { linkWhatsapp, whatsappCom } from "@/lib/site";
 
 /**
  * O corte em 11 dígitos tem 8 linhas de comentário em site.ts explicando que
@@ -8,36 +8,53 @@ import { whatsappCom } from "@/lib/site";
  * inválido", sem erro no console e sem nada quebrar no site. Foi bug real —
  * a primeira versão gerava `wa.me/24999990000`, sem o 55.
  *
- * É o caso clássico de algo que merece teste: barato de escrever, e o modo
- * de falha é invisível.
+ * A PRIMEIRA VERSÃO DESTE TESTE não pegava esse bug. Ela só chamava
+ * `whatsappCom`, que usa `site.whatsapp` — um número que já vem com o país,
+ * então o ramo que acrescenta o 55 nunca rodava. Uma revisão provou por
+ * mutação: apagar o `55` da implementação deixava os 27 testes verdes.
+ *
+ * Daí a tabela abaixo: ela entra pela função pura e cobre os dois lados do
+ * corte, inclusive a borda (10 e 11 dígitos vs 12 e 13).
  */
-describe("whatsappCom", () => {
-  const digitos = (url: string | null) => url?.match(/wa\.me\/(\d+)/)?.[1];
-
-  it("põe o 55 num celular escrito como brasileiro digita", () => {
-    // 11 dígitos: DDD + 9 do celular
-    expect(digitos(whatsappCom("x"))).toBeTruthy();
+describe("linkWhatsapp", () => {
+  it.each([
+    ["(24) 99999-0000", "5524999990000", "11 dígitos: celular sem país"],
+    ["24 3302-2752", "552433022752", "10 dígitos: fixo sem país — borda do corte"],
+    ["+55 24 3302-2752", "552433022752", "12 dígitos: já com país"],
+    ["+55 24 99999-0000", "5524999990000", "13 dígitos: já com país"],
+  ])("%s -> %s (%s)", (entrada, esperado) => {
+    expect(linkWhatsapp(entrada, "oi")).toBe(`https://wa.me/${esperado}?text=oi`);
   });
 
-  it("não duplica o 55 quando o número já vem internacional", () => {
-    // site.whatsapp hoje é "+55 24 3302-2752" -> 12 dígitos, já com país
-    const d = digitos(whatsappCom("oi"));
-    expect(d).toBe("552433022752");
-    expect(d?.startsWith("5555")).toBe(false);
+  it("nunca duplica o país", () => {
+    for (const n of ["+55 24 3302-2752", "5524999990000"]) {
+      expect(linkWhatsapp(n, "x")).not.toMatch(/wa\.me\/5555/);
+    }
   });
 
-  it("descarta a pontuação e monta um wa.me válido", () => {
-    const url = whatsappCom("oi")!;
-    expect(url).toMatch(/^https:\/\/wa\.me\/\d{12,13}\?text=/);
+  it("descarta pontuação e espaço", () => {
+    const url = linkWhatsapp("+55 (24) 3302-2752", "oi");
     expect(url).not.toContain(" ");
     expect(url).not.toContain("(");
+    expect(url).not.toContain("-");
   });
 
   it("codifica o texto na query", () => {
-    const url = whatsappCom("Oi! Vim pelo site 🙂")!;
-    // encodeURIComponent não escapa "!" — a asserção anterior aqui
+    const url = linkWhatsapp("+5524330227522", "Oi! Vim pelo site 🙂");
+    // encodeURIComponent não escapa "!" — a primeira versão deste teste
     // presumia que sim, e o teste pegou o meu engano, não o do código.
     expect(url).toContain("text=Oi!%20Vim");
     expect(decodeURIComponent(url.split("text=")[1])).toBe("Oi! Vim pelo site 🙂");
+  });
+});
+
+describe("whatsappCom", () => {
+  /*
+   * Um só, e frouxo de propósito: prende que o link sai com país e formato
+   * de wa.me, sem decorar o DDD nem o número da cliente — que pode mudar sem
+   * que nada esteja errado. O comportamento fica preso na tabela acima.
+   */
+  it("monta um link com país a partir do número configurado", () => {
+    expect(whatsappCom("oi")).toMatch(/^https:\/\/wa\.me\/55\d{10,11}\?text=/);
   });
 });

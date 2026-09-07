@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { anoDeAgora, diaDaSemana, diaPorExtenso, horaDoDia, minutosDoDia } from "@/lib/agora";
 
@@ -9,6 +9,11 @@ import { anoDeAgora, diaDaSemana, diaPorExtenso, horaDoDia, minutosDoDia } from 
  */
 const emPetropolis = (ano: number, mes: number, dia: number, h = 12, m = 0) =>
   new Date(Date.UTC(ano, mes - 1, dia, h + 3, m));
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+  vi.resetModules();
+});
 
 describe("minutosDoDia", () => {
   it("converte a hora de parede em minutos desde a meia-noite", () => {
@@ -38,10 +43,23 @@ describe("diaDaSemana", () => {
     expect(diaDaSemana(emPetropolis(2026, 9, 12))).toBe(6);
   });
 
-  it("cobre os sete dias sem cair no fallback", () => {
+  it("cobre os sete dias, sem repetir nem pular", () => {
     const vistos = new Set<number>();
     for (let i = 0; i < 7; i++) vistos.add(diaDaSemana(emPetropolis(2026, 9, 6 + i)));
     expect([...vistos].sort()).toEqual([0, 1, 2, 3, 4, 5, 6]);
+  });
+
+  /*
+   * Prende o caminho em português dia a dia. Sem isto, o caminho pt-BR e o
+   * fallback en-US absorviam as mutações UM DO OUTRO: sabotar qualquer um
+   * deixava a suíte verde, porque o outro devolvia o dia certo. Só sabotando
+   * os dois juntos algum teste caía.
+   */
+  it.each([
+    [6, "domingo"], [7, "segunda-feira"], [8, "terça-feira"], [9, "quarta-feira"],
+    [10, "quinta-feira"], [11, "sexta-feira"], [12, "sábado"],
+  ])("%i/9/2026 é %s em português", (dia, nome) => {
+    expect(diaPorExtenso(emPetropolis(2026, 9, dia))).toBe(nome);
   });
 
   it("sábado e domingo não têm '-feira' e mesmo assim casam", () => {
@@ -50,6 +68,41 @@ describe("diaDaSemana", () => {
     expect(diaPorExtenso(emPetropolis(2026, 9, 12))).toBe("sábado");
     expect(diaDaSemana(emPetropolis(2026, 9, 6))).toBe(0);
     expect(diaDaSemana(emPetropolis(2026, 9, 12))).toBe(6);
+  });
+
+  /*
+   * Este é o teste que separa os DOIS caminhos.
+   *
+   * Nota de honestidade: sabotar SÓ o caminho em português (forçar o
+   * `indexOf` a -1, ou tirar o `.replace("-feira","")`) continua não
+   * derrubando teste nenhum, e está certo assim — toda chamada passa a cair
+   * no fallback, que devolve o mesmo dia. São mutantes equivalentes: não
+   * mudam o comportamento observável, só o caminho. Derrubá-los exigiria
+   * afirmar sobre o interno, e é aí que teste vira âncora. Sem ele, o caminho em
+   * português e o fallback en-US absorviam as mutações um do outro: sabotar
+   * qualquer um deixava a suíte verde, porque o outro devolvia o dia certo.
+   *
+   * Aqui o runtime é que muda, não o código: o Intl passa a se comportar como
+   * se não tivesse dados de pt-BR — que é o cenário real do comentário da
+   * implementação (Node com small-icu, WebView antiga). O módulo precisa ser
+   * reimportado porque ele monta os formatadores no carregamento.
+   */
+  it("sem dados de pt-BR, o fallback ainda devolve o dia certo", async () => {
+    const Real = Intl.DateTimeFormat;
+    class SemPortugues extends Real {
+      constructor(locale?: string | string[], opcoes?: Intl.DateTimeFormatOptions) {
+        super(locale === "pt-BR" ? "en-US" : locale, opcoes);
+      }
+    }
+    vi.stubGlobal("Intl", { ...Intl, DateTimeFormat: SemPortugues });
+    vi.resetModules();
+    const { diaDaSemana: comFallback, diaPorExtenso: nome } = await import("@/lib/agora");
+
+    // o nome sai em inglês: a tabela em português não casa e o chão entra
+    expect(nome(emPetropolis(2026, 9, 6))).not.toBe("domingo");
+    expect(comFallback(emPetropolis(2026, 9, 6))).toBe(0);
+    expect(comFallback(emPetropolis(2026, 9, 9))).toBe(3);
+    expect(comFallback(emPetropolis(2026, 9, 12))).toBe(6);
   });
 
   it("vira o dia na meia-noite de Petrópolis, não na de UTC", () => {

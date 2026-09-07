@@ -32,7 +32,9 @@ describe("formatarPreco", () => {
  */
 describe("secaoDeAgora", () => {
   const secao = (id: string, de: string, ate: string): SecaoCardapio =>
-    ({ id, titulo: id, descricao: "", foto: "", ativo: true, itens: [],
+    // titulo != id de propósito: com os dois iguais, trocar `return s.id` por
+    // `return s.titulo` na implementação passaria despercebido.
+    ({ id, titulo: `Título de ${id}`, descricao: "", foto: "", ativo: true, itens: [],
        horario: { rotulo: id, de, ate } }) as SecaoCardapio;
 
   const secoes = [secao("manha", "06:00", "11:00"), secao("almoco", "11:00", "15:00")];
@@ -48,6 +50,18 @@ describe("secaoDeAgora", () => {
     expect(secaoDeAgora(secoes, as(10, 59))).toBe("manha");
     expect(secaoDeAgora(secoes, as(14, 59))).toBe("almoco");
     expect(secaoDeAgora(secoes, as(15))).toBeNull();
+  });
+
+  it("seção sem horário nunca ganha a marca", () => {
+    /*
+     * É o caso que o docstring da implementação descreve: se a seção do dia
+     * todo entrasse, TODAS entrariam. E não é hipótese — `de`/`ate` vêm de um
+     * <input type="time"> no /admin, então string vazia é o que a cliente
+     * produz ao limpar o campo.
+     */
+    const semHorario = secao("mercearia", "", "");
+    expect(secaoDeAgora([semHorario, ...secoes], as(12))).toBe("almoco");
+    expect(secaoDeAgora([semHorario], as(12))).toBeNull();
   });
 
   it("fora de qualquer faixa devolve null", () => {

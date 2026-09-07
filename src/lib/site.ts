@@ -69,7 +69,13 @@ export const site = {
  * prefixar de novo geraria "5555…", que o WhatsApp rejeita em silêncio —
  * o link abre e diz que o número é inválido, sem erro nenhum no console.
  */
-function linkWhatsapp(numero: string, texto: string) {
+/**
+ * Exportada para teste: `whatsappCom` só sabe usar `site.whatsapp`, que hoje
+ * já vem com o país — então o ramo que ACRESCENTA o 55 nunca era exercitado.
+ * Uma revisão provou isso por mutação: remover o `55` inteiro deixava a suíte
+ * verde. Testar a função pura por tabela alcança os dois ramos.
+ */
+export function linkWhatsapp(numero: string, texto: string) {
   const digitos = numero.replace(/\D/g, "");
   const comDdi = digitos.length > 11 ? digitos : `55${digitos}`;
   return `https://wa.me/${comDdi}?text=${encodeURIComponent(texto)}`;

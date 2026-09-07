@@ -6,6 +6,7 @@ import {
   ehPreview,
   ehWww,
   foraDoIndice,
+  hosts,
   normalizar,
 } from "@/lib/hosts";
 
@@ -17,8 +18,15 @@ import {
  * A tabela do README (apex/preview/www x SITE_LIVE) já era uma tabela de
  * teste escrita; isto aqui é a transcrição dela.
  */
-const APEX = "padariarainhadamassa.com.br";
-const PREVIEW = `aprovacao.${APEX}`;
+/*
+ * Vem de `hosts`, não escrito à mão: `SITE_HOST` e `PREVIEW_HOST` são lidas
+ * no import de hosts.ts, e um ambiente que as injete (build da Vercel, CI com
+ * a env do projeto) derrubava a suíte pelo motivo errado. Confirmado:
+ * `SITE_HOST=exemplo.com npm test` quebrava um teste. O alvo é a lógica, não
+ * o valor default.
+ */
+const APEX = hosts.apex;
+const PREVIEW = hosts.preview;
 
 const original = process.env.SITE_LIVE;
 afterEach(() => {
@@ -71,6 +79,13 @@ describe("foraDoIndice — quem fica fora do Google", () => {
     expect(foraDoIndice(PREVIEW)).toBe(true);
     expect(foraDoIndice("padaria-abc.vercel.app")).toBe(true);
     expect(foraDoIndice("localhost:3000")).toBe(true);
+    /*
+     * O www NÃO fica fora do índice, e é de propósito: `robots.txt` está fora
+     * do matcher do proxy, então o rastreador precisa poder buscá-lo no www
+     * para enxergar o 301 que leva ao apex. Decisão que nenhum teste
+     * registrava.
+     */
+    expect(foraDoIndice(`www.${APEX}`)).toBe(false);
   });
 
   it("sem SITE_LIVE, NADA entra — nem o apex", () => {
