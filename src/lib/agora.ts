@@ -5,10 +5,11 @@
  * e ainda havia `expediente.fuso` em site.ts, usado por um só. Cada uma
  * construía o próprio `Intl.DateTimeFormat` com o mesmo timeZone.
  *
- * Além da duplicação, havia um custo real: `minutosAgora` é chamada pelo
- * `getSnapshot` de um `useSyncExternalStore` (open-now.tsx), que roda a cada
- * render. Construir um `Intl.DateTimeFormat` é caro, e ali estava sendo
- * refeito toda vez. Aqui os formatadores são criados uma vez, no módulo.
+ * Além da duplicação, havia um custo real: dois `getSnapshot` de
+ * `useSyncExternalStore` passam por aqui — `estadoAgora` (open-now.tsx, via
+ * expediente.ts) e `diaEmPetropolis` (lunch-section.tsx) — e rodam a cada
+ * render. Construir um `Intl.DateTimeFormat` é caro, e antes cada chamada
+ * criava o seu. Aqui os formatadores nascem uma vez, no módulo.
  *
  * Tudo recebe `agora = new Date()` para dar teste sem mexer no relógio.
  */
@@ -47,10 +48,22 @@ export function diaPorExtenso(agora = new Date()) {
  * chegar no mesmo lugar, e com uma segunda tabela para manter.
  */
 const DIAS = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+const DIAS_EN: Record<string, number> = {
+  Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
+};
 export function diaDaSemana(agora = new Date()) {
   const nome = diaPorExtenso(agora).replace("-feira", "");
   const i = DIAS.indexOf(nome);
-  return i >= 0 ? i : 0;
+  if (i >= 0) return i;
+  /*
+   * Rede de segurança para runtime sem dados de pt-BR (Node com small-icu,
+   * WebView antiga): ali o Intl cai para inglês e a tabela acima não casa.
+   * Sem isto, a resposta seria 0 — ou seja, DOMINGO TODO DIA, em silêncio,
+   * e a seção de almoço mostraria o prato errado sem ninguém perceber.
+   * en-US existe até no small-icu, então serve de chão.
+   */
+  const en = new Intl.DateTimeFormat("en-US", { timeZone: FUSO, weekday: "short" }).format(agora);
+  return DIAS_EN[en] ?? 0;
 }
 
 /** Ano corrente em Petrópolis — o fuso de quem acessa não muda a conta. */

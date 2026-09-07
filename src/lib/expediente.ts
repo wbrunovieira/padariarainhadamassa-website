@@ -1,3 +1,4 @@
+import { minutosDoDia } from "@/lib/agora";
 import { expediente, site } from "./site";
 
 export type Estado = {
@@ -6,17 +7,16 @@ export type Estado = {
   texto: string;
 };
 
-/** Hora local em Petrópolis, independente do fuso do aparelho. */
+/**
+ * Hora local em Petrópolis como número com fração — 6h30 vira 6.5.
+ *
+ * Reaproveita o formatador de `agora.ts` em vez de construir o próprio. Esta
+ * função é o caminho quente de verdade do site: `estadoAgora` é o
+ * `getSnapshot` do `useSyncExternalStore` em `open-now.tsx`, que roda a cada
+ * render, e antes cada chamada criava um `Intl.DateTimeFormat` novo.
+ */
 function horaEmPetropolis(agora: Date) {
-  const partes = new Intl.DateTimeFormat("pt-BR", {
-    timeZone: expediente.fuso,
-    hour: "numeric",
-    minute: "numeric",
-    hour12: false,
-  }).formatToParts(agora);
-  const hora = Number(partes.find((p) => p.type === "hour")?.value ?? 0);
-  const minuto = Number(partes.find((p) => p.type === "minute")?.value ?? 0);
-  return hora + minuto / 60;
+  return minutosDoDia(agora) / 60;
 }
 
 export function estadoAgora(agora = new Date()): Estado {

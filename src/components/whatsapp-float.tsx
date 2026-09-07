@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
+import { EASE } from "@/lib/animacao";
 import { whatsappCom } from "@/lib/site";
 
 /*
@@ -33,7 +34,7 @@ export function WhatsAppFloat() {
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{
         duration: reduce ? 0 : 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: EASE,
         delay: reduce ? 0 : 1.4,
       }}
       /*
