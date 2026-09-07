@@ -113,15 +113,15 @@ export function Editor({ inicial }: { inicial: Cardapio }) {
      * — perdendo tudo o que foi digitado.
      */
     try {
-      const r = await fetch("/api/cardapio", {
+      const resposta = await fetch("/api/cardapio", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cardapio),
       });
-      const resposta = await r.json().catch(() => ({}));
-      if (!r.ok) {
+      const corpo = await resposta.json().catch(() => ({}));
+      if (!resposta.ok) {
         setEstado("erro");
-        setMsg(resposta.erro ?? "Não foi possível salvar.");
+        setMsg(corpo.erro ?? "Não foi possível salvar.");
         return;
       }
       setEstado("salvo");

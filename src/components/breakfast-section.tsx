@@ -45,11 +45,8 @@ export function BreakfastSection() {
       }
       itens={cafeDaManha}
       foto={paesFranceses}
-      /*
-       * Mesmo texto do alt desta foto em fotos.ts. Antes divergia, e a versão
-       * daqui afirmava "recém-saídos do forno" — isso é conteúdo, não
-       * descrição de imagem, e ninguém verificou. Alt descreve o que se vê.
-       */
+      /* Mesmo texto do alt desta foto em fotos.ts: alt descreve o que se vê,
+         não afirma fato sobre o produto. */
       fotoAlt="Funcionário com o brasão bordado na camiseta segurando uma cesta cheia de pães franceses"
       fotoLegenda="A fornada de pão francês"
       rodape={

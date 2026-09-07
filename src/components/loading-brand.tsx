@@ -15,16 +15,16 @@ export function LoadingBrand({
       <span className="sr-only">Carregando</span>
 
       <CoroaSvg
-        className={`anima-respira h-12 w-auto text-espresso`}
+        className="anima-respira h-12 w-auto text-espresso"
       />
 
       <span
-        className={`block h-px w-40 overflow-hidden bg-espresso/12`}
+        className="block h-px w-40 overflow-hidden bg-espresso/12"
       >
         <span className="anima-varredura block h-px w-full bg-gold" />
       </span>
 
-      <span className={`eyebrow text-espresso-soft/60`}>
+      <span className="eyebrow text-espresso-soft/60">
         {texto}
       </span>
     </div>

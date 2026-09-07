@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { sessaoValida } from "@/lib/admin-auth";
-import {
-  armazenamento,
-  gravarCardapio,
-  type Cardapio,
-} from "@/lib/cardapio-digital";
+import { armazenamento, gravarCardapio, type Cardapio } from "@/lib/cardapio-digital";
 import { fotosDisponiveis } from "@/lib/cardapio-tipos";
 
 export async function PUT(req: Request) {

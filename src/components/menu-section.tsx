@@ -36,7 +36,18 @@ type Props = {
   rodape?: ReactNode;
 };
 
-/** Molde comum do café da manhã e da confeitaria. */
+/**
+ * Molde comum do café da manhã, da confeitaria e do frango de domingo.
+ *
+ * É client component de propósito (usa `useReducedMotion` e `motion`). As
+ * seções que o chamam NÃO são — elas só montam props.
+ *
+ * Medido ao mover essas seções para o servidor: os chunks de JS encolheram
+ * ~1,6 KB gzip, mas o HTML de `/` cresceu ~2,5 KB e o payload RSC ~6,8 KB.
+ * Ou seja, numa primeira visita o saldo é NEGATIVO em ~1 KB. A troca não foi
+ * feita por bytes — foi por sinal: `"use client"` estava em 19 de 25
+ * componentes e tinha deixado de significar alguma coisa.
+ */
 export function MenuSection({
   id,
   sobretitulo,
