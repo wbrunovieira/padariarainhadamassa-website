@@ -58,7 +58,7 @@ export function MenuNav({ abas }: { abas: Aba[] }) {
       >
         <span
           aria-hidden
-          className="pointer-events-none absolute bottom-0 left-0 h-0.5 bg-gold transition-transform duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+          className="pointer-events-none absolute bottom-0 left-0 h-0.5 bg-gold transition-transform duration-[320ms] ease-crust motion-reduce:transition-none"
           style={{
             width: 1,
             transform: `translateX(${risco.x}px) scaleX(${risco.w})`,

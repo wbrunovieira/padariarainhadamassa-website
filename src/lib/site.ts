@@ -1,3 +1,5 @@
+import { anoDeAgora, FUSO } from "@/lib/agora";
+
 /**
  * Dados apurados publicamente em 27/08/2026 (Google Maps, Instagram
  * @rainha_da_massa_, Restaurant Guru, registro de CNPJ).
@@ -147,17 +149,10 @@ export const navigationCompleta: NavItem[] = [
 ];
 
 /** Horário de funcionamento, para o indicador de aberto/fechado. */
-export const expediente = { abre: 6, fecha: 22, fuso: "America/Sao_Paulo" } as const;
+export const expediente = { abre: 6, fecha: 22, fuso: FUSO } as const;
 
 /** Ano corrente em Petrópolis — o fuso de quem acessa não muda a conta. */
-function anoAtual(agora = new Date()) {
-  return Number(
-    new Intl.DateTimeFormat("pt-BR", {
-      timeZone: "America/Sao_Paulo",
-      year: "numeric",
-    }).format(agora),
-  );
-}
+const anoAtual = anoDeAgora;
 
 /** Quantos anos de casa. Em 2026 são 22; a conta se atualiza sozinha. */
 export function anosDeCasa(agora = new Date()) {

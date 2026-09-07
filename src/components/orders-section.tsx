@@ -6,18 +6,13 @@ import { motion, useReducedMotion } from "motion/react";
 import { encomendas } from "@/lib/encomendas";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { site, whatsappUrl } from "@/lib/site";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE, revelar } from "@/lib/animacao";
+import { PhoneIcon } from "@/components/phone-icon";
 
 export function OrdersSection() {
   const reduce = useReducedMotion();
 
-  const reveal = (delay = 0) => ({
-    initial: { opacity: 0, y: 22 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-70px" },
-    transition: { duration: reduce ? 0 : 0.7, ease: EASE, delay: reduce ? 0 : delay },
-  });
+  const reveal = revelar(reduce);
 
   return (
     <section
@@ -100,7 +95,7 @@ export function OrdersSection() {
                 <div className="flex items-baseline gap-5 lg:gap-8">
                   <span
                     aria-hidden
-                    className="mt-2 block h-px w-6 shrink-0 bg-espresso/25 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-10 group-hover:bg-gold lg:w-10 lg:group-hover:w-16"
+                    className="mt-2 block h-px w-6 shrink-0 bg-espresso/25 transition-all duration-500 ease-crust group-hover:w-10 group-hover:bg-gold lg:w-10 lg:group-hover:w-16"
                   />
                   <div>
                     <h3 className="font-display text-2xl italic text-espresso sm:text-3xl">
@@ -120,15 +115,3 @@ export function OrdersSection() {
   );
 }
 
-function PhoneIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-      className={className}
-    >
-      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" />
-    </svg>
-  );
-}

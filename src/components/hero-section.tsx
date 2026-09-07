@@ -15,8 +15,7 @@ import { HeroCarousel } from "@/components/hero-carousel";
 import { DeliveryLinks } from "@/components/delivery-links";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
 import { site } from "@/lib/site";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE } from "@/lib/animacao";
 
 const container: Variants = {
   hidden: {},
@@ -155,7 +154,7 @@ export function HeroSection({ stats }: { stats: PlaceStats }) {
                 className="group inline-flex items-center gap-2 rounded-full bg-espresso px-5 py-4 text-cream transition-colors duration-300 hover:bg-ink xl:px-7"
               >
                 <span className="eyebrow">Ligar {site.phone}</span>
-                <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
+                <span className="transition-transform duration-500 ease-crust group-hover:translate-x-1">
                   →
                 </span>
               </a>

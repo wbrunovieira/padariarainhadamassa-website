@@ -7,8 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { depoimentos, temas } from "@/lib/depoimentos";
 import { formatRating, type PlaceStats } from "@/lib/google-place";
 import { decadaDeCasa, googleReviewsUrl } from "@/lib/site";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE, revelar } from "@/lib/animacao";
 
 const INTERVALO = 7000;
 
@@ -72,7 +71,7 @@ function Depoimentos() {
             {depoimentos.map((x, n) => (
               <li key={x.autor}>
                 <span
-                  className={`block h-px transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${n === i ? "w-8 bg-gold" : "w-4 bg-espresso/25"}`}
+                  className={`block h-px transition-all duration-500 ease-crust ${n === i ? "w-8 bg-gold" : "w-4 bg-espresso/25"}`}
                 />
               </li>
             ))}
@@ -105,12 +104,7 @@ function Depoimentos() {
 export function SocialProofSection({ stats }: { stats: PlaceStats }) {
   const reduce = useReducedMotion();
 
-  const reveal = (delay = 0) => ({
-    initial: { opacity: 0, y: 22 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-70px" },
-    transition: { duration: reduce ? 0 : 0.7, ease: EASE, delay: reduce ? 0 : delay },
-  });
+  const reveal = revelar(reduce);
 
   return (
     <section id="avaliacoes" className="relative border-t border-espresso/10">

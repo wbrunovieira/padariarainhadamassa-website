@@ -9,8 +9,7 @@ import { DeliveryLinks } from "@/components/delivery-links";
 import { acompanhamentos, diaEmPetropolis, fixos, semana } from "@/lib/almoco";
 import { pratosDoAlmoco } from "@/lib/fotos";
 import { googleMapsUrl, site } from "@/lib/site";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE, revelar } from "@/lib/animacao";
 
 /** O dia vira no navegador de quem tem o relógio em outro fuso. */
 function assinar(aoMudar: () => void) {
@@ -26,12 +25,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
   const hoje = useSyncExternalStore(assinar, diaNoCliente, () => diaInicial);
   const pratoDeHoje = semana.find((d) => d.dia === hoje) ?? semana[0];
 
-  const reveal = (delay = 0) => ({
-    initial: { opacity: 0, y: 22 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-70px" },
-    transition: { duration: reduce ? 0 : 0.7, ease: EASE, delay: reduce ? 0 : delay },
-  });
+  const reveal = revelar(reduce);
 
   return (
     <section
@@ -175,10 +169,10 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                   ease: EASE,
                   delay: reduce ? 0 : 0.2 + i * 0.08,
                 }}
-                className="group relative flex flex-col items-center gap-5 rounded-b-2xl rounded-t-[3.5rem] border border-espresso/12 bg-cream-light px-5 pb-7 pt-10 text-center transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_14px_30px_-26px_rgba(44,32,26,0.5)] hover:-translate-y-1.5 hover:border-gold/45 hover:shadow-[0_30px_54px_-34px_rgba(44,32,26,0.8)] lg:rounded-t-[5rem] lg:px-6 lg:pb-9 lg:pt-12"
+                className="group relative flex flex-col items-center gap-5 rounded-b-2xl rounded-t-[3.5rem] border border-espresso/12 bg-cream-light px-5 pb-7 pt-10 text-center transition-[transform,border-color,box-shadow] duration-500 ease-crust shadow-[0_14px_30px_-26px_rgba(44,32,26,0.5)] hover:-translate-y-1.5 hover:border-gold/45 hover:shadow-[0_30px_54px_-34px_rgba(44,32,26,0.8)] lg:rounded-t-[5rem] lg:px-6 lg:pb-9 lg:pt-12"
               >
                 <Wheat
-                  className="size-5 shrink-0 text-gold/45 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6 group-hover:text-gold"
+                  className="size-5 shrink-0 text-gold/45 transition-all duration-500 ease-crust group-hover:-rotate-6 group-hover:text-gold"
                   strokeWidth={1.5}
                   aria-hidden
                 />
@@ -187,7 +181,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                 </span>
                 <span
                   aria-hidden
-                  className="block h-px w-10 origin-center scale-x-50 bg-espresso/20 transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-hover:bg-gold"
+                  className="block h-px w-10 origin-center scale-x-50 bg-espresso/20 transition-[transform,background-color] duration-500 ease-crust group-hover:scale-x-100 group-hover:bg-gold"
                 />
               </motion.li>
             ))}
@@ -226,7 +220,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
                   placeholder="blur"
                   quality={68}
                   sizes="(min-width: 640px) 30vw, 92vw"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-crust group-hover:scale-[1.05]"
                 />
                 <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent p-4 pt-14">
                   <span className="eyebrow text-cream">{foto.legenda}</span>
@@ -244,7 +238,7 @@ export function LunchSection({ diaInicial }: { diaInicial: number }) {
             className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 text-cream transition-colors duration-300 hover:bg-ink"
           >
             <span className="eyebrow">Como chegar ao salão</span>
-            <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
+            <span className="transition-transform duration-500 ease-crust group-hover:translate-x-1">
               →
             </span>
           </a>

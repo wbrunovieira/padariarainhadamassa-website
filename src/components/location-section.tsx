@@ -6,23 +6,13 @@ import { MapPin, Navigation } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { googleMapsUrl, mapEmbedUrl, site, wazeUrl } from "@/lib/site";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { revelar } from "@/lib/animacao";
 
 export function LocationSection() {
   const reduce = useReducedMotion();
   const { caixaMapa, preparar, montar } = useMapaSobDemanda();
 
-  const reveal = (delay = 0) => ({
-    initial: { opacity: 0, y: 24 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-80px" },
-    transition: {
-      duration: reduce ? 0 : 0.7,
-      ease: EASE,
-      delay: reduce ? 0 : delay,
-    },
-  });
+  const reveal = revelar(reduce);
 
   return (
     <section

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CoroaSvg } from "@/components/coroa-svg";
 import { OpenNow } from "@/components/open-now";
 import { fullAddress, googleMapsUrl, site } from "@/lib/site";
+import { DeliveryLinks } from "@/components/delivery-links";
 
 export const metadata: Metadata = {
   title: `${site.name} — em breve`,
@@ -62,19 +63,7 @@ export default function EmConstrucao() {
             {site.instagramHandle}
           </a>
           {" · "}
-          {site.delivery.map((app, i) => (
-            <span key={app.nome}>
-              {i > 0 && " e "}
-              <a
-                href={app.url}
-                target="_blank"
-                rel="noreferrer"
-                className="underline decoration-gold/50 underline-offset-4 hover:decoration-gold"
-              >
-                {app.nome}
-              </a>
-            </span>
-          ))}
+          <DeliveryLinks />
         </p>
       </div>
     </div>

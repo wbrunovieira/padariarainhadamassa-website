@@ -62,7 +62,7 @@ export default async function NotFound() {
               className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 text-cream transition-colors duration-300 hover:bg-ink"
             >
               <span className="eyebrow">Voltar para o início</span>
-              <span className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
+              <span className="transition-transform duration-500 ease-crust group-hover:translate-x-1">
                 →
               </span>
             </Link>

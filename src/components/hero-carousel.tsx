@@ -6,8 +6,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { heroSlides } from "@/lib/fotos";
+import { EASE } from "@/lib/animacao";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
 const INTERVALO = 5200;
 
 export function HeroCarousel() {
@@ -114,7 +114,7 @@ export function HeroCarousel() {
             <li key={s.src.src}>
               <span
                 className={[
-                  "block h-px transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "block h-px transition-all duration-500 ease-crust",
                   n === i ? "w-8 bg-gold" : "w-4 bg-espresso/25",
                 ].join(" ")}
               />

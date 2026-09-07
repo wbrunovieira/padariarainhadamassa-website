@@ -1,3 +1,5 @@
+import { diaDaSemana } from "@/lib/agora";
+
 /**
  * Cardápio do almoço, passado pela padaria em 27/08/2026.
  * PENDENTE: os preços. As artes de cardápio traziam R$ 27 no prato do dia
@@ -20,16 +22,7 @@ export const acompanhamentos =
   "arroz, feijão, batata frita ou batata palha e salada — de legumes, alface e tomate, ou os dois juntos.";
 
 /** Dia da semana em Petrópolis, independente do fuso de quem acessa. */
-export function diaEmPetropolis(agora = new Date()): number {
-  const nome = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Sao_Paulo",
-    weekday: "short",
-  }).format(agora);
-  const mapa: Record<string, number> = {
-    Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
-  };
-  return mapa[nome] ?? 0;
-}
+export const diaEmPetropolis = diaDaSemana;
 
 export type PratoDoDia = {
   /** 0 = domingo, igual ao Date.getDay() */

@@ -7,8 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { fotos } from "@/lib/fotos";
 import { site } from "@/lib/site";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE } from "@/lib/animacao";
 
 export function GallerySection() {
   const reduce = useReducedMotion();
@@ -84,7 +83,7 @@ export function GallerySection() {
                   placeholder="blur"
                   quality={68}
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
-                  className="w-full transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                  className="w-full transition-transform duration-[900ms] ease-crust group-hover:scale-[1.04]"
                 />
                 <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end bg-gradient-to-t from-ink/75 via-ink/10 to-transparent p-5 pt-16 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100">
                   <span className="eyebrow text-cream">{item.legenda}</span>

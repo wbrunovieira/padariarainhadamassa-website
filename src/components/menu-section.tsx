@@ -5,8 +5,7 @@ import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 import type { Item } from "@/lib/cardapio";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE, revelar } from "@/lib/animacao";
 
 type Props = {
   id: string;
@@ -57,12 +56,7 @@ export function MenuSection({
 }: Props) {
   const reduce = useReducedMotion();
 
-  const reveal = (delay = 0) => ({
-    initial: { opacity: 0, y: 22 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-70px" },
-    transition: { duration: reduce ? 0 : 0.7, ease: EASE, delay: reduce ? 0 : delay },
-  });
+  const reveal = revelar(reduce);
 
   return (
     <section id={id} className={`border-t border-espresso/10 ${fundo}`}>
@@ -90,7 +84,7 @@ export function MenuSection({
                   playsInline
                   preload="none"
                   aria-label={fotoAlt}
-                  className={`w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] ${proporcao}`}
+                  className={`w-full object-cover transition-transform duration-[1100ms] ease-crust group-hover:scale-[1.04] ${proporcao}`}
                 />
               ) : (
                 <Image
@@ -99,7 +93,7 @@ export function MenuSection({
                   placeholder="blur"
                   quality={68}
                   sizes="(min-width: 1024px) 44vw, 92vw"
-                  className={`w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] ${proporcao}`}
+                  className={`w-full object-cover transition-transform duration-[1100ms] ease-crust group-hover:scale-[1.04] ${proporcao}`}
                 />
               )}
               <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent p-6 pt-20">

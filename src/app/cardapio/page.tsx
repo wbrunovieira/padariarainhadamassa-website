@@ -13,6 +13,7 @@ import {
   type SecaoCardapio,
 } from "@/lib/cardapio-digital";
 import { googleMapsUrl, site } from "@/lib/site";
+import { DeliveryLinks } from "@/components/delivery-links";
 
 export const dynamic = "force-dynamic";
 
@@ -134,19 +135,7 @@ export default async function CardapioPage() {
 
           <p className="mt-6 text-[0.94rem] text-espresso-soft">
             Prefere em casa?{" "}
-            {site.delivery.map((app, i) => (
-              <span key={app.nome}>
-                {i > 0 && " e "}
-                <a
-                  href={app.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-espresso underline decoration-gold/50 underline-offset-4 hover:decoration-gold"
-                >
-                  {app.nome}
-                </a>
-              </span>
-            ))}
+            <DeliveryLinks className="text-espresso" />
             .
           </p>
 

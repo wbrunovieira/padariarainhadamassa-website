@@ -1,3 +1,5 @@
+import { diaPorExtenso, horaDoDia, minutosDoDia } from "@/lib/agora";
+
 /**
  * Tipos e constantes do cardápio digital.
  *
@@ -75,18 +77,7 @@ export const formatarPreco = (v: number) =>
   v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 /** Hora de Petrópolis em minutos desde a meia-noite. */
-export function minutosAgora(agora = new Date()) {
-  const [h, m] = new Intl.DateTimeFormat("pt-BR", {
-    timeZone: "America/Sao_Paulo",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  })
-    .format(agora)
-    .split(":")
-    .map(Number);
-  return h * 60 + m;
-}
+export const minutosAgora = minutosDoDia;
 
 const emMinutos = (hhmm: string) => {
   const [h, m] = hhmm.split(":").map(Number);
@@ -110,28 +101,13 @@ export function secaoDeAgora(secoes: SecaoCardapio[], agora = new Date()) {
 
 /** "Quinta-feira, 12h40" no fuso de Petrópolis. */
 export function agoraPorExtenso(agora = new Date()) {
-  const dia = new Intl.DateTimeFormat("pt-BR", {
-    timeZone: "America/Sao_Paulo",
-    weekday: "long",
-  }).format(agora);
-  const hora = new Intl.DateTimeFormat("pt-BR", {
-    timeZone: "America/Sao_Paulo",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  })
-    .format(agora)
-    .replace(":", "h");
+  const dia = diaPorExtenso(agora);
+  const hora = horaDoDia(agora).replace(":", "h");
   return `${dia.charAt(0).toUpperCase()}${dia.slice(1)}, ${hora}`;
 }
 
 /** O prato do dia já traz o dia no nome: "Quinta · Strogonoff". */
 export function ehPratoDeHoje(nome: string, agora = new Date()) {
-  const dia = new Intl.DateTimeFormat("pt-BR", {
-    timeZone: "America/Sao_Paulo",
-    weekday: "long",
-  })
-    .format(agora)
-    .replace("-feira", "");
+  const dia = diaPorExtenso(agora).replace("-feira", "");
   return nome.toLowerCase().startsWith(dia.toLowerCase() + " ·");
 }

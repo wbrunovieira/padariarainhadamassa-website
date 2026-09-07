@@ -7,8 +7,7 @@ import { MenuSection } from "@/components/menu-section";
 import { confeitaria, tambemTem } from "@/lib/cardapio";
 import { site } from "@/lib/site";
 import rocambole from "@/assets/fotos/rocambole.jpg";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE } from "@/lib/animacao";
 
 export function ConfectionerySection() {
   const reduce = useReducedMotion();

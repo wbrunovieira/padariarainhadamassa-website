@@ -5,8 +5,7 @@ import { Plus } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { perguntas } from "@/lib/perguntas";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE } from "@/lib/animacao";
 
 export function FaqSection() {
   const reduce = useReducedMotion();

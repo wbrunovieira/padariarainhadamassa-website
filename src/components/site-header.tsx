@@ -15,8 +15,8 @@ import {
 
 import { formatRating, type PlaceStats } from "@/lib/google-place";
 import { deliveryTexto, navigation, site } from "@/lib/site";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { EASE } from "@/lib/animacao";
+import { PhoneIcon } from "@/components/phone-icon";
 
 /*
  * Recebe `stats` em vez de ler a constante `site.rating`: o herói já mostra o
@@ -143,7 +143,7 @@ export function SiteHeader({ stats }: { stats: PlaceStats }) {
                   fill
                   priority
                   sizes="60px"
-                  className="object-contain transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-3 group-hover:scale-105"
+                  className="object-contain transition-transform duration-700 ease-crust group-hover:-rotate-3 group-hover:scale-105"
                 />
               </motion.span>
 
@@ -189,7 +189,7 @@ export function SiteHeader({ stats }: { stats: PlaceStats }) {
                 href={site.phoneHref}
                 className="group relative hidden shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-espresso/15 bg-espresso px-4 py-2.5 text-cream transition-colors duration-300 sm:inline-flex xl:px-5"
               >
-                <span className="absolute inset-0 -translate-x-[101%] bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
+                <span className="absolute inset-0 -translate-x-[101%] bg-gold transition-transform duration-500 ease-crust group-hover:translate-x-0" />
                 <PhoneIcon className="relative size-4" />
                 <span className="relative eyebrow hidden xl:inline">{site.phone}</span>
                 <span className="sr-only">Ligar {site.phone}</span>
@@ -293,7 +293,7 @@ export function SiteHeader({ stats }: { stats: PlaceStats }) {
                       )}
                       {item.hint}
                     </span>
-                    <span className="font-display text-[2rem] leading-none italic text-espresso transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5">
+                    <span className="font-display text-[2rem] leading-none italic text-espresso transition-transform duration-500 ease-crust group-hover:translate-x-1.5">
                       {item.label}
                     </span>
                   </motion.a>
@@ -384,7 +384,7 @@ function NavLink({
       className="group relative whitespace-nowrap py-1.5 text-espresso"
     >
       <Wheat
-        className={`absolute left-1/2 size-3 -translate-x-1/2 text-gold transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-top-3 group-hover:opacity-100 ${ativo ? "-top-3 opacity-100" : "-top-2.5 opacity-0"}`}
+        className={`absolute left-1/2 size-3 -translate-x-1/2 text-gold transition-all duration-500 ease-crust group-hover:-top-3 group-hover:opacity-100 ${ativo ? "-top-3 opacity-100" : "-top-2.5 opacity-0"}`}
         strokeWidth={1.6}
         aria-hidden
       />
@@ -394,21 +394,9 @@ function NavLink({
         {label}
       </span>
       <span
-        className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 ${ativo ? "scale-x-100" : "scale-x-0"}`}
+        className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-gold transition-transform duration-500 ease-crust group-hover:scale-x-100 ${ativo ? "scale-x-100" : "scale-x-0"}`}
       />
     </a>
   );
 }
 
-function PhoneIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-      className={className}
-    >
-      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" />
-    </svg>
-  );
-}
