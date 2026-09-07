@@ -100,11 +100,33 @@ she sent, or a verifiable public source, and the file records which.
 ## Scripts
 
 ```bash
-npm run dev     # dev server
-npm run build   # production build
-npm run start   # serve the build
-npm run lint    # eslint
+npm run dev        # dev server
+npm run build      # production build
+npm run start      # serve the build
+npm run lint       # eslint
+npm run typecheck  # tsc --noEmit
+npm test           # vitest
 ```
+
+## Tests
+
+Deliberately narrow. Marketing components are not tested — what they do is
+layout, and layout tests age faster than the layout does.
+
+What *is* tested is the pure logic whose own comments document a trap, which
+is a good definition of code that earns a test:
+
+- `src/lib/site.test.ts` — the WhatsApp link. Getting the country code wrong
+  produces a link that fails *silently*: WhatsApp opens and says the number
+  is invalid, with no error anywhere. It was a real bug once.
+- `src/lib/cardapio-tipos.test.ts` — price formatting (the separator between
+  `R$` and the number changed from a normal space to NBSP in ICU 72) and the
+  `>= de && < ate` boundaries of the menu section clock.
+- `src/lib/hosts.test.ts` — the apex/preview/www × `SITE_LIVE` matrix from
+  the table above. These decide whether the whole site enters Google, and
+  getting them wrong raises no error anywhere.
+- `src/lib/agora.test.ts` — the Petrópolis clock, including the midnight and
+  year boundaries, which are wrong for three hours a day if you use UTC.
 
 ## Deploying
 
