@@ -19,7 +19,23 @@ export * from "./cardapio-tipos";
 const CAMINHO_BLOB = "cardapio/cardapio.json";
 const ARQUIVO = path.join(process.cwd(), "src", "data", "cardapio.json");
 
-const usaBlob = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+/**
+ * O blob está DESLIGADO por decisão comercial: a cliente não contratou o
+ * cardápio digital. Sem ele, o `/cardapio` serve o JSON versionado acima e o
+ * `/admin` não grava em produção.
+ *
+ * Há também um motivo técnico para não voltar a ligar do jeito antigo: a
+ * leitura fazia um `list()` por requisição numa página `force-dynamic`, ou
+ * seja, uma operação avançada a cada QR Code escaneado na mesa. Em 16/09/2026
+ * a cota de 2.000 operações/mês da CONTA estourou e a Vercel suspendeu os sete
+ * armazenamentos do time, derrubando o sistema de outro cliente junto.
+ *
+ * Se um dia o recurso for contratado, ligue com `CARDAPIO_BLOB=1` — mas antes
+ * troque o `list()` por leitura direta da URL pública (o caminho é fixo) e
+ * permita cache na página, senão o problema volta.
+ */
+const usaBlob = () =>
+  process.env.CARDAPIO_BLOB === "1" && Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 
 async function lerDoBlob(): Promise<Cardapio | null> {
   try {
